@@ -33,17 +33,21 @@ public class MainActivity extends AppCompatActivity {
 
         final BubbleSort bubbleSort = new BubbleSort(visualizer, this, logFragment);
         bubbleSort.setData(DataUtils.createRandomArray(15));
-        bubbleSort.start();
 
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (bubbleSort.isPaused()) {
-                    bubbleSort.resumeExecution();
+                if (!bubbleSort.isStarted()) {
+                    bubbleSort.startExecution();
                     fab.setImageResource(R.drawable.ic_pause_white_24dp);
                 } else {
-                    bubbleSort.pause();
-                    fab.setImageResource(R.drawable.ic_play_arrow_white_24dp);
+                    if (bubbleSort.isPaused()) {
+                        bubbleSort.setPaused(false);
+                        fab.setImageResource(R.drawable.ic_pause_white_24dp);
+                    } else {
+                        bubbleSort.setPaused(true);
+                        fab.setImageResource(R.drawable.ic_play_arrow_white_24dp);
+                    }
                 }
             }
         });
@@ -51,23 +55,12 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
         return super.onOptionsItemSelected(item);
     }
 }
