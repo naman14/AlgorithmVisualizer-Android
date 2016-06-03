@@ -10,8 +10,8 @@
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:theme="@style/AppTheme.AppBarOverlay"
-        android:background="@android:color/transparent">
+        android:background="@android:color/transparent"
+        android:theme="@style/AppTheme.AppBarOverlay">
 
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
@@ -21,9 +21,9 @@
             app:popupTheme="@style/AppTheme.PopupOverlay" />
 
         <com.naman14.algovisualizer.visualizer.SortingVisualizer
+            android:id="@+id/visualizer"
             android:layout_width="match_parent"
-            android:layout_height="270dp"
-            android:id="@+id/visualizer"/>
+            android:layout_height="270dp" />
 
     </android.support.design.widget.AppBarLayout>
 
@@ -35,9 +35,9 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
             android:layout_marginTop="15dp"
-            android:orientation="horizontal"
-            android:layout_gravity="center_horizontal">
+            android:orientation="horizontal">
 
             <ImageView
                 android:layout_width="wrap_content"
@@ -46,11 +46,11 @@
                 android:src="@drawable/ic_skip_previous_black_24dp" />
 
             <android.support.design.widget.FloatingActionButton
+                android:id="@+id/fab"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_weight="1"
-                android:id="@+id/fab"
                 android:background="@color/colorAccent"
                 android:src="@drawable/ic_play_arrow_white_24dp" />
 
@@ -60,6 +60,11 @@
                 android:layout_weight="0.6"
                 android:src="@drawable/ic_skip_next_black_24dp" />
         </LinearLayout>
+
+        <FrameLayout
+            android:id="@+id/log_container"
+            android:layout_width="match_parent"
+            android:layout_height="250dp" />
 
 
     </android.support.v4.widget.NestedScrollView>

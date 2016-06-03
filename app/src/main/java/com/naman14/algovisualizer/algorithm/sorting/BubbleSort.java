@@ -3,7 +3,7 @@ package com.naman14.algovisualizer.algorithm.sorting;
 import android.app.Activity;
 
 import com.naman14.algovisualizer.DataUtils;
-import com.naman14.algovisualizer.algorithm.SortAlgorithm;
+import com.naman14.algovisualizer.LogFragment;
 import com.naman14.algovisualizer.visualizer.SortingVisualizer;
 
 /**
@@ -11,11 +11,10 @@ import com.naman14.algovisualizer.visualizer.SortingVisualizer;
  */
 public class BubbleSort extends SortAlgorithm {
 
-    int m;
-
-    public BubbleSort(SortingVisualizer visualizer, Activity activity) {
+    public BubbleSort(SortingVisualizer visualizer, Activity activity, LogFragment logFragment) {
         this.visualizer = visualizer;
         this.activity = activity;
+        this.logFragment = logFragment;
     }
 
     @Override
@@ -23,26 +22,23 @@ public class BubbleSort extends SortAlgorithm {
         super.run();
         int[] array = DataUtils.createRandomArray(15);
         setData(array);
+        logArray(array);
 
         int n = array.length;
         int k;
-        for (m = n; m >= 0; m--) {
+        for (int m = n; m >= 0; m--) {
             highlight(m);
             for (int i = 0; i < n - 1; i++) {
                 k = i + 1;
                 if (array[i] > array[k]) {
-                    swapNumbers(i, k, array);
+                    addLog("Swapping " + i + " and " + k);
+                    int temp;
+                    temp = array[i];
+                    array[i] = array[k];
+                    array[k] = temp;
                 }
             }
             sleep();
         }
-    }
-
-
-    private static void swapNumbers(int i, int j, int[] array) {
-        int temp;
-        temp = array[i];
-        array[i] = array[j];
-        array[j] = temp;
     }
 }

@@ -1,13 +1,14 @@
-package com.naman14.algovisualizer.algorithm;
+package com.naman14.algovisualizer.algorithm.sorting;
 
 import android.app.Activity;
 
+import com.naman14.algovisualizer.algorithm.Algorithm;
 import com.naman14.algovisualizer.visualizer.SortingVisualizer;
 
 /**
  * Created by naman on 02/06/16.
  */
-public class SortAlgorithm extends Thread {
+public class SortAlgorithm extends Algorithm {
 
     public SortingVisualizer visualizer;
     public Activity activity;
@@ -30,12 +31,17 @@ public class SortAlgorithm extends Thread {
         });
     }
 
-    public void sleep() {
-        try {
-            sleep(500);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-            Thread.currentThread().interrupt();
-        }
+    public void logArray(final int[] array) {
+        activity.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                String arrayString = "";
+                for (int i : array) {
+                    arrayString.concat(" " + String.valueOf(i) + " ");
+                }
+                addLog(arrayString);
+            }
+        });
     }
+
 }
