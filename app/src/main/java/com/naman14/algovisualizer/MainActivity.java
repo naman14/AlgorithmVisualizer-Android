@@ -1,18 +1,18 @@
 package com.naman14.algovisualizer;
 
 import android.os.Bundle;
-import android.os.Handler;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.naman14.algovisualizer.algorithm.sorting.BubbleSort;
 import com.naman14.algovisualizer.visualizer.SortingVisualizer;
 
 public class MainActivity extends AppCompatActivity {
 
-    int i;
+   FloatingActionButton fab;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,26 +21,13 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("");
-        final SortingVisualizer visualizer = (SortingVisualizer) findViewById(R.id.visualizer);
-        visualizer.setData(DataUtils.createRandomArray(15));
-        visualizer.start();
 
-        final Handler handler = new Handler();
-        i = 0;
-        handler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                visualizer.highlight(i);
-                if (i < 15)
-                    i++;
-                else {
-                    if (i > 0)
-                        i--;
-                    else i++;
-                }
-                handler.postDelayed(this, 250);
-            }
-        }, 250);
+        fab = (FloatingActionButton) findViewById(R.id.fab);
+        final SortingVisualizer visualizer = (SortingVisualizer) findViewById(R.id.visualizer);
+
+        final BubbleSort bubbleSort = new BubbleSort(visualizer, this);
+        bubbleSort.setData(DataUtils.createRandomArray(15));
+        bubbleSort.start();
     }
 
     @Override

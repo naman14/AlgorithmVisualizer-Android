@@ -69,9 +69,6 @@ public class SortingVisualizer extends View {
 
     public void setData(int[] integers) {
         this.array = integers;
-    }
-
-    public void start() {
         invalidate();
     }
 

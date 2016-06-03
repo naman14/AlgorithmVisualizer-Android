@@ -50,6 +50,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_weight="1"
+                android:id="@+id/fab"
                 android:background="@color/colorAccent"
                 android:src="@drawable/ic_play_arrow_white_24dp" />
 
