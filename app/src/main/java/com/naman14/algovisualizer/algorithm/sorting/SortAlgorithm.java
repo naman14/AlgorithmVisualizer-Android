@@ -1,5 +1,7 @@
 package com.naman14.algovisualizer.algorithm.sorting;
 
+import android.os.Handler;
+
 import com.naman14.algovisualizer.algorithm.Algorithm;
 import com.naman14.algovisualizer.visualizer.SortingVisualizer;
 
@@ -9,6 +11,10 @@ import com.naman14.algovisualizer.visualizer.SortingVisualizer;
 public class SortAlgorithm extends Algorithm {
 
     public SortingVisualizer visualizer;
+
+    public SortAlgorithm(Handler handler, Handler.Callback callback) {
+        super(handler, callback);
+    }
 
     public void setData(final int[] array) {
         activity.runOnUiThread(new Runnable() {

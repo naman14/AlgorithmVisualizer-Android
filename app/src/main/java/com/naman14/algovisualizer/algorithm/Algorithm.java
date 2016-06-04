@@ -1,7 +1,11 @@
 package com.naman14.algovisualizer.algorithm;
 
 import android.app.Activity;
+import android.os.Handler;
+import android.os.HandlerThread;
+import android.os.Message;
 
+import com.naman14.algovisualizer.AlgoCompletionListener;
 import com.naman14.algovisualizer.LogFragment;
 
 import java.util.concurrent.atomic.AtomicBoolean;
@@ -9,15 +13,27 @@ import java.util.concurrent.atomic.AtomicBoolean;
 /**
  * Created by naman on 03/06/16.
  */
-public class Algorithm extends Thread {
+public class Algorithm extends HandlerThread {
 
     public LogFragment logFragment;
     public Activity activity;
+    public AlgoCompletionListener completionListener;
 
     private boolean started;
 
     private final AtomicBoolean paused = new AtomicBoolean(false);
     private final Object pauseLock = new Object();
+
+    private Handler responseHandler;
+    private Handler workerHandler;
+    private Handler.Callback callback;
+
+
+    public Algorithm(Handler handler, Handler.Callback callback) {
+        super("");
+        this.responseHandler = handler;
+        this.callback = callback;
+    }
 
     public void sleep() {
         try {
@@ -87,4 +103,36 @@ public class Algorithm extends Thread {
             });
         }
     }
+
+    public void setCompletionListener(AlgoCompletionListener completionListener) {
+        this.completionListener = completionListener;
+    }
+
+    public void prepareHandler() {
+        workerHandler = new Handler(getLooper(), new Handler.Callback() {
+            @Override
+            public boolean handleMessage(Message msg) {
+                Object object = msg.obj;
+                return true;
+            }
+        });
+    }
+
+    public void sendData(Object data) {
+        workerHandler.obtainMessage(1, data).sendToTarget();
+    }
+
+    public void completed() {
+        started = false;
+        if (completionListener != null) {
+            activity.runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    completionListener.onAlgoCompleted();
+                }
+            });
+        }
+    }
+
+
 }

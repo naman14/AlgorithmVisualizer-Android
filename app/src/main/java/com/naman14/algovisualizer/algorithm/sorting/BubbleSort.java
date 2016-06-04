@@ -1,8 +1,8 @@
 package com.naman14.algovisualizer.algorithm.sorting;
 
 import android.app.Activity;
+import android.os.Handler;
 
-import com.naman14.algovisualizer.DataUtils;
 import com.naman14.algovisualizer.LogFragment;
 import com.naman14.algovisualizer.visualizer.SortingVisualizer;
 
@@ -11,17 +11,23 @@ import com.naman14.algovisualizer.visualizer.SortingVisualizer;
  */
 public class BubbleSort extends SortAlgorithm {
 
-    public BubbleSort(SortingVisualizer visualizer, Activity activity, LogFragment logFragment) {
+    int[] array;
+
+    public BubbleSort(SortingVisualizer visualizer, Activity activity, LogFragment logFragment, Handler handler, Handler.Callback callback) {
+        super(handler, callback);
         this.visualizer = visualizer;
         this.activity = activity;
         this.logFragment = logFragment;
     }
 
+    public void setArray(int[] array) {
+        this.array = array;
+        setData(array);
+    }
+
     @Override
     public void run() {
         super.run();
-        int[] array = DataUtils.createRandomArray(15);
-        setData(array);
         logArray(array);
 
         int n = array.length;
@@ -40,5 +46,6 @@ public class BubbleSort extends SortAlgorithm {
             }
             sleep();
         }
+        completed();
     }
 }
