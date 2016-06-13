@@ -2,7 +2,6 @@ package com.naman14.algovisualizer;
 
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.Looper;
 import android.os.Message;
 import android.support.annotation.Nullable;
 import android.support.design.widget.CoordinatorLayout;
@@ -18,7 +17,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.naman14.algovisualizer.algorithm.DataHandler;
 import com.naman14.algovisualizer.algorithm.sorting.BubbleSort;
 import com.naman14.algovisualizer.visualizer.SortingVisualizer;
 import com.roughike.bottombar.BottomBar;
@@ -81,27 +79,19 @@ public class VisualAlgoFragment extends Fragment {
 
         final SortingVisualizer visualizer = (SortingVisualizer) rootView.findViewById(R.id.visualizer);
 
-        int[] array = DataUtils.createRandomArray(15);
-        visualizer.setData(array);
-
-        final BubbleSort bubbleSort = new BubbleSort(visualizer, getActivity(), logFragment,
-                new Handler(), new Handler.Callback() {
+        final BubbleSort bubbleSort = new BubbleSort(visualizer, getActivity(), logFragment, new Handler.Callback() {
             @Override
             public boolean handleMessage(Message msg) {
                 return false;
             }
         });
 
-        bubbleSort.start();
-        bubbleSort.prepareHandler();
-        bubbleSort.sendData(array);
-
         bubbleSort.setData(DataUtils.createRandomArray(15));
-        Looper mLooper = bubbleSort.getLooper();
-        DataHandler mHandler = new DataHandler(mLooper);
-
-        Message msg = mHandler.obtainMessage();
-        msg.obj = mHandler.sendMessage(msg);
+//        Looper mLooper = bubbleSort.getLooper();
+//        DataHandler mHandler = new DataHandler(mLooper);
+//
+//        Message msg = mHandler.obtainMessage();
+//        msg.obj = mHandler.sendMessage(msg);
 
         bubbleSort.setCompletionListener(new AlgoCompletionListener() {
             @Override
@@ -114,7 +104,7 @@ public class VisualAlgoFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 if (!bubbleSort.isStarted()) {
-                    bubbleSort.startExecution();
+                    bubbleSort.sendMessage("start");
                     fab.setImageResource(R.drawable.ic_pause_white_24dp);
                 } else {
                     if (bubbleSort.isPaused()) {

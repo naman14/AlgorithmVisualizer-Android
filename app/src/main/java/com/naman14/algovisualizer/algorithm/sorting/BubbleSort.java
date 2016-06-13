@@ -4,30 +4,29 @@ import android.app.Activity;
 import android.os.Handler;
 
 import com.naman14.algovisualizer.LogFragment;
+import com.naman14.algovisualizer.algorithm.DataHandler;
 import com.naman14.algovisualizer.visualizer.SortingVisualizer;
 
 /**
  * Created by naman on 02/06/16.
  */
-public class BubbleSort extends SortAlgorithm {
+public class BubbleSort extends SortAlgorithm implements DataHandler {
 
     int[] array;
 
-    public BubbleSort(SortingVisualizer visualizer, Activity activity, LogFragment logFragment, Handler handler, Handler.Callback callback) {
-        super(handler, callback);
+    public BubbleSort(SortingVisualizer visualizer, Activity activity, LogFragment logFragment, Handler.Callback callback) {
+        super(callback);
         this.visualizer = visualizer;
         this.activity = activity;
         this.logFragment = logFragment;
     }
 
-    public void setArray(int[] array) {
-        this.array = array;
-        setData(array);
-    }
-
     @Override
     public void run() {
         super.run();
+    }
+
+    private void sort() {
         logArray(array);
 
         int n = array.length;
@@ -47,5 +46,20 @@ public class BubbleSort extends SortAlgorithm {
             sleep();
         }
         completed();
+    }
+
+    @Override
+    public void onDataRecieved(Object data) {
+        super.onDataRecieved(data);
+        this.array = (int[]) data;
+    }
+
+    @Override
+    public void onMessageReceived(String message) {
+        super.onMessageReceived(message);
+        if (message.equals("start")) {
+            startExecution();
+            sort();
+        }
     }
 }

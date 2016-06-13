@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.text.TextPaint;
 import android.util.AttributeSet;
 import android.view.View;
 
@@ -14,10 +15,12 @@ public class SortingVisualizer extends View {
 
     Paint paint;
     Paint highlightPaint;
+    Paint textPaint;
     int[] array;
 
     int highlightPosition = -1;
     int highlightColor;
+    int lineStrokeWidth = 30;
 
     public SortingVisualizer(Context context) {
         super(context);
@@ -33,12 +36,16 @@ public class SortingVisualizer extends View {
         paint = new Paint();
         paint.setColor(Color.parseColor("#009688"));
         paint.setStyle(Paint.Style.FILL);
-        paint.setStrokeWidth(30);
+        paint.setStrokeWidth(lineStrokeWidth);
 
         highlightPaint = new Paint();
         highlightPaint.setColor(Color.RED);
         highlightPaint.setStyle(Paint.Style.FILL);
-        highlightPaint.setStrokeWidth(30);
+        highlightPaint.setStrokeWidth(lineStrokeWidth);
+
+        textPaint = new TextPaint();
+        textPaint.setColor(Color.BLACK);
+        textPaint.setTextSize(50);
     }
 
     @Override
@@ -59,6 +66,8 @@ public class SortingVisualizer extends View {
                     highlightPosition = -1;
                 } else
                     canvas.drawLine(xPos, getHeight() - (float) ((array[i] / 10.0) * getHeight()), xPos, getHeight(), paint);
+
+                canvas.drawText(String.valueOf(array[i]), xPos - lineStrokeWidth / 3, getHeight() - (float) ((array[i] / 10.0) * getHeight()) - 30, textPaint);
 
                 xPos += margin + 30;
             }

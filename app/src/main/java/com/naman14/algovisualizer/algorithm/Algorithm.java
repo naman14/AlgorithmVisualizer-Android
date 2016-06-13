@@ -27,17 +27,17 @@ public class Algorithm extends HandlerThread {
     private Handler responseHandler;
     private Handler workerHandler;
     private Handler.Callback callback;
+    private DataHandler dataHandler;
 
 
-    public Algorithm(Handler handler, Handler.Callback callback) {
+    public Algorithm(Handler.Callback callback) {
         super("");
-        this.responseHandler = handler;
         this.callback = callback;
     }
 
     public void sleep() {
         try {
-            sleep(500);
+            sleep(1000);
             if (isPaused())
                 pauseExecution();
             else resumeExecution();
@@ -49,7 +49,6 @@ public class Algorithm extends HandlerThread {
 
     public void startExecution() {
         started = true;
-        start();
     }
 
     public void setPaused(boolean b) {
@@ -108,18 +107,28 @@ public class Algorithm extends HandlerThread {
         this.completionListener = completionListener;
     }
 
-    public void prepareHandler() {
+    public void prepareHandler(final DataHandler dataHandler) {
         workerHandler = new Handler(getLooper(), new Handler.Callback() {
             @Override
             public boolean handleMessage(Message msg) {
-                Object object = msg.obj;
+                if (msg.obj instanceof String) {
+                    dataHandler.onMessageReceived((String) msg.obj);
+                } else {
+                    int[] object = (int[]) msg.obj;
+                    dataHandler.onDataRecieved(object);
+                }
                 return true;
             }
         });
+
     }
 
     public void sendData(Object data) {
         workerHandler.obtainMessage(1, data).sendToTarget();
+    }
+
+    public void sendMessage(String message) {
+        workerHandler.obtainMessage(1, message).sendToTarget();
     }
 
     public void completed() {
@@ -133,6 +142,4 @@ public class Algorithm extends HandlerThread {
             });
         }
     }
-
-
 }
