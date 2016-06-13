@@ -29,11 +29,20 @@ public class SortAlgorithm extends Algorithm implements DataHandler {
         sendData(array);
     }
 
-    public void highlight(final int pos) {
+    public void highlightSwap(final int one,final int two) {
         activity.runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                visualizer.highlight(pos);
+                visualizer.highlightSwap(one, two);
+            }
+        });
+    }
+
+    public void highlightTrace(final int position) {
+        activity.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                visualizer.highlightTrace(position);
             }
         });
     }
@@ -43,7 +52,7 @@ public class SortAlgorithm extends Algorithm implements DataHandler {
         for (int i : array) {
             arrayString.concat(" " + String.valueOf(i) + " ");
         }
-        addLog(arrayString);
+        addLog("Original array - " + arrayString);
     }
 
     @Override

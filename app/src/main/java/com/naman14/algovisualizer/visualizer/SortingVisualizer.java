@@ -14,10 +14,12 @@ import android.view.View;
 public class SortingVisualizer extends View {
 
     Paint paint;
-    Paint highlightPaint;
+    Paint highlightPaintSwap;
+    Paint highlightPaintTrace;
     Paint textPaint;
     int[] array;
 
+    int highlightPositionOne = -1, highlightPositionTwo = -1;
     int highlightPosition = -1;
     int highlightColor;
     int lineStrokeWidth = 30;
@@ -38,10 +40,15 @@ public class SortingVisualizer extends View {
         paint.setStyle(Paint.Style.FILL);
         paint.setStrokeWidth(lineStrokeWidth);
 
-        highlightPaint = new Paint();
-        highlightPaint.setColor(Color.RED);
-        highlightPaint.setStyle(Paint.Style.FILL);
-        highlightPaint.setStrokeWidth(lineStrokeWidth);
+        highlightPaintSwap = new Paint();
+        highlightPaintSwap.setStyle(Paint.Style.FILL);
+        highlightPaintSwap.setColor(Color.RED);
+        highlightPaintSwap.setStrokeWidth(lineStrokeWidth);
+
+        highlightPaintTrace = new Paint();
+        highlightPaintTrace.setStyle(Paint.Style.FILL);
+        highlightPaintTrace.setColor(Color.BLUE);
+        highlightPaintTrace.setStrokeWidth(lineStrokeWidth);
 
         textPaint = new TextPaint();
         textPaint.setColor(Color.BLACK);
@@ -61,16 +68,19 @@ public class SortingVisualizer extends View {
             float xPos = margin;
             for (int i = 0; i < array.length; i++) {
 
-                if (highlightPosition != -1 && highlightPosition == i) {
-                    canvas.drawLine(xPos, getHeight() - (float) ((array[i] / 10.0) * getHeight()), xPos, getHeight(), highlightPaint);
-                    highlightPosition = -1;
-                } else
+                if (i == highlightPositionOne || i == highlightPositionTwo) {
+                    canvas.drawLine(xPos, getHeight() - (float) ((array[i] / 10.0) * getHeight()), xPos, getHeight(), highlightPaintSwap);
+                } else if (i == highlightPosition)
+                    canvas.drawLine(xPos, getHeight() - (float) ((array[i] / 10.0) * getHeight()), xPos, getHeight(), highlightPaintTrace);
+                else
                     canvas.drawLine(xPos, getHeight() - (float) ((array[i] / 10.0) * getHeight()), xPos, getHeight(), paint);
 
                 canvas.drawText(String.valueOf(array[i]), xPos - lineStrokeWidth / 3, getHeight() - (float) ((array[i] / 10.0) * getHeight()) - 30, textPaint);
 
                 xPos += margin + 30;
             }
+            highlightPositionOne = -1;
+            highlightPositionTwo = -1;
         }
 
 
@@ -81,8 +91,14 @@ public class SortingVisualizer extends View {
         invalidate();
     }
 
-    public void highlight(int position) {
-        highlightPosition = position;
+    public void highlightSwap(int one, int two) {
+        this.highlightPositionOne = one;
+        this.highlightPositionTwo = two;
+        invalidate();
+    }
+
+    public void highlightTrace(int position) {
+        this.highlightPosition = position;
         invalidate();
     }
 }

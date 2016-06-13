@@ -29,18 +29,19 @@ public class BubbleSort extends SortAlgorithm implements DataHandler {
     private void sort() {
         logArray(array);
 
-        int n = array.length;
-        int k;
-        for (int m = n; m >= 0; m--) {
-            highlight(m);
-            for (int i = 0; i < n - 1; i++) {
-                k = i + 1;
-                if (array[i] > array[k]) {
-                    addLog("Swapping " + i + " and " + k);
-                    int temp;
-                    temp = array[i];
-                    array[i] = array[k];
-                    array[k] = temp;
+        for (int i = 0; i < array.length; i++) {
+            addLog("Doing iteration - " + i);
+
+            for (int j = 0; j < array.length - 1; j++) {
+                highlightTrace(j);
+                sleep();
+                if (array[j] > array[j + 1]) {
+                    highlightSwap(j, j + 1);
+                    addLog("Swapping " + array[j] + " and " + array[j + 1]);
+                    int temp = array[j];
+                    array[j] = array[j + 1];
+                    array[j + 1] = temp;
+                    sleep();
                 }
             }
             sleep();
