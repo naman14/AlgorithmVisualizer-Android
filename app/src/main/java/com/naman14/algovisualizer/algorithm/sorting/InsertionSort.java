@@ -3,17 +3,16 @@ package com.naman14.algovisualizer.algorithm.sorting;
 import android.app.Activity;
 
 import com.naman14.algovisualizer.LogFragment;
-import com.naman14.algovisualizer.algorithm.DataHandler;
 import com.naman14.algovisualizer.visualizer.SortingVisualizer;
 
 /**
- * Created by naman on 02/06/16.
+ * Created by naman on 13/06/16.
  */
-public class BubbleSort extends SortAlgorithm implements DataHandler {
+public class InsertionSort extends SortAlgorithm {
 
     int[] array;
 
-    public BubbleSort(SortingVisualizer visualizer, Activity activity, LogFragment logFragment) {
+    public InsertionSort(SortingVisualizer visualizer, Activity activity, LogFragment logFragment) {
         this.visualizer = visualizer;
         this.activity = activity;
         this.logFragment = logFragment;
@@ -54,15 +53,10 @@ public class BubbleSort extends SortAlgorithm implements DataHandler {
     @Override
     public void onDataRecieved(Object data) {
         super.onDataRecieved(data);
-        this.array = (int[]) data;
     }
 
     @Override
     public void onMessageReceived(String message) {
         super.onMessageReceived(message);
-        if (message.equals("start")) {
-            startExecution();
-            sort();
-        }
     }
 }

@@ -1,8 +1,6 @@
 package com.naman14.algovisualizer;
 
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
 import android.support.annotation.Nullable;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
@@ -78,20 +76,9 @@ public class VisualAlgoFragment extends Fragment {
         });
 
         final SortingVisualizer visualizer = (SortingVisualizer) rootView.findViewById(R.id.visualizer);
-
-        final BubbleSort bubbleSort = new BubbleSort(visualizer, getActivity(), logFragment, new Handler.Callback() {
-            @Override
-            public boolean handleMessage(Message msg) {
-                return false;
-            }
-        });
-
+        final BubbleSort bubbleSort = new BubbleSort(visualizer, getActivity(), logFragment);
         bubbleSort.setData(DataUtils.createRandomArray(15));
-//        Looper mLooper = bubbleSort.getLooper();
-//        DataHandler mHandler = new DataHandler(mLooper);
-//
-//        Message msg = mHandler.obtainMessage();
-//        msg.obj = mHandler.sendMessage(msg);
+
 
         bubbleSort.setCompletionListener(new AlgoCompletionListener() {
             @Override

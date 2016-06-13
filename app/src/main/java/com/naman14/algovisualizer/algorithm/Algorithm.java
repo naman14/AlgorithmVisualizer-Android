@@ -24,15 +24,10 @@ public class Algorithm extends HandlerThread {
     private final AtomicBoolean paused = new AtomicBoolean(false);
     private final Object pauseLock = new Object();
 
-    private Handler responseHandler;
     private Handler workerHandler;
-    private Handler.Callback callback;
-    private DataHandler dataHandler;
 
-
-    public Algorithm(Handler.Callback callback) {
+    public Algorithm() {
         super("");
-        this.callback = callback;
     }
 
     public void sleep() {
