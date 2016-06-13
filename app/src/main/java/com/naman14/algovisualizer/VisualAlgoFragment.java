@@ -2,12 +2,14 @@ package com.naman14.algovisualizer;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
@@ -15,6 +17,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.naman14.algovisualizer.algorithm.Algorithm;
 import com.naman14.algovisualizer.algorithm.sorting.BubbleSort;
 import com.naman14.algovisualizer.visualizer.SortingVisualizer;
 import com.roughike.bottombar.BottomBar;
@@ -28,34 +31,42 @@ public class VisualAlgoFragment extends Fragment {
 
     FloatingActionButton fab;
     BottomBar bottomBar;
+    AppBarLayout appBarLayout;
 
     LogFragment logFragment;
     CodeFragment codeFragment;
     AlgoDescriptionFragment algoFragment;
-
     ViewPager viewPager;
+
+    Algorithm algorithm;
+
+    public static VisualAlgoFragment newInstance(String algorithm) {
+        VisualAlgoFragment fragment = new VisualAlgoFragment();
+        Bundle bundle = new Bundle();
+        bundle.putString(Algorithm.KEY_ALGORITHM, algorithm);
+        fragment.setArguments(bundle);
+        return fragment;
+    }
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_visual_algo, container, false);
         Toolbar toolbar = (Toolbar) rootView.findViewById(R.id.toolbar);
-
         ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
-        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("");
+        ActionBar ab = ((AppCompatActivity) getActivity()).getSupportActionBar();
+        assert ab != null;
+        ab.setTitle("");
+        ab.setDisplayHomeAsUpEnabled(true);
+        ab.setHomeAsUpIndicator(R.drawable.ic_menu_black_24dp);
 
+        appBarLayout = (AppBarLayout) rootView.findViewById(R.id.app_bar);
         bottomBar = BottomBar.attachShy((CoordinatorLayout) rootView.findViewById(R.id.coordinator), savedInstanceState);
         bottomBar.noNavBarGoodness();
 
         fab = (FloatingActionButton) rootView.findViewById(R.id.fab);
         viewPager = (ViewPager) rootView.findViewById(R.id.viewPager);
 
-        logFragment = new LogFragment();
-        codeFragment = new CodeFragment();
-        algoFragment = new AlgoDescriptionFragment();
-
-        viewPager.setOffscreenPageLimit(3);
-        setupViewPager(viewPager);
 
         bottomBar.setItems(
                 new BottomBarTab(R.drawable.ic_wb_incandescent_white_24dp, "Details"),
@@ -75,12 +86,34 @@ public class VisualAlgoFragment extends Fragment {
             }
         });
 
-        final SortingVisualizer visualizer = (SortingVisualizer) rootView.findViewById(R.id.visualizer);
-        final BubbleSort bubbleSort = new BubbleSort(visualizer, getActivity(), logFragment);
-        bubbleSort.setData(DataUtils.createRandomArray(15));
+        setupFragment();
+        return rootView;
+    }
 
+    private void setupFragment() {
+        String algorithmKey = getArguments().getString(Algorithm.KEY_ALGORITHM);
 
-        bubbleSort.setCompletionListener(new AlgoCompletionListener() {
+        logFragment = LogFragment.newInstance(algorithmKey);
+        codeFragment = CodeFragment.newInstance(algorithmKey);
+        algoFragment = AlgoDescriptionFragment.newInstance(algorithmKey);
+
+        viewPager.setOffscreenPageLimit(3);
+        setupViewPager(viewPager);
+
+        assert algorithmKey != null;
+
+        switch (algorithmKey) {
+
+            case Algorithm.BUBBLE_SORT:
+                SortingVisualizer visualizer = new SortingVisualizer(getActivity());
+                appBarLayout.addView(visualizer);
+                algorithm = new BubbleSort(visualizer, getActivity(), logFragment);
+                ((BubbleSort) algorithm).setData(DataUtils.createRandomArray(15));
+
+                break;
+        }
+
+        algorithm.setCompletionListener(new AlgoCompletionListener() {
             @Override
             public void onAlgoCompleted() {
                 fab.setImageResource(R.drawable.ic_settings_backup_restore_white_24dp);
@@ -90,21 +123,20 @@ public class VisualAlgoFragment extends Fragment {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (!bubbleSort.isStarted()) {
-                    bubbleSort.sendMessage("start");
+                if (!algorithm.isStarted()) {
+                    algorithm.sendMessage("start");
                     fab.setImageResource(R.drawable.ic_pause_white_24dp);
                 } else {
-                    if (bubbleSort.isPaused()) {
-                        bubbleSort.setPaused(false);
+                    if (algorithm.isPaused()) {
+                        algorithm.setPaused(false);
                         fab.setImageResource(R.drawable.ic_pause_white_24dp);
                     } else {
-                        bubbleSort.setPaused(true);
+                        algorithm.setPaused(true);
                         fab.setImageResource(R.drawable.ic_play_arrow_white_24dp);
                     }
                 }
             }
         });
-        return rootView;
     }
 
     private void setupViewPager(ViewPager viewPager) {

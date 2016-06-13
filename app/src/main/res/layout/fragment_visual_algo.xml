@@ -20,13 +20,10 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="@android:color/transparent"
+            android:theme="@style/Theme.AppCompat"
             app:layout_scrollFlags="scroll|enterAlways"
             app:popupTheme="@style/AppTheme.PopupOverlay" />
 
-        <com.naman14.algovisualizer.visualizer.SortingVisualizer
-            android:id="@+id/visualizer"
-            android:layout_width="match_parent"
-            android:layout_height="270dp" />
 
     </android.support.design.widget.AppBarLayout>
 

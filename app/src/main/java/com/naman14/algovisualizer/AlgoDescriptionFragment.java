@@ -7,10 +7,20 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.naman14.algovisualizer.algorithm.Algorithm;
+
 /**
  * Created by naman on 03/06/16.
  */
 public class AlgoDescriptionFragment extends Fragment {
+
+    public static AlgoDescriptionFragment newInstance(String algorithm) {
+        AlgoDescriptionFragment fragment = new AlgoDescriptionFragment();
+        Bundle bundle = new Bundle();
+        bundle.putString(Algorithm.KEY_ALGORITHM, algorithm);
+        fragment.setArguments(bundle);
+        return fragment;
+    }
 
     @Nullable
     @Override

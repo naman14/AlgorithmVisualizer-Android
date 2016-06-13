@@ -6,7 +6,9 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.text.TextPaint;
 import android.util.AttributeSet;
+import android.util.TypedValue;
 import android.view.View;
+import android.view.ViewGroup;
 
 /**
  * Created by naman on 02/06/16.
@@ -21,7 +23,6 @@ public class SortingVisualizer extends View {
 
     int highlightPositionOne = -1, highlightPositionTwo = -1;
     int highlightPosition = -1;
-    int highlightColor;
     int lineStrokeWidth = 30;
 
     public SortingVisualizer(Context context) {
@@ -53,6 +54,10 @@ public class SortingVisualizer extends View {
         textPaint = new TextPaint();
         textPaint.setColor(Color.BLACK);
         textPaint.setTextSize(50);
+
+        int height = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 270, getResources().getDisplayMetrics());
+
+        setLayoutParams(new ViewGroup.LayoutParams(getWidth(), height));
     }
 
     @Override
