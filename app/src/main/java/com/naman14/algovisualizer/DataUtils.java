@@ -9,6 +9,8 @@ import java.util.Random;
  */
 public class DataUtils {
 
+    public static final int[] bst_array = {0, 1, 2, 3, 4, 5, 8, 6, 7, 10, 9};
+
     public static int[] createRandomArray(int size) {
         int[] integers = new int[size];
         for (int i = 0; i < size; i++) {
@@ -19,19 +21,15 @@ public class DataUtils {
 
     public static BinarySearchTree createBinaryTree() {
         BinarySearchTree b = new BinarySearchTree();
-        b.insert(3);
-        b.insert(8);
-        b.insert(1);
-        b.insert(4);
-        b.insert(6);
-        b.insert(2);
-        b.insert(10);
-        b.insert(9);
-        b.insert(15);
-        b.insert(12);
-        b.insert(16);
-
+        for (int i = 0; i < bst_array.length; i++) {
+            b.insert(bst_array[i]);
+        }
         return b;
 
+    }
+
+    public static int getRandomKeyFromBST() {
+        int rnd = new Random().nextInt(bst_array.length);
+        return bst_array[rnd];
     }
 }

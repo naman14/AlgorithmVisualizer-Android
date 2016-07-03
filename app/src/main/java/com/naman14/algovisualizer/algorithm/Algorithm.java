@@ -117,8 +117,7 @@ public class Algorithm extends HandlerThread {
                 if (msg.obj instanceof String) {
                     dataHandler.onMessageReceived((String) msg.obj);
                 } else {
-                    int[] object = (int[]) msg.obj;
-                    dataHandler.onDataRecieved(object);
+                    dataHandler.onDataRecieved(msg.obj);
                 }
                 return true;
             }

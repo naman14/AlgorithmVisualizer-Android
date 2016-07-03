@@ -2,6 +2,7 @@ package com.naman14.algovisualizer.algorithm.tree.bst;
 
 import android.app.Activity;
 
+import com.naman14.algovisualizer.DataUtils;
 import com.naman14.algovisualizer.LogFragment;
 import com.naman14.algovisualizer.algorithm.Algorithm;
 import com.naman14.algovisualizer.algorithm.DataHandler;
@@ -30,6 +31,24 @@ public class BSTAlgorithm extends Algorithm implements DataHandler {
     }
 
     private void startBSTSearch() {
+        int id = DataUtils.getRandomKeyFromBST();
+        addLog("Searching for " + String.valueOf(id));
+        BinarySearchTree.Node current = b.getRoot();
+        addLog("Starting from root: "+ current.data);
+        while (current != null) {
+            if (current.data == id) {
+                addLog("Key" + String.valueOf(id) + " found in binary search tree");
+                break;
+            } else if (current.data > id) {
+                current = current.left;
+                addLog("Going from "+ current.data+ " to "+current.left);
+            } else {
+                current = current.right;
+                addLog("Going from "+ current.data+ " to "+current.right);
+            }
+        }
+        addLog("Key" + String.valueOf(id) + " does not exist in Binary search tree");
+
 
     }
 
@@ -44,10 +63,10 @@ public class BSTAlgorithm extends Algorithm implements DataHandler {
 
     @Override
     public void onMessageReceived(String message) {
-        if (message.equals(BST_SEARCH)) {
+        if (message.equals(START_BST_SEARCH)) {
             startExecution();
             startBSTSearch();
-        } else if (message.equals(BST_INSERT)) {
+        } else if (message.equals(START_BST_INSERT)) {
             startExecution();
             startBSTInsert();
         }
