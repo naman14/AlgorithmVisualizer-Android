@@ -6,14 +6,12 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.text.TextPaint;
 import android.util.AttributeSet;
-import android.util.TypedValue;
-import android.view.View;
-import android.view.ViewGroup;
+import android.util.Log;
 
 /**
  * Created by naman on 02/06/16.
  */
-public class SortingVisualizer extends View {
+public class SortingVisualizer extends AlgorithmVisualizer {
 
     Paint paint;
     Paint highlightPaintSwap;
@@ -53,19 +51,13 @@ public class SortingVisualizer extends View {
 
         textPaint = new TextPaint();
         textPaint.setColor(Color.BLACK);
-        textPaint.setTextSize(50);
-
-        int height = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 270, getResources().getDisplayMetrics());
-
-        setLayoutParams(new ViewGroup.LayoutParams(getWidth(), height));
+        textPaint.setTextSize(getDimensionInPixelFromSP(15));
     }
 
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-
         if (array != null) {
-
             int numberOfLines = array.length;
 
             float margin = (getWidth() - (30 * numberOfLines)) / (numberOfLines + 1);
@@ -77,8 +69,9 @@ public class SortingVisualizer extends View {
                     canvas.drawLine(xPos, getHeight() - (float) ((array[i] / 10.0) * getHeight()), xPos, getHeight(), highlightPaintSwap);
                 } else if (i == highlightPosition)
                     canvas.drawLine(xPos, getHeight() - (float) ((array[i] / 10.0) * getHeight()), xPos, getHeight(), highlightPaintTrace);
-                else
+                else {
                     canvas.drawLine(xPos, getHeight() - (float) ((array[i] / 10.0) * getHeight()), xPos, getHeight(), paint);
+                }
 
                 canvas.drawText(String.valueOf(array[i]), xPos - lineStrokeWidth / 3, getHeight() - (float) ((array[i] / 10.0) * getHeight()) - 30, textPaint);
 
@@ -89,6 +82,11 @@ public class SortingVisualizer extends View {
         }
 
 
+    }
+
+    @Override
+    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
     }
 
     public void setData(int[] integers) {

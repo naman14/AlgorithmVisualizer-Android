@@ -19,6 +19,8 @@ import android.view.ViewGroup;
 
 import com.naman14.algovisualizer.algorithm.Algorithm;
 import com.naman14.algovisualizer.algorithm.sorting.BubbleSort;
+import com.naman14.algovisualizer.algorithm.sorting.InsertionSort;
+import com.naman14.algovisualizer.visualizer.AlgorithmVisualizer;
 import com.naman14.algovisualizer.visualizer.SortingVisualizer;
 import com.roughike.bottombar.BottomBar;
 import com.roughike.bottombar.BottomBarTab;
@@ -86,12 +88,11 @@ public class VisualAlgoFragment extends Fragment {
             }
         });
 
-        setupFragment();
+        setupFragment(getArguments().getString(Algorithm.KEY_ALGORITHM));
         return rootView;
     }
 
-    private void setupFragment() {
-        String algorithmKey = getArguments().getString(Algorithm.KEY_ALGORITHM);
+    public void setupFragment(String algorithmKey) {
 
         logFragment = LogFragment.newInstance(algorithmKey);
         codeFragment = CodeFragment.newInstance(algorithmKey);
@@ -102,14 +103,22 @@ public class VisualAlgoFragment extends Fragment {
 
         assert algorithmKey != null;
 
+        AlgorithmVisualizer visualizer;
+        if (appBarLayout.getChildCount() > 1) {
+            appBarLayout.removeViewAt(1);
+        }
         switch (algorithmKey) {
-
             case Algorithm.BUBBLE_SORT:
-                SortingVisualizer visualizer = new SortingVisualizer(getActivity());
+                visualizer = new SortingVisualizer(getActivity());
                 appBarLayout.addView(visualizer);
-                algorithm = new BubbleSort(visualizer, getActivity(), logFragment);
+                algorithm = new BubbleSort((SortingVisualizer) visualizer, getActivity(), logFragment);
                 ((BubbleSort) algorithm).setData(DataUtils.createRandomArray(15));
-
+                break;
+            case Algorithm.INSERTION_SORT:
+                visualizer = new SortingVisualizer(getActivity());
+                appBarLayout.addView(visualizer);
+                algorithm = new InsertionSort((SortingVisualizer) visualizer, getActivity(), logFragment);
+                ((InsertionSort) algorithm).setData(DataUtils.createRandomArray(15));
                 break;
         }
 

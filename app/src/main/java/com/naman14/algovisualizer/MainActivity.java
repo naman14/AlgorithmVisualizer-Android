@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
             setupDrawerContent(navigationView);
         }
 
-        VisualAlgoFragment algoFragment = VisualAlgoFragment.newInstance(Algorithm.BUBBLE_SORT);
+        final VisualAlgoFragment algoFragment = VisualAlgoFragment.newInstance(Algorithm.BUBBLE_SORT);
         getSupportFragmentManager().beginTransaction().replace(R.id.container, algoFragment).commit();
 
         prepareListData();
@@ -51,8 +51,17 @@ public class MainActivity extends AppCompatActivity {
 
         expandableList.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
             @Override
-            public boolean onChildClick(ExpandableListView expandableListView, View view, int i, int i1, long l) {
-                return false;
+            public boolean onChildClick(ExpandableListView expandableListView, View view, int groupPosition, int childPosition, long l) {
+                switch (childPosition) {
+                    case 0:
+                        algoFragment.setupFragment(Algorithm.BUBBLE_SORT);
+                        break;
+                    case 1:
+                        algoFragment.setupFragment(Algorithm.INSERTION_SORT);
+                        break;
+                }
+                mDrawerLayout.closeDrawers();
+                return true;
             }
         });
         expandableList.setOnGroupClickListener(new ExpandableListView.OnGroupClickListener() {
@@ -80,6 +89,7 @@ public class MainActivity extends AppCompatActivity {
 
         List<String> heading2 = new ArrayList<String>();
         heading2.add("Bubble Sort");
+        heading2.add("Insertion Sort");
 
         listDataChild.put(listDataHeader.get(0), heading1);
         listDataChild.put(listDataHeader.get(1), heading2);
