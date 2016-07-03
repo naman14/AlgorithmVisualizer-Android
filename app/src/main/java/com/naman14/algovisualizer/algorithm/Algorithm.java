@@ -16,10 +16,12 @@ import java.util.concurrent.atomic.AtomicBoolean;
 public class Algorithm extends HandlerThread {
 
     public static final String KEY_ALGORITHM = "key_algorithm";
-
+    public static final String COMMAND_START_ALGORITHM = "start";
     public static final String BUBBLE_SORT = "bubble_sort";
     public static final String INSERTION_SORT = "insertion_sort";
     public static final String BINARY_SEARCH = "binary_search";
+    public static final String BST_INSERT= "bst_insert";
+    public static final String BST_SEARCH= "bst_search";
 
     public LogFragment logFragment;
     public Activity activity;

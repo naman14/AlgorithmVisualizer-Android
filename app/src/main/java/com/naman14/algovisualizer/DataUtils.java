@@ -1,5 +1,7 @@
 package com.naman14.algovisualizer;
 
+import com.naman14.algovisualizer.algorithm.tree.bst.BinarySearchTree;
+
 import java.util.Random;
 
 /**
@@ -13,5 +15,23 @@ public class DataUtils {
             integers[i] = new Random().nextInt(8) + 1;
         }
         return integers;
+    }
+
+    public static BinarySearchTree createBinaryTree() {
+        BinarySearchTree b = new BinarySearchTree();
+        b.insert(3);
+        b.insert(8);
+        b.insert(1);
+        b.insert(4);
+        b.insert(6);
+        b.insert(2);
+        b.insert(10);
+        b.insert(9);
+        b.insert(15);
+        b.insert(12);
+        b.insert(16);
+
+        return b;
+
     }
 }

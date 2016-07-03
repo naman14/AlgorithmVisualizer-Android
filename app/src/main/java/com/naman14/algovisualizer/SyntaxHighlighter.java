@@ -13,9 +13,9 @@ public class SyntaxHighlighter {
 
     private static final String FONT_PATTERN = "<font color=\"#%s\">%s</font>";
 
-    private final Parser parser = new PrettifyParser();
+    private static final Parser parser = new PrettifyParser();
 
-    public String highlight(String fileExtension, String sourceCode) {
+    public static String highlight(String fileExtension, String sourceCode) {
         StringBuilder highlighted = new StringBuilder();
         List<ParseResult> results = parser.parse(fileExtension, sourceCode);
         for(ParseResult result : results){
@@ -26,7 +26,7 @@ public class SyntaxHighlighter {
         return highlighted.toString();
     }
 
-    private String getColor(String type){
+    private static String getColor(String type){
         return COLORS.containsKey(type) ? COLORS.get(type) : COLORS.get("pln");
     }
 

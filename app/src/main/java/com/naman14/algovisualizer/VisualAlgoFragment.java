@@ -20,7 +20,9 @@ import android.view.ViewGroup;
 import com.naman14.algovisualizer.algorithm.Algorithm;
 import com.naman14.algovisualizer.algorithm.sorting.BubbleSort;
 import com.naman14.algovisualizer.algorithm.sorting.InsertionSort;
+import com.naman14.algovisualizer.algorithm.tree.bst.BSTAlgorithm;
 import com.naman14.algovisualizer.visualizer.AlgorithmVisualizer;
+import com.naman14.algovisualizer.visualizer.BSTVisualizer;
 import com.naman14.algovisualizer.visualizer.SortingVisualizer;
 import com.roughike.bottombar.BottomBar;
 import com.roughike.bottombar.BottomBarTab;
@@ -41,6 +43,8 @@ public class VisualAlgoFragment extends Fragment {
     ViewPager viewPager;
 
     Algorithm algorithm;
+
+    String startCommand = Algorithm.COMMAND_START_ALGORITHM;
 
     public static VisualAlgoFragment newInstance(String algorithm) {
         VisualAlgoFragment fragment = new VisualAlgoFragment();
@@ -92,6 +96,10 @@ public class VisualAlgoFragment extends Fragment {
         return rootView;
     }
 
+    public void setStartCommand(String startCommand) {
+        this.startCommand = startCommand;
+    }
+
     public void setupFragment(String algorithmKey) {
 
         logFragment = LogFragment.newInstance(algorithmKey);
@@ -120,6 +128,13 @@ public class VisualAlgoFragment extends Fragment {
                 algorithm = new InsertionSort((SortingVisualizer) visualizer, getActivity(), logFragment);
                 ((InsertionSort) algorithm).setData(DataUtils.createRandomArray(15));
                 break;
+            case Algorithm.BST_SEARCH:
+            case Algorithm.BST_INSERT:
+                visualizer = new BSTVisualizer(getActivity());
+                appBarLayout.addView(visualizer);
+                algorithm = new BSTAlgorithm((BSTVisualizer) visualizer, getActivity(), logFragment);
+                ((BSTAlgorithm) algorithm).setData(DataUtils.createBinaryTree());
+                break;
         }
 
         algorithm.setCompletionListener(new AlgoCompletionListener() {
@@ -133,7 +148,7 @@ public class VisualAlgoFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 if (!algorithm.isStarted()) {
-                    algorithm.sendMessage("start");
+                    algorithm.sendMessage(startCommand);
                     fab.setImageResource(R.drawable.ic_pause_white_24dp);
                 } else {
                     if (algorithm.isPaused()) {

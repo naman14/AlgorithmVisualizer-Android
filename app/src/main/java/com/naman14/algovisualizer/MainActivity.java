@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.ExpandableListView;
 
 import com.naman14.algovisualizer.algorithm.Algorithm;
+import com.naman14.algovisualizer.algorithm.tree.bst.BSTAlgorithm;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -52,12 +53,28 @@ public class MainActivity extends AppCompatActivity {
         expandableList.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
             @Override
             public boolean onChildClick(ExpandableListView expandableListView, View view, int groupPosition, int childPosition, long l) {
-                switch (childPosition) {
-                    case 0:
-                        algoFragment.setupFragment(Algorithm.BUBBLE_SORT);
-                        break;
+                switch (groupPosition) {
                     case 1:
-                        algoFragment.setupFragment(Algorithm.INSERTION_SORT);
+                        switch (childPosition) {
+                            case 0:
+                                algoFragment.setupFragment(Algorithm.BUBBLE_SORT);
+                                break;
+                            case 1:
+                                algoFragment.setupFragment(Algorithm.INSERTION_SORT);
+                                break;
+                        }
+                        break;
+                    case 2:
+                        switch (childPosition) {
+                            case 0:
+                                algoFragment.setStartCommand(BSTAlgorithm.START_BST_SEARCH);
+                                algoFragment.setupFragment(Algorithm.BST_SEARCH);
+                                break;
+                            case 1:
+                                algoFragment.setStartCommand(BSTAlgorithm.START_BST_INSERT);
+                                algoFragment.setupFragment(Algorithm.BST_INSERT);
+                                break;
+                        }
                         break;
                 }
                 mDrawerLayout.closeDrawers();
@@ -84,6 +101,10 @@ public class MainActivity extends AppCompatActivity {
         item2.setName("Sorting");
         listDataHeader.add(item2);
 
+        ExpandedMenuModel item3 = new ExpandedMenuModel();
+        item3.setName("Tree");
+        listDataHeader.add(item3);
+
         List<String> heading1 = new ArrayList<>();
         heading1.add("Binary search");
 
@@ -91,8 +112,13 @@ public class MainActivity extends AppCompatActivity {
         heading2.add("Bubble Sort");
         heading2.add("Insertion Sort");
 
+        List<String> heading3 = new ArrayList<String>();
+        heading3.add("BST Search");
+        heading3.add("BST Insert");
+
         listDataChild.put(listDataHeader.get(0), heading1);
         listDataChild.put(listDataHeader.get(1), heading2);
+        listDataChild.put(listDataHeader.get(2), heading3);
 
     }
 
