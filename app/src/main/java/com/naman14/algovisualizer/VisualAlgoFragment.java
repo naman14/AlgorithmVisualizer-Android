@@ -92,6 +92,10 @@ public class VisualAlgoFragment extends Fragment {
             }
         });
 
+        logFragment = LogFragment.newInstance();
+        codeFragment = CodeFragment.newInstance(getArguments().getString(Algorithm.KEY_ALGORITHM));
+        algoFragment = AlgoDescriptionFragment.newInstance(getArguments().getString(Algorithm.KEY_ALGORITHM));
+
         setupFragment(getArguments().getString(Algorithm.KEY_ALGORITHM));
         return rootView;
     }
@@ -102,12 +106,11 @@ public class VisualAlgoFragment extends Fragment {
 
     public void setupFragment(String algorithmKey) {
 
-        logFragment = LogFragment.newInstance(algorithmKey);
-        codeFragment = CodeFragment.newInstance(algorithmKey);
-        algoFragment = AlgoDescriptionFragment.newInstance(algorithmKey);
-
         viewPager.setOffscreenPageLimit(3);
         setupViewPager(viewPager);
+
+        codeFragment.setCode(algorithmKey);
+        algoFragment.setCodeDesc(algorithmKey);
 
         assert algorithmKey != null;
 

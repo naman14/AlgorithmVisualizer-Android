@@ -27,7 +27,6 @@ public class InsertionSort extends SortAlgorithm {
     private void sort() {
         logArray(array);
 
-
         int n = array.length;
         for (int j = 1; j < n; j++) {
             int key = array[j];
@@ -40,29 +39,6 @@ public class InsertionSort extends SortAlgorithm {
             }
             sleep();
             array[i+1] = key;
-        }
-        completed();
-
-        for (int i = 0; i < array.length; i++) {
-            addLog("Doing iteration - " + i);
-            boolean swapped = false;
-            for (int j = 0; j < array.length - 1; j++) {
-                highlightTrace(j);
-                sleep();
-                if (array[j] > array[j + 1]) {
-                    highlightSwap(j, j + 1);
-                    addLog("Swapping " + array[j] + " and " + array[j + 1]);
-                    int temp = array[j];
-                    array[j] = array[j + 1];
-                    array[j + 1] = temp;
-                    swapped = true;
-                    sleep();
-                }
-            }
-            if (!swapped) {
-                break;
-            }
-            sleep();
         }
         completed();
     }

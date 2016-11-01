@@ -26,6 +26,12 @@ public class AlgoDescriptionFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_algo_description, container, false);
+
+        setCodeDesc(getArguments().getString(Algorithm.KEY_ALGORITHM));
         return rootView;
+    }
+
+    public void setCodeDesc(String key) {
+
     }
 }

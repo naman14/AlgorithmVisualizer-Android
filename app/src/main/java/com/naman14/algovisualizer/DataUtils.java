@@ -9,7 +9,7 @@ import java.util.Random;
  */
 public class DataUtils {
 
-    public static final int[] bst_array = {0, 1, 2, 3, 4, 5, 8, 6, 7, 10, 9};
+    public static final int[] bst_array = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
 
     public static int[] createRandomArray(int size) {
         int[] integers = new int[size];

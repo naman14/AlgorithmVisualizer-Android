@@ -15,45 +15,44 @@ public class BinarySearchTree {
         return root;
     }
 
-    public boolean find(int id) {
-        Node current = root;
-        while (current != null) {
-            if (current.data == id) {
-                return true;
-            } else if (current.data > id) {
-                current = current.left;
-            } else {
-                current = current.right;
-            }
-        }
-        return false;
+    public boolean search(int val) {
+        return search(root, val);
     }
 
-    public void insert(int id) {
-        Node newNode = new Node(id);
-        if (root == null) {
-            root = newNode;
-            return;
-        }
-        Node current = root;
-        Node parent = null;
-        while (true) {
-            parent = current;
-            if (id < current.data) {
-                current = current.left;
-                if (current == null) {
-                    parent.left = newNode;
-                    return;
-                }
-            } else {
-                current = current.right;
-                if (current == null) {
-                    parent.right = newNode;
-                    return;
-                }
+    private boolean search(Node r, int val) {
+        boolean found = false;
+        while ((r != null) && !found) {
+            int rval = r.data;
+            if (val < rval)
+                r = r.left;
+            else if (val > rval)
+                r = r.right;
+            else {
+                found = true;
+                break;
             }
+            found = search(r, val);
         }
+        return found;
     }
+
+
+    public void insert(int data) {
+        root = insert(root, data);
+    }
+
+    private Node insert(Node node, int data) {
+        if (node == null)
+            node = new Node(data);
+        else {
+            if (data <= node.data)
+                node.left = insert(node.left, data);
+            else
+                node.right = insert(node.right, data);
+        }
+        return node;
+    }
+
 
     public int getHeight(Node node) {
         if (node == null) {
@@ -78,13 +77,13 @@ public class BinarySearchTree {
         return null;
     }
 
-    public void traverse (Node root){ // Each child of a tree is a root of its subtree.
-        if (root.left != null){
-            traverse (root.left);
+    public void traverse(Node root) { // Each child of a tree is a root of its subtree.
+        if (root.left != null) {
+            traverse(root.left);
         }
         System.out.println(root.data);
-        if (root.right != null){
-            traverse (root.right);
+        if (root.right != null) {
+            traverse(root.right);
         }
     }
 

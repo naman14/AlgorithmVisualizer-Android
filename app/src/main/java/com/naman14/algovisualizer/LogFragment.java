@@ -10,8 +10,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.naman14.algovisualizer.algorithm.Algorithm;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,11 +19,8 @@ public class LogFragment extends Fragment {
     LogAdapter adapter;
     RecyclerView recyclerView;
 
-    public static LogFragment newInstance(String algorithm) {
+    public static LogFragment newInstance() {
         LogFragment fragment = new LogFragment();
-        Bundle bundle = new Bundle();
-        bundle.putString(Algorithm.KEY_ALGORITHM, algorithm);
-        fragment.setArguments(bundle);
         return fragment;
     }
 
@@ -49,7 +44,6 @@ public class LogFragment extends Fragment {
     }
 
     private class LogAdapter extends RecyclerView.Adapter<LogAdapter.ItemHolder> {
-
         public List<String> logList;
 
         public LogAdapter(List<String> list) {

@@ -30,11 +30,22 @@ public class CodeFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        View rootView = inflater.inflate(R.layout.fragment_code,container,false);
+        View rootView = inflater.inflate(R.layout.fragment_code, container, false);
 
-        codeView=(CodeView) rootView.findViewById(R.id.code_view);
+        codeView = (CodeView) rootView.findViewById(R.id.code_view);
         codeView.setTheme(CodeViewTheme.ANDROIDSTUDIO);
-        codeView.showCode(AlgorithmCode.CODE_BUBBLE_SORT);
+        setCode(getArguments().getString(Algorithm.KEY_ALGORITHM));
+
         return rootView;
+    }
+
+    public void setCode(String key) {
+        if (codeView!=null) {
+            switch (key) {
+                case Algorithm.BUBBLE_SORT:
+                    codeView.showCode(AlgorithmCode.CODE_BUBBLE_SORT);
+                    break;
+            }
+        }
     }
 }
