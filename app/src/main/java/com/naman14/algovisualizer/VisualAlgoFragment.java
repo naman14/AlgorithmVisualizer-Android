@@ -114,7 +114,7 @@ public class VisualAlgoFragment extends Fragment {
 
         assert algorithmKey != null;
 
-        AlgorithmVisualizer visualizer;
+        final AlgorithmVisualizer visualizer;
         if (appBarLayout.getChildCount() > 1) {
             appBarLayout.removeViewAt(1);
         }
@@ -138,12 +138,20 @@ public class VisualAlgoFragment extends Fragment {
                 algorithm = new BSTAlgorithm((BSTVisualizer) visualizer, getActivity(), logFragment);
                 ((BSTAlgorithm) algorithm).setData(DataUtils.createBinaryTree());
                 break;
+            default:
+                visualizer = null;
         }
+
+        algorithm.setStarted(false);
+        fab.setImageResource(R.drawable.ic_play_arrow_white_24dp);
 
         algorithm.setCompletionListener(new AlgoCompletionListener() {
             @Override
             public void onAlgoCompleted() {
                 fab.setImageResource(R.drawable.ic_settings_backup_restore_white_24dp);
+                if (visualizer != null)
+                    visualizer.onCompleted();
+
             }
         });
 

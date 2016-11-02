@@ -6,7 +6,6 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.text.TextPaint;
 import android.util.AttributeSet;
-import android.util.Log;
 
 /**
  * Created by naman on 02/06/16.
@@ -102,6 +101,14 @@ public class SortingVisualizer extends AlgorithmVisualizer {
 
     public void highlightTrace(int position) {
         this.highlightPosition = position;
+        invalidate();
+    }
+
+    @Override
+    public void onCompleted() {
+        this.highlightPosition = -1;
+        this.highlightPositionTwo = -1;
+        this.highlightPositionOne = -1;
         invalidate();
     }
 }

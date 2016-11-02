@@ -8,7 +8,7 @@ import android.view.View;
 /**
  * Created by naman on 02/06/16.
  */
-public class AlgorithmVisualizer extends View {
+public abstract class AlgorithmVisualizer extends View {
 
     public AlgorithmVisualizer(Context context) {
         super(context);
@@ -32,4 +32,6 @@ public class AlgorithmVisualizer extends View {
     public int getDimensionInPixelFromSP(int sp) {
         return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, sp, getResources().getDisplayMetrics());
     }
+
+    public abstract void onCompleted();
 }

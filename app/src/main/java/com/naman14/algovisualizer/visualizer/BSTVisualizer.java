@@ -22,6 +22,7 @@ public class BSTVisualizer extends AlgorithmVisualizer {
     private Paint circlePaint;
     private Paint linePaint;
     private Paint circleHighlightPaint;
+    private Paint lineHighlightPaint;
 
     private Rect bounds;
 
@@ -32,6 +33,7 @@ public class BSTVisualizer extends AlgorithmVisualizer {
     HashMap<Integer, Point> nodes = new HashMap<>();
 
     private int highlightNode = -1;
+    private int highlighLineStart = -1, highlightLineEnd = -1;
 
     public BSTVisualizer(Context context) {
         super(context);
@@ -65,6 +67,10 @@ public class BSTVisualizer extends AlgorithmVisualizer {
 
         circleHighlightPaint = new Paint(circlePaint);
         circleHighlightPaint.setColor(Color.BLUE);
+
+        lineHighlightPaint = new Paint(linePaint);
+        lineHighlightPaint.setColor(Color.RED);
+        lineHighlightPaint.setStrokeWidth(10);
 
 
     }
@@ -133,23 +139,35 @@ public class BSTVisualizer extends AlgorithmVisualizer {
 
 
             if (leftnode != -1 && rightnode != -1 && leftnode == rightnode) {
+                boolean highlight = false;
                 p1.x = p.x;
                 p1.y = p.y + getDimensionInPixel(70);
-                drawNodeLine(canvas, p, p1);
+                if (parentnode == highlighLineStart && leftnode == highlightLineEnd && rightnode == highlightLineEnd ) {
+                    highlight = true;
+                }
+                drawNodeLine(canvas, p, p1, highlight);
                 addNode(p1, leftnode);
 
             } else {
                 if (leftnode != -1) {
+                    boolean highlight = false;
                     p1.x = p.x - getDimensionInPixel(60);
                     p1.y = p.y + getDimensionInPixel(70);
-                    drawNodeLine(canvas, p, p1);
+                    if (parentnode == highlighLineStart && leftnode == highlightLineEnd ) {
+                        highlight = true;
+                    }
+                    drawNodeLine(canvas, p, p1, highlight);
                     addNode(p1, leftnode);
 
                 }
                 if (rightnode != -1) {
+                    boolean highlight = false;
                     p2.x = p.x + getDimensionInPixel(60);
                     p2.y = p.y + getDimensionInPixel(70);
-                    drawNodeLine(canvas, p, p2);
+                    if (parentnode == highlighLineStart && rightnode == highlightLineEnd ) {
+                        highlight = true;
+                    }
+                    drawNodeLine(canvas, p, p2, highlight);
                     addNode(p2, rightnode);
 
                 }
@@ -191,8 +209,12 @@ public class BSTVisualizer extends AlgorithmVisualizer {
     }
 
 
-    private void drawNodeLine(Canvas canvas, Point start, Point end) {
-        canvas.drawLine(start.x, start.y, end.x, end.y, linePaint);
+    private void drawNodeLine(Canvas canvas, Point start, Point end, boolean highlight) {
+        if (highlight) {
+            canvas.drawLine(start.x, start.y, end.x, end.y, lineHighlightPaint);
+        } else {
+            canvas.drawLine(start.x, start.y, end.x, end.y, linePaint);
+        }
     }
 
     public void highlightNode(int node) {
@@ -200,5 +222,16 @@ public class BSTVisualizer extends AlgorithmVisualizer {
         invalidate();
     }
 
+    public void highlightLine(int start, int end) {
+        this.highlighLineStart = start;
+        this.highlightLineEnd = end;
+        invalidate();
+    }
 
+    @Override
+    public void onCompleted() {
+        this.highlighLineStart = -1;
+        this.highlightLineEnd = -1;
+        invalidate();
+    }
 }

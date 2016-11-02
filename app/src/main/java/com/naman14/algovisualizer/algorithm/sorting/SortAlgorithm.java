@@ -23,7 +23,7 @@ public class SortAlgorithm extends Algorithm implements DataHandler {
         sendData(array);
     }
 
-    public void highlightSwap(final int one,final int two) {
+    public void highlightSwap(final int one, final int two) {
         activity.runOnUiThread(new Runnable() {
             @Override
             public void run() {
@@ -44,7 +44,7 @@ public class SortAlgorithm extends Algorithm implements DataHandler {
     public void logArray(final int[] array) {
         String arrayString = "";
         for (int i : array) {
-            arrayString.concat(" " + String.valueOf(i) + " ");
+            arrayString = arrayString.concat(" " + String.valueOf(i) + " ");
         }
         addLog("Original array - " + arrayString);
     }

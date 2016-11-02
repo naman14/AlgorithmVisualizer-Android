@@ -44,11 +44,13 @@ public class BSTAlgorithm extends Algorithm implements DataHandler {
                 break;
             } else if (current.data > id) {
                 addLog("Going from "+ current.data+ " to "+current.left.data);
+                highlightLine(current.data, current.left.data);
                 current = current.left;
                 highlightNode(current.data);
                 sleep();
             } else {
                 addLog("Going from "+ current.data+ " to "+current.right.data);
+                highlightLine(current.data, current.right.data);
                 current = current.right;
                 highlightNode(current.data);
                 sleep();
@@ -94,6 +96,15 @@ public class BSTAlgorithm extends Algorithm implements DataHandler {
             @Override
             public void run() {
                 visualizer.highlightNode(node);
+            }
+        });
+    }
+
+    private void highlightLine(final int start, final int end) {
+        activity.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                visualizer.highlightLine(start, end);
             }
         });
     }
