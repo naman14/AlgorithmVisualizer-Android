@@ -12,6 +12,7 @@ import com.naman14.algovisualizer.DataUtils;
 import com.naman14.algovisualizer.algorithm.tree.bst.BinarySearchTree;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -30,6 +31,11 @@ public class BSTVisualizer extends AlgorithmVisualizer {
     private int[][] bst = DataUtils.bst;
 
     List<Integer> nodesdrawn = new ArrayList<>();
+
+    List<Point> points = new ArrayList<>();
+    List<Integer> values = new ArrayList<>();
+
+    HashMap<Integer, Point> nodes = new HashMap<>();
 
     public BSTVisualizer(Context context) {
         super(context);
@@ -102,12 +108,12 @@ public class BSTVisualizer extends AlgorithmVisualizer {
             Point p1 = new Point();
             Point p2 = new Point();
 
-            p0.x = getWidth() / 2 + getDimensionInPixel(20);
+            p0.x = getWidth() / 2 + getDimensionInPixel(25);
             p0.y = getDimensionInPixel(40);
 
             if (parentnode == root) {
 
-                p.x = getWidth() / 2 + getDimensionInPixel(20);
+                p.x = getWidth() / 2 + getDimensionInPixel(25);
                 p.y = getDimensionInPixel(40);
 
             } else if (parentnode < root) {
@@ -131,40 +137,54 @@ public class BSTVisualizer extends AlgorithmVisualizer {
                 p1.x = p.x;
                 p1.y = p.y + getDimensionInPixel(70);
                 drawNodeLine(canvas, p, p1);
-                drawCircleTextNode(canvas, p1, leftnode);
+                addNode(p1, leftnode);
 
             } else {
                 if (leftnode != -1) {
                     p1.x = p.x - getDimensionInPixel(60);
                     p1.y = p.y + getDimensionInPixel(70);
                     drawNodeLine(canvas, p, p1);
-                    drawCircleTextNode(canvas, p1, leftnode);
+                    addNode(p1, leftnode);
 
                 }
                 if (rightnode != -1) {
                     p2.x = p.x + getDimensionInPixel(60);
                     p2.y = p.y + getDimensionInPixel(70);
                     drawNodeLine(canvas, p, p2);
-                    drawCircleTextNode(canvas, p2, rightnode);
+                    addNode(p2, rightnode);
 
                 }
             }
+            addNode(p, parentnode);
 
-            drawCircleTextNode(canvas, p, parentnode);
+        }
+
+        drawNodes(canvas);
+    }
+
+    private void addNode(Point point, int number) {
+        if (!nodes.containsKey(number)) {
+            nodes.put(number, point);
+        }
+    }
+
+    private void drawNodes(Canvas canvas) {
+        for (HashMap.Entry<Integer, Point> entry : nodes.entrySet()) {
+            Integer i = entry.getKey();
+            Point p = entry.getValue();
+            drawCircleTextNode(canvas, p, i);
 
         }
     }
 
     private void drawCircleTextNode(Canvas canvas, Point p, int number) {
-        if (!nodesdrawn.contains(number)) {
-            String text = String.valueOf(number);
+        String text = String.valueOf(number);
 
-            canvas.drawCircle(p.x, p.y, getDimensionInPixel(15), circlePaint);
-            int yOffset = bounds.height() / 2;
+        canvas.drawCircle(p.x, p.y, getDimensionInPixel(15), circlePaint);
+        int yOffset = bounds.height() / 2;
 
-            canvas.drawText(text, p.x, p.y + yOffset, textPaint);
-            nodesdrawn.add(number);
-        }
+        canvas.drawText(text, p.x, p.y + yOffset, textPaint);
+        nodesdrawn.add(number);
 
     }
 
