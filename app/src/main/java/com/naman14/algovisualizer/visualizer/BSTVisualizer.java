@@ -11,9 +11,7 @@ import android.util.AttributeSet;
 import com.naman14.algovisualizer.DataUtils;
 import com.naman14.algovisualizer.algorithm.tree.bst.BinarySearchTree;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
 /**
  * Created by naman on 03/07/16.
@@ -23,6 +21,7 @@ public class BSTVisualizer extends AlgorithmVisualizer {
     private Paint textPaint;
     private Paint circlePaint;
     private Paint linePaint;
+    private Paint circleHighlightPaint;
 
     private Rect bounds;
 
@@ -30,12 +29,9 @@ public class BSTVisualizer extends AlgorithmVisualizer {
     private int[] array = DataUtils.bst_array;
     private int[][] bst = DataUtils.bst;
 
-    List<Integer> nodesdrawn = new ArrayList<>();
-
-    List<Point> points = new ArrayList<>();
-    List<Integer> values = new ArrayList<>();
-
     HashMap<Integer, Point> nodes = new HashMap<>();
+
+    private int highlightNode = -1;
 
     public BSTVisualizer(Context context) {
         super(context);
@@ -66,6 +62,9 @@ public class BSTVisualizer extends AlgorithmVisualizer {
         linePaint = new Paint();
         linePaint.setStrokeWidth(5);
         linePaint.setColor(Color.BLACK);
+
+        circleHighlightPaint = new Paint(circlePaint);
+        circleHighlightPaint.setColor(Color.BLUE);
 
 
     }
@@ -180,18 +179,25 @@ public class BSTVisualizer extends AlgorithmVisualizer {
     private void drawCircleTextNode(Canvas canvas, Point p, int number) {
         String text = String.valueOf(number);
 
-        canvas.drawCircle(p.x, p.y, getDimensionInPixel(15), circlePaint);
+        if (number == highlightNode) {
+            canvas.drawCircle(p.x, p.y, getDimensionInPixel(15), circleHighlightPaint);
+        } else {
+            canvas.drawCircle(p.x, p.y, getDimensionInPixel(15), circlePaint);
+        }
         int yOffset = bounds.height() / 2;
 
         canvas.drawText(text, p.x, p.y + yOffset, textPaint);
-        nodesdrawn.add(number);
 
     }
 
 
     private void drawNodeLine(Canvas canvas, Point start, Point end) {
-        canvas.drawLine(start.x, start.y,
-                end.x, end.y, linePaint);
+        canvas.drawLine(start.x, start.y, end.x, end.y, linePaint);
+    }
+
+    public void highlightNode(int node) {
+        this.highlightNode = node;
+        invalidate();
     }
 
 

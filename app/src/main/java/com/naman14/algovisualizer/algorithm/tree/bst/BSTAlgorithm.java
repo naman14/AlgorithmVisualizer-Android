@@ -35,16 +35,23 @@ public class BSTAlgorithm extends Algorithm implements DataHandler {
         addLog("Searching for " + String.valueOf(id));
         BinarySearchTree.Node current = b.getRoot();
         addLog("Starting from root: "+ current.data);
+        highlightNode(current.data);
+        sleep();
         while (current != null) {
             if (current.data == id) {
                 addLog("Key " + String.valueOf(id) + " found in binary search tree");
+                completed();
                 break;
             } else if (current.data > id) {
-                current = current.left;
                 addLog("Going from "+ current.data+ " to "+current.left.data);
+                current = current.left;
+                highlightNode(current.data);
+                sleep();
             } else {
-                current = current.right;
                 addLog("Going from "+ current.data+ " to "+current.right.data);
+                current = current.right;
+                highlightNode(current.data);
+                sleep();
             }
         }
 
@@ -80,5 +87,14 @@ public class BSTAlgorithm extends Algorithm implements DataHandler {
         start();
         prepareHandler(this);
         sendData(b);
+    }
+
+    private void highlightNode(final int node) {
+        activity.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                visualizer.highlightNode(node);
+            }
+        });
     }
 }
