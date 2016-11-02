@@ -11,6 +11,9 @@ import android.util.AttributeSet;
 import com.naman14.algovisualizer.DataUtils;
 import com.naman14.algovisualizer.algorithm.tree.bst.BinarySearchTree;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by naman on 03/07/16.
  */
@@ -26,12 +29,7 @@ public class BSTVisualizer extends AlgorithmVisualizer {
     private int[] array = DataUtils.bst_array;
     private int[][] bst = DataUtils.bst;
 
-
-    private Point[][] nodepoints = {
-            {},
-            {},
-            {}
-    };
+    List<Integer> nodesdrawn = new ArrayList<>();
 
     public BSTVisualizer(Context context) {
         super(context);
@@ -87,6 +85,7 @@ public class BSTVisualizer extends AlgorithmVisualizer {
 
     private void drawBst(Canvas canvas) {
 
+
         int root = bst[0][0];
 
         int numLeftNodes = 0, numRightNodes = 0;
@@ -103,12 +102,12 @@ public class BSTVisualizer extends AlgorithmVisualizer {
             Point p1 = new Point();
             Point p2 = new Point();
 
-            p0.x = getWidth() / 2;
+            p0.x = getWidth() / 2 + getDimensionInPixel(20);
             p0.y = getDimensionInPixel(40);
 
             if (parentnode == root) {
 
-                p.x = getWidth() / 2;
+                p.x = getWidth() / 2 + getDimensionInPixel(20);
                 p.y = getDimensionInPixel(40);
 
             } else if (parentnode < root) {
@@ -118,25 +117,37 @@ public class BSTVisualizer extends AlgorithmVisualizer {
 
             } else if (parentnode > root) {
                 numRightNodes++;
-                p.x = p0.x + numRightNodes * getDimensionInPixel(60);
-                p.y = p0.y + numRightNodes * getDimensionInPixel(70);
+                if (parentnode == 6) {
+                    p.x = p0.x;
+                    p.y = p0.y + 2 * getDimensionInPixel(70);
+                } else {
+                    p.x = p0.x + numRightNodes * getDimensionInPixel(60);
+                    p.y = p0.y + numRightNodes * getDimensionInPixel(70);
+                }
             }
+
 
             if (leftnode != -1 && rightnode != -1 && leftnode == rightnode) {
                 p1.x = p.x;
                 p1.y = p.y + getDimensionInPixel(70);
                 drawNodeLine(canvas, p, p1);
-            }
-            if (leftnode != -1) {
-                p1.x = p.x - getDimensionInPixel(60);
-                p1.y = p.y + getDimensionInPixel(70);
-                drawNodeLine(canvas, p, p1);
+                drawCircleTextNode(canvas, p1, leftnode);
 
-            }
-            if (rightnode != -1) {
-                p2.x = p.x + getDimensionInPixel(60);
-                p2.y = p.y + getDimensionInPixel(70);
-                drawNodeLine(canvas, p, p2);
+            } else {
+                if (leftnode != -1) {
+                    p1.x = p.x - getDimensionInPixel(60);
+                    p1.y = p.y + getDimensionInPixel(70);
+                    drawNodeLine(canvas, p, p1);
+                    drawCircleTextNode(canvas, p1, leftnode);
+
+                }
+                if (rightnode != -1) {
+                    p2.x = p.x + getDimensionInPixel(60);
+                    p2.y = p.y + getDimensionInPixel(70);
+                    drawNodeLine(canvas, p, p2);
+                    drawCircleTextNode(canvas, p2, rightnode);
+
+                }
             }
 
             drawCircleTextNode(canvas, p, parentnode);
@@ -145,19 +156,22 @@ public class BSTVisualizer extends AlgorithmVisualizer {
     }
 
     private void drawCircleTextNode(Canvas canvas, Point p, int number) {
-        String text = String.valueOf(number);
+        if (!nodesdrawn.contains(number)) {
+            String text = String.valueOf(number);
 
-        canvas.drawCircle(p.x, p.y, getDimensionInPixel(15), circlePaint);
+            canvas.drawCircle(p.x, p.y, getDimensionInPixel(15), circlePaint);
+            int yOffset = bounds.height() / 2;
 
-        int yOffset = bounds.height() / 2;
-
-        canvas.drawText(text, p.x, p.y + yOffset, textPaint);
+            canvas.drawText(text, p.x, p.y + yOffset, textPaint);
+            nodesdrawn.add(number);
+        }
 
     }
 
 
     private void drawNodeLine(Canvas canvas, Point start, Point end) {
-        canvas.drawLine(start.x, start.y, end.x, end.y, linePaint);
+        canvas.drawLine(start.x, start.y,
+                end.x, end.y, linePaint);
     }
 
 
