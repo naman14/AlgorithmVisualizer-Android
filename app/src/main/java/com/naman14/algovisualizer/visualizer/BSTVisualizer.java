@@ -7,7 +7,6 @@ import android.graphics.Paint;
 import android.graphics.Point;
 import android.graphics.Rect;
 import android.util.AttributeSet;
-import android.util.Log;
 
 import com.naman14.algovisualizer.DataUtils;
 import com.naman14.algovisualizer.algorithm.tree.bst.BinarySearchTree;
@@ -25,6 +24,14 @@ public class BSTVisualizer extends AlgorithmVisualizer {
 
     private BinarySearchTree b;
     private int[] array = DataUtils.bst_array;
+    private int[][] bst = DataUtils.bst;
+
+
+    private Point[][] nodepoints = {
+            {},
+            {},
+            {}
+    };
 
     public BSTVisualizer(Context context) {
         super(context);
@@ -42,7 +49,7 @@ public class BSTVisualizer extends AlgorithmVisualizer {
         circlePaint = new Paint();
 
         textPaint.setColor(Color.WHITE);
-        textPaint.setTextSize(getDimensionInPixelFromSP(12));
+        textPaint.setTextSize(getDimensionInPixelFromSP(15));
         textPaint.setAntiAlias(true);
         textPaint.setTextAlign(Paint.Align.CENTER);
 
@@ -53,8 +60,9 @@ public class BSTVisualizer extends AlgorithmVisualizer {
         circlePaint.setAntiAlias(true);
 
         linePaint = new Paint();
-        linePaint.setStrokeWidth(10);
+        linePaint.setStrokeWidth(5);
         linePaint.setColor(Color.BLACK);
+
 
     }
 
@@ -62,9 +70,7 @@ public class BSTVisualizer extends AlgorithmVisualizer {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         if (b != null) {
-            Log.e("lol",String.valueOf(b.getRoot().data));
-            b.traverse(b.getRoot());
-//            drawBst(canvas);
+            drawBst(canvas);
         }
 
     }
@@ -79,54 +85,79 @@ public class BSTVisualizer extends AlgorithmVisualizer {
         invalidate();
     }
 
+    private void drawBst(Canvas canvas) {
+
+        int root = bst[0][0];
+
+        int numLeftNodes = 0, numRightNodes = 0;
+
+        for (int i = 0; i < array.length; i++) {
+
+            int parentnode = bst[0][i];
+            int leftnode = bst[1][i];
+            int rightnode = bst[2][i];
+
+
+            Point p = new Point();
+            Point p0 = new Point();
+            Point p1 = new Point();
+            Point p2 = new Point();
+
+            p0.x = getWidth() / 2;
+            p0.y = getDimensionInPixel(40);
+
+            if (parentnode == root) {
+
+                p.x = getWidth() / 2;
+                p.y = getDimensionInPixel(40);
+
+            } else if (parentnode < root) {
+                numLeftNodes++;
+                p.x = p0.x - numLeftNodes * getDimensionInPixel(60);
+                p.y = p0.y + numLeftNodes * getDimensionInPixel(70);
+
+            } else if (parentnode > root) {
+                numRightNodes++;
+                p.x = p0.x + numRightNodes * getDimensionInPixel(60);
+                p.y = p0.y + numRightNodes * getDimensionInPixel(70);
+            }
+
+            if (leftnode != -1 && rightnode != -1 && leftnode == rightnode) {
+                p1.x = p.x;
+                p1.y = p.y + getDimensionInPixel(70);
+                drawNodeLine(canvas, p, p1);
+            }
+            if (leftnode != -1) {
+                p1.x = p.x - getDimensionInPixel(60);
+                p1.y = p.y + getDimensionInPixel(70);
+                drawNodeLine(canvas, p, p1);
+
+            }
+            if (rightnode != -1) {
+                p2.x = p.x + getDimensionInPixel(60);
+                p2.y = p.y + getDimensionInPixel(70);
+                drawNodeLine(canvas, p, p2);
+            }
+
+            drawCircleTextNode(canvas, p, parentnode);
+
+        }
+    }
+
     private void drawCircleTextNode(Canvas canvas, Point p, int number) {
         String text = String.valueOf(number);
 
         canvas.drawCircle(p.x, p.y, getDimensionInPixel(15), circlePaint);
 
-        textPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
-        textPaint.setTextAlign(Paint.Align.CENTER);
-
-        Rect result = new Rect();
-        textPaint.getTextBounds(text, 0, text.length(), result);
-        int yOffset = result.height() / 2;
+        int yOffset = bounds.height() / 2;
 
         canvas.drawText(text, p.x, p.y + yOffset, textPaint);
+
     }
 
-    private void drawLine(Canvas canvas, BinarySearchTree.Node parent, BinarySearchTree.Node child) {
-        Point start = calculateNodePositon(parent);
-        Point end = calculateNodePositon(child);
 
+    private void drawNodeLine(Canvas canvas, Point start, Point end) {
         canvas.drawLine(start.x, start.y, end.x, end.y, linePaint);
-    }
-
-    private void drawBst(Canvas canvas) {
-        for (int i = 0; i < array.length; i++) {
-            BinarySearchTree.Node current = b.traverse(b.getRoot(), array[i]);
-            drawCircleTextNode(canvas, calculateNodePositon(current), 0);
-
-            if (current.left != null)
-                drawLine(canvas, current, current.left);
-            if (current.right != null)
-                drawLine(canvas, current, current.right);
-
-        }
-    }
-
-    private Point calculateNodePositon(BinarySearchTree.Node node) {
-        int x = 0;
-        int y = 0;
-        Point p = new Point(x, y);
-        BinarySearchTree.Node root = b.getRoot();
-
-        if (node == root) {
-            p.x = getWidth()/2;
-            p.y = getDimensionInPixel(20);
-            return p;
-        }
-
-        return p;
     }
 
 

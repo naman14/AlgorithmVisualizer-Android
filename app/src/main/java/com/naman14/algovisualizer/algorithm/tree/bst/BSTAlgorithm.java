@@ -37,18 +37,16 @@ public class BSTAlgorithm extends Algorithm implements DataHandler {
         addLog("Starting from root: "+ current.data);
         while (current != null) {
             if (current.data == id) {
-                addLog("Key" + String.valueOf(id) + " found in binary search tree");
+                addLog("Key " + String.valueOf(id) + " found in binary search tree");
                 break;
             } else if (current.data > id) {
                 current = current.left;
-                addLog("Going from "+ current.data+ " to "+current.left);
+                addLog("Going from "+ current.data+ " to "+current.left.data);
             } else {
                 current = current.right;
-                addLog("Going from "+ current.data+ " to "+current.right);
+                addLog("Going from "+ current.data+ " to "+current.right.data);
             }
         }
-        addLog("Key" + String.valueOf(id) + " does not exist in Binary search tree");
-
 
     }
 

@@ -9,7 +9,13 @@ import java.util.Random;
  */
 public class DataUtils {
 
-    public static final int[] bst_array = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+    public static final int[] bst_array = {5, 8, 10, 3, 1, 6, 9, 7, 2, 0, 4};
+
+    public static final int[][] bst = {
+            {5, 8, 10, 3, 1, 6, 9, 7, 2, 0, 4}, //nodes
+            {3, 6, 9, 1, 0, 7, -1, -1, -1, -1, -1}, //left child of nodes
+            {8, 10, 9, 4, 2, 7, -1, -1, -1, -1, -1} //right child of nodes
+    };
 
     public static int[] createRandomArray(int size) {
         int[] integers = new int[size];
