@@ -22,6 +22,7 @@ import com.naman14.algovisualizer.algorithm.sorting.BubbleSort;
 import com.naman14.algovisualizer.algorithm.sorting.InsertionSort;
 import com.naman14.algovisualizer.algorithm.tree.bst.BSTAlgorithm;
 import com.naman14.algovisualizer.visualizer.AlgorithmVisualizer;
+import com.naman14.algovisualizer.visualizer.ArrayVisualizer;
 import com.naman14.algovisualizer.visualizer.BSTVisualizer;
 import com.naman14.algovisualizer.visualizer.SortingVisualizer;
 import com.roughike.bottombar.BottomBar;
@@ -115,8 +116,12 @@ public class VisualAlgoFragment extends Fragment {
         assert algorithmKey != null;
 
         final AlgorithmVisualizer visualizer;
-        if (appBarLayout.getChildCount() > 1) {
+        if (appBarLayout.getChildCount() == 2) {
             appBarLayout.removeViewAt(1);
+            //bst insert has 2 views, bstvisualizer and array visualizer, remove both
+            if (appBarLayout.getChildCount() == 3) {
+                appBarLayout.removeViewAt(2);
+            }
         }
         switch (algorithmKey) {
             case Algorithm.BUBBLE_SORT:
@@ -132,9 +137,16 @@ public class VisualAlgoFragment extends Fragment {
                 ((InsertionSort) algorithm).setData(DataUtils.createRandomArray(15));
                 break;
             case Algorithm.BST_SEARCH:
-            case Algorithm.BST_INSERT:
                 visualizer = new BSTVisualizer(getActivity());
                 appBarLayout.addView(visualizer);
+                algorithm = new BSTAlgorithm((BSTVisualizer) visualizer, getActivity(), logFragment);
+                ((BSTAlgorithm) algorithm).setData(DataUtils.createBinaryTree());
+                break;
+            case Algorithm.BST_INSERT:
+                visualizer = new BSTVisualizer(getActivity());
+                ArrayVisualizer arrayVisualizer = new ArrayVisualizer(getActivity());
+                appBarLayout.addView(visualizer);
+                appBarLayout.addView(arrayVisualizer);
                 algorithm = new BSTAlgorithm((BSTVisualizer) visualizer, getActivity(), logFragment);
                 ((BSTAlgorithm) algorithm).setData(DataUtils.createBinaryTree());
                 break;
@@ -144,6 +156,7 @@ public class VisualAlgoFragment extends Fragment {
 
         algorithm.setStarted(false);
         fab.setImageResource(R.drawable.ic_play_arrow_white_24dp);
+        logFragment.clearLog();
 
         algorithm.setCompletionListener(new AlgoCompletionListener() {
             @Override
@@ -161,6 +174,8 @@ public class VisualAlgoFragment extends Fragment {
                 if (!algorithm.isStarted()) {
                     algorithm.sendMessage(startCommand);
                     fab.setImageResource(R.drawable.ic_pause_white_24dp);
+                    logFragment.clearLog();
+                    viewPager.setCurrentItem(2); //move to log fragment
                 } else {
                     if (algorithm.isPaused()) {
                         algorithm.setPaused(false);

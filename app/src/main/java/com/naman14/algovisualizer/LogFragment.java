@@ -43,6 +43,11 @@ public class LogFragment extends Fragment {
         adapter.addLog(log);
     }
 
+    public void clearLog() {
+        if (adapter != null)
+            adapter.clearLog();
+    }
+
     private class LogAdapter extends RecyclerView.Adapter<LogAdapter.ItemHolder> {
         public List<String> logList;
 
@@ -81,6 +86,11 @@ public class LogFragment extends Fragment {
             logList.add(log);
             notifyDataSetChanged();
             recyclerView.scrollToPosition(logList.size() - 1);
+        }
+
+        public void clearLog() {
+            logList.clear();
+            notifyDataSetChanged();
         }
 
     }
