@@ -2,6 +2,7 @@ package com.naman14.algovisualizer.visualizer;
 
 import android.content.Context;
 import android.util.AttributeSet;
+import android.util.DisplayMetrics;
 import android.util.TypedValue;
 import android.view.View;
 
@@ -26,7 +27,29 @@ public abstract class AlgorithmVisualizer extends View {
     }
 
     public int getDimensionInPixel(int dp) {
-        return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, getResources().getDisplayMetrics());
+        int density = getResources().getDisplayMetrics().densityDpi;
+
+        int modifieddp = dp;
+        switch (density) {
+            case DisplayMetrics.DENSITY_LOW:
+                modifieddp = dp - dp / 2;
+                break;
+            case DisplayMetrics.DENSITY_MEDIUM:
+                modifieddp = dp - dp / 3;
+                break;
+            case DisplayMetrics.DENSITY_HIGH:
+                modifieddp = dp - dp / 4;
+                break;
+            case DisplayMetrics.DENSITY_XHIGH:
+            case DisplayMetrics.DENSITY_XXHIGH:
+            case DisplayMetrics.DENSITY_XXXHIGH:
+                modifieddp = dp;
+                break;
+            default:
+                break;
+        }
+
+        return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, modifieddp, getResources().getDisplayMetrics());
     }
 
     public int getDimensionInPixelFromSP(int sp) {

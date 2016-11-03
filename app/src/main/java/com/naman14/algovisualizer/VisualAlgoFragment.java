@@ -59,17 +59,11 @@ public class VisualAlgoFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_visual_algo, container, false);
-        Toolbar toolbar = (Toolbar) rootView.findViewById(R.id.toolbar);
-        ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
-        ActionBar ab = ((AppCompatActivity) getActivity()).getSupportActionBar();
-        assert ab != null;
-        ab.setTitle("");
-        ab.setDisplayHomeAsUpEnabled(true);
-        ab.setHomeAsUpIndicator(R.drawable.ic_menu_black_24dp);
 
         appBarLayout = (AppBarLayout) rootView.findViewById(R.id.app_bar);
         bottomBar = BottomBar.attachShy((CoordinatorLayout) rootView.findViewById(R.id.coordinator), savedInstanceState);
         bottomBar.noNavBarGoodness();
+        bottomBar.noTabletGoodness();
 
         fab = (FloatingActionButton) rootView.findViewById(R.id.fab);
         viewPager = (ViewPager) rootView.findViewById(R.id.viewPager);
@@ -116,13 +110,20 @@ public class VisualAlgoFragment extends Fragment {
         assert algorithmKey != null;
 
         final AlgorithmVisualizer visualizer;
-        if (appBarLayout.getChildCount() == 2) {
-            appBarLayout.removeViewAt(1);
-            //bst insert has 2 views, bstvisualizer and array visualizer, remove both
-            if (appBarLayout.getChildCount() == 3) {
-                appBarLayout.removeViewAt(2);
-            }
-        }
+
+        appBarLayout.removeAllViewsInLayout();
+
+        View toolbar = LayoutInflater.from(getActivity()).inflate(R.layout.toolbar, appBarLayout, false);
+        appBarLayout.addView(toolbar);
+
+        ((AppCompatActivity) getActivity()).setSupportActionBar((Toolbar) toolbar);
+        ActionBar ab = ((AppCompatActivity) getActivity()).getSupportActionBar();
+        assert ab != null;
+        ab.setTitle("");
+        ab.setDisplayHomeAsUpEnabled(true);
+        ab.setHomeAsUpIndicator(R.drawable.ic_menu_black_24dp);
+
+
         switch (algorithmKey) {
             case Algorithm.BUBBLE_SORT:
                 visualizer = new SortingVisualizer(getActivity());
@@ -175,7 +176,7 @@ public class VisualAlgoFragment extends Fragment {
                     algorithm.sendMessage(startCommand);
                     fab.setImageResource(R.drawable.ic_pause_white_24dp);
                     logFragment.clearLog();
-                    viewPager.setCurrentItem(2); //move to log fragment
+                    bottomBar.selectTabAtPosition(2,true);//move to log fragment
                 } else {
                     if (algorithm.isPaused()) {
                         algorithm.setPaused(false);
@@ -187,6 +188,9 @@ public class VisualAlgoFragment extends Fragment {
                 }
             }
         });
+
+        View shadow = LayoutInflater.from(getActivity()).inflate(R.layout.shadow, appBarLayout, false);
+        appBarLayout.addView(shadow);
     }
 
     private void setupViewPager(ViewPager viewPager) {

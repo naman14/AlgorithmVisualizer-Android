@@ -20,7 +20,7 @@ public class SortingVisualizer extends AlgorithmVisualizer {
 
     int highlightPositionOne = -1, highlightPositionTwo = -1;
     int highlightPosition = -1;
-    int lineStrokeWidth = 30;
+    int lineStrokeWidth = getDimensionInPixel(10);
 
     public SortingVisualizer(Context context) {
         super(context);
@@ -61,7 +61,7 @@ public class SortingVisualizer extends AlgorithmVisualizer {
 
             float margin = (getWidth() - (30 * numberOfLines)) / (numberOfLines + 1);
 
-            float xPos = margin;
+            float xPos = margin + getDimensionInPixel(10);
             for (int i = 0; i < array.length; i++) {
 
                 if (i == highlightPositionOne || i == highlightPositionTwo) {
