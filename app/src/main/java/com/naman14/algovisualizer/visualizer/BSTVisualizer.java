@@ -11,7 +11,9 @@ import android.util.AttributeSet;
 import com.naman14.algovisualizer.DataUtils;
 import com.naman14.algovisualizer.algorithm.tree.bst.BinarySearchTree;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 /**
  * Created by naman on 03/07/16.
@@ -30,7 +32,8 @@ public class BSTVisualizer extends AlgorithmVisualizer {
     private int[] array = DataUtils.bst_array;
     private int[][] bst = DataUtils.bst;
 
-    HashMap<Integer, Point> nodes = new HashMap<>();
+    private HashMap<Integer, Point> nodes = new HashMap<>();
+    private List<Integer> visibleNodes = new ArrayList<>();
 
     private int highlightNode = -1;
     private int highlighLineStart = -1, highlightLineEnd = -1;
@@ -72,7 +75,9 @@ public class BSTVisualizer extends AlgorithmVisualizer {
         lineHighlightPaint.setColor(Color.RED);
         lineHighlightPaint.setStrokeWidth(10);
 
-
+        for (int i : array) {
+            visibleNodes.add(i);
+        }
     }
 
     @Override
@@ -142,7 +147,7 @@ public class BSTVisualizer extends AlgorithmVisualizer {
                 boolean highlight = false;
                 p1.x = p.x;
                 p1.y = p.y + getDimensionInPixel(70);
-                if (parentnode == highlighLineStart && leftnode == highlightLineEnd && rightnode == highlightLineEnd ) {
+                if (parentnode == highlighLineStart && leftnode == highlightLineEnd && rightnode == highlightLineEnd) {
                     highlight = true;
                 }
                 drawNodeLine(canvas, p, p1, highlight);
@@ -153,7 +158,7 @@ public class BSTVisualizer extends AlgorithmVisualizer {
                     boolean highlight = false;
                     p1.x = p.x - getDimensionInPixel(60);
                     p1.y = p.y + getDimensionInPixel(70);
-                    if (parentnode == highlighLineStart && leftnode == highlightLineEnd ) {
+                    if (parentnode == highlighLineStart && leftnode == highlightLineEnd) {
                         highlight = true;
                     }
                     drawNodeLine(canvas, p, p1, highlight);
@@ -164,7 +169,7 @@ public class BSTVisualizer extends AlgorithmVisualizer {
                     boolean highlight = false;
                     p2.x = p.x + getDimensionInPixel(60);
                     p2.y = p.y + getDimensionInPixel(70);
-                    if (parentnode == highlighLineStart && rightnode == highlightLineEnd ) {
+                    if (parentnode == highlighLineStart && rightnode == highlightLineEnd) {
                         highlight = true;
                     }
                     drawNodeLine(canvas, p, p2, highlight);
@@ -225,6 +230,17 @@ public class BSTVisualizer extends AlgorithmVisualizer {
     public void highlightLine(int start, int end) {
         this.highlighLineStart = start;
         this.highlightLineEnd = end;
+        invalidate();
+    }
+
+    //methods for bst insert
+    public void removeAllNodes() {
+        visibleNodes.clear();
+        invalidate();
+    }
+
+    public void addNode(int n) {
+        visibleNodes.add(n);
         invalidate();
     }
 

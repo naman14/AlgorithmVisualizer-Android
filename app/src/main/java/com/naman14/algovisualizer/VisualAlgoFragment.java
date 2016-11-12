@@ -1,5 +1,6 @@
 package com.naman14.algovisualizer;
 
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.AppBarLayout;
@@ -102,6 +103,7 @@ public class VisualAlgoFragment extends Fragment {
     public void setupFragment(String algorithmKey) {
 
         viewPager.setOffscreenPageLimit(3);
+        bottomBar.selectTabAtPosition(0, false);
         setupViewPager(viewPager);
 
         codeFragment.setCode(algorithmKey);
@@ -176,7 +178,7 @@ public class VisualAlgoFragment extends Fragment {
                     algorithm.sendMessage(startCommand);
                     fab.setImageResource(R.drawable.ic_pause_white_24dp);
                     logFragment.clearLog();
-                    bottomBar.selectTabAtPosition(2,true);//move to log fragment
+                    bottomBar.selectTabAtPosition(2, true);//move to log fragment
                 } else {
                     if (algorithm.isPaused()) {
                         algorithm.setPaused(false);
@@ -189,8 +191,10 @@ public class VisualAlgoFragment extends Fragment {
             }
         });
 
-        View shadow = LayoutInflater.from(getActivity()).inflate(R.layout.shadow, appBarLayout, false);
-        appBarLayout.addView(shadow);
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) { //add shadow to appbar on below 21
+            View shadow = LayoutInflater.from(getActivity()).inflate(R.layout.shadow, appBarLayout, false);
+            appBarLayout.addView(shadow);
+        }
     }
 
     private void setupViewPager(ViewPager viewPager) {
@@ -205,11 +209,11 @@ public class VisualAlgoFragment extends Fragment {
         private final List<Fragment> mFragments = new ArrayList<>();
         private final List<String> mFragmentTitles = new ArrayList<>();
 
-        public Adapter(FragmentManager fm) {
+        private Adapter(FragmentManager fm) {
             super(fm);
         }
 
-        public void addFragment(Fragment fragment, String title) {
+        private void addFragment(Fragment fragment, String title) {
             mFragments.add(fragment);
             mFragmentTitles.add(title);
         }

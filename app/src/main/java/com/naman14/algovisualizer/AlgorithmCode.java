@@ -27,4 +27,21 @@ public class AlgorithmCode {
             "            sleep();\n" +
             "        }\n" +
             "        completed();";
+
+    public static final String CODE_INSERTION_SORT = "       logArray(array);\n" +
+            "        int n = array.length;\n" +
+            "        for (int j = 1; j < n; j++) {\n" +
+            "            int key = array[j];\n" +
+            "            int i = j-1;\n" +
+            "            while ( (i > -1) && ( array [i] > key ) ) {\n" +
+            "                array [i+1] = array [i];\n" +
+            "                highlightSwap(i, i + 1);\n" +
+            "                addLog(\"Swapping \" + array[i] + \" and \" + array[i + 1]);\n" +
+            "                i--;\n" +
+            "            }\n" +
+            "            sleep();\n" +
+            "            array[i+1] = key;\n" +
+            "        }\n" +
+            "        completed();";
+
 }
