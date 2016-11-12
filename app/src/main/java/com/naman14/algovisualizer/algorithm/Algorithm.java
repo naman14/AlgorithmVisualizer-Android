@@ -39,8 +39,12 @@ public class Algorithm extends HandlerThread {
     }
 
     public void sleep() {
+        sleepFor(500);
+    }
+
+    public void sleepFor(long time) {
         try {
-            sleep(500);
+            sleep(time);
             if (isPaused())
                 pauseExecution();
             else resumeExecution();

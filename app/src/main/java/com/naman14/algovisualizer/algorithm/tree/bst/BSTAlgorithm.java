@@ -34,7 +34,7 @@ public class BSTAlgorithm extends Algorithm implements DataHandler {
         int id = DataUtils.getRandomKeyFromBST();
         addLog("Searching for " + String.valueOf(id));
         BinarySearchTree.Node current = b.getRoot();
-        addLog("Starting from root: "+ current.data);
+        addLog("Starting from root: " + current.data);
         highlightNode(current.data);
         sleep();
         while (current != null) {
@@ -43,13 +43,13 @@ public class BSTAlgorithm extends Algorithm implements DataHandler {
                 completed();
                 break;
             } else if (current.data > id) {
-                addLog("Going from "+ current.data+ " to "+current.left.data);
+                addLog("Going from " + current.data + " to " + current.left.data);
                 highlightLine(current.data, current.left.data);
                 current = current.left;
                 highlightNode(current.data);
                 sleep();
             } else {
-                addLog("Going from "+ current.data+ " to "+current.right.data);
+                addLog("Going from " + current.data + " to " + current.right.data);
                 highlightLine(current.data, current.right.data);
                 current = current.right;
                 highlightNode(current.data);
@@ -63,6 +63,19 @@ public class BSTAlgorithm extends Algorithm implements DataHandler {
         int[] array = DataUtils.bst_array;
         BinarySearchTree tree = new BinarySearchTree();
         logArray(array);
+        removeAllNodes();
+        sleepFor(800);
+
+        for (int i = 0; i < array.length; i++) {
+            addLog("Inserting " + array[i] + " in the binary tree");
+            tree.insert(array[i]);
+            addNode(array[i]);
+            highlightNode(array[i]);
+            sleepFor(800);
+        }
+
+        highlightNode(-1);
+        completed();
     }
 
     @Override
@@ -107,6 +120,24 @@ public class BSTAlgorithm extends Algorithm implements DataHandler {
             @Override
             public void run() {
                 visualizer.highlightLine(start, end);
+            }
+        });
+    }
+
+    private void removeAllNodes() {
+        activity.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                visualizer.removeAllNodes();
+            }
+        });
+    }
+
+    private void addNode(final int n) {
+        activity.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                visualizer.addNode(n);
             }
         });
     }

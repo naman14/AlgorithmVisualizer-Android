@@ -142,6 +142,7 @@ public class BSTVisualizer extends AlgorithmVisualizer {
                 }
             }
 
+            boolean shouldDraw;
 
             if (leftnode != -1 && rightnode != -1 && leftnode == rightnode) {
                 boolean highlight = false;
@@ -150,7 +151,8 @@ public class BSTVisualizer extends AlgorithmVisualizer {
                 if (parentnode == highlighLineStart && leftnode == highlightLineEnd && rightnode == highlightLineEnd) {
                     highlight = true;
                 }
-                drawNodeLine(canvas, p, p1, highlight);
+                shouldDraw = visibleNodes.contains(leftnode);
+                drawNodeLine(canvas, p, p1, highlight, shouldDraw);
                 addNode(p1, leftnode);
 
             } else {
@@ -161,7 +163,8 @@ public class BSTVisualizer extends AlgorithmVisualizer {
                     if (parentnode == highlighLineStart && leftnode == highlightLineEnd) {
                         highlight = true;
                     }
-                    drawNodeLine(canvas, p, p1, highlight);
+                    shouldDraw = visibleNodes.contains(leftnode);
+                    drawNodeLine(canvas, p, p1, highlight, shouldDraw);
                     addNode(p1, leftnode);
 
                 }
@@ -172,7 +175,8 @@ public class BSTVisualizer extends AlgorithmVisualizer {
                     if (parentnode == highlighLineStart && rightnode == highlightLineEnd) {
                         highlight = true;
                     }
-                    drawNodeLine(canvas, p, p2, highlight);
+                    shouldDraw = visibleNodes.contains(rightnode);
+                    drawNodeLine(canvas, p, p2, highlight, shouldDraw);
                     addNode(p2, rightnode);
 
                 }
@@ -194,7 +198,8 @@ public class BSTVisualizer extends AlgorithmVisualizer {
         for (HashMap.Entry<Integer, Point> entry : nodes.entrySet()) {
             Integer i = entry.getKey();
             Point p = entry.getValue();
-            drawCircleTextNode(canvas, p, i);
+            if (visibleNodes.contains(i))
+                drawCircleTextNode(canvas, p, i);
 
         }
     }
@@ -214,11 +219,13 @@ public class BSTVisualizer extends AlgorithmVisualizer {
     }
 
 
-    private void drawNodeLine(Canvas canvas, Point start, Point end, boolean highlight) {
-        if (highlight) {
-            canvas.drawLine(start.x, start.y, end.x, end.y, lineHighlightPaint);
-        } else {
-            canvas.drawLine(start.x, start.y, end.x, end.y, linePaint);
+    private void drawNodeLine(Canvas canvas, Point start, Point end, boolean highlight, boolean draw) {
+        if (draw) {
+            if (highlight) {
+                canvas.drawLine(start.x, start.y, end.x, end.y, lineHighlightPaint);
+            } else {
+                canvas.drawLine(start.x, start.y, end.x, end.y, linePaint);
+            }
         }
     }
 
