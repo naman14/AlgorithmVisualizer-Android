@@ -10,8 +10,6 @@ import android.util.DisplayMetrics;
 import android.util.TypedValue;
 import android.view.View;
 
-import com.naman14.algovisualizer.DataUtils;
-
 /**
  * Created by naman on 02/11/16.
  */
@@ -23,7 +21,7 @@ public class ArrayVisualizer extends View {
 
     private Path containerPath;
 
-    private int[] bst_array = DataUtils.bst_array;
+    private int[] array;
 
     private int highlightPosition = -1;
 
@@ -42,12 +40,14 @@ public class ArrayVisualizer extends View {
 
         textPaint = new Paint();
         containerPaint = new Paint();
-        highlightPaint = new Paint();
 
         textPaint.setColor(Color.BLACK);
         textPaint.setTextSize(getDimensionInPixelFromSP(20));
         textPaint.setAntiAlias(true);
         textPaint.setTextAlign(Paint.Align.CENTER);
+
+        highlightPaint = new Paint(textPaint);
+        highlightPaint.setColor(Color.BLUE);
 
         containerPaint.setStyle(Paint.Style.STROKE);
         containerPaint.setColor(Color.BLACK);
@@ -111,11 +111,11 @@ public class ArrayVisualizer extends View {
         canvas.drawPath(containerPath, containerPaint);
 
         int posX = getDimensionInPixel(40) + getDimensionInPixel(15);
-        int textWidth = (getWidth() - getDimensionInPixel(80)) / bst_array.length;
+        int textWidth = (getWidth() - getDimensionInPixel(80)) / array.length;
 
-        for (int i = 0; i < bst_array.length; i++) {
-            String number = String.valueOf(bst_array[i]);
-            if (highlightPosition != -1 && highlightPosition == bst_array[i]) {
+        for (int i = 0; i < array.length; i++) {
+            String number = String.valueOf(array[i]);
+            if (highlightPosition != -1 && highlightPosition == array[i]) {
                 canvas.drawText(number, posX, getDimensionInPixel(30), highlightPaint);
             } else {
                 canvas.drawText(number, posX, getDimensionInPixel(30), textPaint);
@@ -124,8 +124,13 @@ public class ArrayVisualizer extends View {
         }
     }
 
+    public void setData(int[] array) {
+        this.array = array;
+    }
+
     public void highlightValue(int num) {
         this.highlightPosition = num;
+        invalidate();
     }
 
 }

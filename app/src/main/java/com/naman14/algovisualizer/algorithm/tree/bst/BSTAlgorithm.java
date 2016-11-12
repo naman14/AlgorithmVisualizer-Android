@@ -6,6 +6,7 @@ import com.naman14.algovisualizer.DataUtils;
 import com.naman14.algovisualizer.LogFragment;
 import com.naman14.algovisualizer.algorithm.Algorithm;
 import com.naman14.algovisualizer.algorithm.DataHandler;
+import com.naman14.algovisualizer.visualizer.ArrayVisualizer;
 import com.naman14.algovisualizer.visualizer.BSTVisualizer;
 
 /**
@@ -17,6 +18,7 @@ public class BSTAlgorithm extends Algorithm implements DataHandler {
     public static final String START_BST_INSERT = "start_bst_insert";
 
     public BSTVisualizer visualizer;
+    public ArrayVisualizer arrayVisualizer;
     public BinarySearchTree b;
 
     public BSTAlgorithm(BSTVisualizer visualizer, Activity activity, LogFragment logFragment) {
@@ -99,6 +101,9 @@ public class BSTAlgorithm extends Algorithm implements DataHandler {
             @Override
             public void run() {
                 visualizer.setData(b);
+                if (arrayVisualizer!=null) {
+                    arrayVisualizer.setData(DataUtils.bst_array);
+                }
             }
         });
         start();
@@ -111,6 +116,9 @@ public class BSTAlgorithm extends Algorithm implements DataHandler {
             @Override
             public void run() {
                 visualizer.highlightNode(node);
+                if (arrayVisualizer!=null) {
+                    arrayVisualizer.highlightValue(node);
+                }
             }
         });
     }
@@ -142,11 +150,16 @@ public class BSTAlgorithm extends Algorithm implements DataHandler {
         });
     }
 
+
     public void logArray(final int[] array) {
         String arrayString = "";
         for (int i : array) {
             arrayString = arrayString.concat(" " + String.valueOf(i) + " ");
         }
         addLog("Items to be inserted - " + arrayString);
+    }
+
+    public void setArrayVisualizer(ArrayVisualizer arrayVisualizer) {
+        this.arrayVisualizer = arrayVisualizer;
     }
 }

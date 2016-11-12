@@ -151,6 +151,7 @@ public class VisualAlgoFragment extends Fragment {
                 appBarLayout.addView(visualizer);
                 appBarLayout.addView(arrayVisualizer);
                 algorithm = new BSTAlgorithm((BSTVisualizer) visualizer, getActivity(), logFragment);
+                ((BSTAlgorithm) algorithm).setArrayVisualizer(arrayVisualizer);
                 ((BSTAlgorithm) algorithm).setData(DataUtils.createBinaryTree());
                 break;
             default:
