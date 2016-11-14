@@ -19,12 +19,14 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.naman14.algovisualizer.algorithm.Algorithm;
+import com.naman14.algovisualizer.algorithm.search.BinarySearch;
 import com.naman14.algovisualizer.algorithm.sorting.BubbleSort;
 import com.naman14.algovisualizer.algorithm.sorting.InsertionSort;
 import com.naman14.algovisualizer.algorithm.tree.bst.BSTAlgorithm;
 import com.naman14.algovisualizer.visualizer.AlgorithmVisualizer;
 import com.naman14.algovisualizer.visualizer.ArrayVisualizer;
 import com.naman14.algovisualizer.visualizer.BSTVisualizer;
+import com.naman14.algovisualizer.visualizer.BinarySearchVisualizer;
 import com.naman14.algovisualizer.visualizer.SortingVisualizer;
 import com.roughike.bottombar.BottomBar;
 import com.roughike.bottombar.BottomBarTab;
@@ -127,6 +129,12 @@ public class VisualAlgoFragment extends Fragment {
 
 
         switch (algorithmKey) {
+            case Algorithm.BINARY_SEARCH:
+                visualizer = new BinarySearchVisualizer(getActivity());
+                appBarLayout.addView(visualizer);
+                algorithm = new BinarySearch((BinarySearchVisualizer) visualizer, getActivity(), logFragment);
+                ((BinarySearch) algorithm).setData(DataUtils.createSortedArray(15));
+                break;
             case Algorithm.BUBBLE_SORT:
                 visualizer = new SortingVisualizer(getActivity());
                 appBarLayout.addView(visualizer);

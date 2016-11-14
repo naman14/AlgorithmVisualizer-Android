@@ -22,6 +22,10 @@ public class Algorithm extends HandlerThread {
     public static final String BINARY_SEARCH = "binary_search";
     public static final String BST_INSERT= "bst_insert";
     public static final String BST_SEARCH= "bst_search";
+    public static final String LINKED_LIST= "linked_list";
+    public static final String STACK= "stack";
+    public static final String QUEUE= "queue";
+
 
     public LogFragment logFragment;
     public Activity activity;

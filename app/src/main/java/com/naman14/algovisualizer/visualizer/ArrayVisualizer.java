@@ -48,6 +48,7 @@ public class ArrayVisualizer extends View {
 
         highlightPaint = new Paint(textPaint);
         highlightPaint.setColor(Color.BLUE);
+        highlightPaint.setTextSize(getDimensionInPixelFromSP(25));
 
         containerPaint.setStyle(Paint.Style.STROKE);
         containerPaint.setColor(Color.BLACK);

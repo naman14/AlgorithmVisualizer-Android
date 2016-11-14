@@ -5,7 +5,7 @@ package com.naman14.algovisualizer.algorithm.tree.bst;
  */
 public class BinarySearchTree {
 
-    public static Node root;
+    private static Node root;
 
     public BinarySearchTree() {
         root = null;
@@ -54,17 +54,7 @@ public class BinarySearchTree {
     }
 
 
-    public int getHeight(Node node) {
-        if (node == null) {
-            return 0;
-        } else {
-            return 1 +
-                    Math.max(getHeight(node.left),
-                            getHeight(node.right));
-        }
-    }
-
-    public Node traverse(Node root, int data) { // What data are you looking for again?
+    private Node traverse(Node root, int data) { // What data are you looking for again?
         if (root.data == data) {
             return root;
         }
@@ -77,7 +67,7 @@ public class BinarySearchTree {
         return null;
     }
 
-    public void traverse(Node root) { // Each child of a tree is a root of its subtree.
+    private void traverse(Node root) { // Each child of a tree is a root of its subtree.
         if (root.left != null) {
             traverse(root.left);
         }

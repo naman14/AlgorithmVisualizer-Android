@@ -17,8 +17,8 @@ public class BSTAlgorithm extends Algorithm implements DataHandler {
     public static final String START_BST_SEARCH = "start_bst_search";
     public static final String START_BST_INSERT = "start_bst_insert";
 
-    public BSTVisualizer visualizer;
-    public ArrayVisualizer arrayVisualizer;
+    private BSTVisualizer visualizer;
+    private ArrayVisualizer arrayVisualizer;
     public BinarySearchTree b;
 
     public BSTAlgorithm(BSTVisualizer visualizer, Activity activity, LogFragment logFragment) {
@@ -151,7 +151,7 @@ public class BSTAlgorithm extends Algorithm implements DataHandler {
     }
 
 
-    public void logArray(final int[] array) {
+    private void logArray(final int[] array) {
         String arrayString = "";
         for (int i : array) {
             arrayString = arrayString.concat(" " + String.valueOf(i) + " ");

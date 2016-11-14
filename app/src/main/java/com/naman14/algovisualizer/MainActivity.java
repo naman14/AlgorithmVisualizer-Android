@@ -54,6 +54,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public boolean onChildClick(ExpandableListView expandableListView, View view, int groupPosition, int childPosition, long l) {
                 switch (groupPosition) {
+                    case 0:
+                        switch (childPosition) {
+                            case 0:
+                                algoFragment.setupFragment(Algorithm.BINARY_SEARCH);
+                                break;
+                        }
+                        break;
                     case 1:
                         switch (childPosition) {
                             case 0:
@@ -76,6 +83,20 @@ public class MainActivity extends AppCompatActivity {
                                 break;
                         }
                         break;
+                    case 3:
+                        switch (childPosition) {
+                            case 0:
+                                algoFragment.setupFragment(Algorithm.LINKED_LIST);
+                                break;
+                            case 1:
+                                algoFragment.setupFragment(Algorithm.STACK);
+                                break;
+                            case 2:
+                                algoFragment.setupFragment(Algorithm.QUEUE);
+                                break;
+                        }
+                        break;
+
                 }
                 mDrawerLayout.closeDrawers();
                 return true;
@@ -105,6 +126,10 @@ public class MainActivity extends AppCompatActivity {
         item3.setName("Tree");
         listDataHeader.add(item3);
 
+        ExpandedMenuModel item4 = new ExpandedMenuModel();
+        item4.setName("List");
+        listDataHeader.add(item4);
+
         List<String> heading1 = new ArrayList<>();
         heading1.add("Binary search");
 
@@ -116,9 +141,16 @@ public class MainActivity extends AppCompatActivity {
         heading3.add("BST Search");
         heading3.add("BST Insert");
 
+        List<String> heading4 = new ArrayList<String>();
+        heading4.add("Linked List");
+        heading4.add("Stack");
+        heading4.add("Queue");
+
+
         listDataChild.put(listDataHeader.get(0), heading1);
         listDataChild.put(listDataHeader.get(1), heading2);
         listDataChild.put(listDataHeader.get(2), heading3);
+        listDataChild.put(listDataHeader.get(3), heading4);
 
     }
 

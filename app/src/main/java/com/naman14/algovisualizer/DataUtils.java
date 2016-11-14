@@ -2,6 +2,7 @@ package com.naman14.algovisualizer;
 
 import com.naman14.algovisualizer.algorithm.tree.bst.BinarySearchTree;
 
+import java.util.Arrays;
 import java.util.Random;
 
 /**
@@ -32,6 +33,15 @@ public class DataUtils {
         }
         return b;
 
+    }
+
+    public static int[] createSortedArray(int size) {
+        int[] integers = new int[size];
+        for (int i = 0; i < size; i++) {
+            integers[i] = new Random().nextInt(98) + 1;
+        }
+        Arrays.sort(integers);
+        return integers;
     }
 
     public static int getRandomKeyFromBST() {
