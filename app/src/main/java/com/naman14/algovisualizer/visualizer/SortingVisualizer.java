@@ -38,15 +38,11 @@ public class SortingVisualizer extends AlgorithmVisualizer {
         paint.setStyle(Paint.Style.FILL);
         paint.setStrokeWidth(lineStrokeWidth);
 
-        highlightPaintSwap = new Paint();
-        highlightPaintSwap.setStyle(Paint.Style.FILL);
+        highlightPaintSwap = new Paint(paint);
         highlightPaintSwap.setColor(Color.RED);
-        highlightPaintSwap.setStrokeWidth(lineStrokeWidth);
 
-        highlightPaintTrace = new Paint();
-        highlightPaintTrace.setStyle(Paint.Style.FILL);
+        highlightPaintTrace = new Paint(paint);
         highlightPaintTrace.setColor(Color.BLUE);
-        highlightPaintTrace.setStrokeWidth(lineStrokeWidth);
 
         textPaint = new TextPaint();
         textPaint.setColor(Color.BLACK);

@@ -26,7 +26,7 @@ public class BubbleSort extends SortAlgorithm implements DataHandler {
     }
 
     private void sort() {
-        logArray(array);
+        logArray("Original array - " ,array);
 
         for (int i = 0; i < array.length; i++) {
             addLog("Doing iteration - " + i);

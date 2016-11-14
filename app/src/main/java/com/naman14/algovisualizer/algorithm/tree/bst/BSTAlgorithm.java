@@ -64,7 +64,7 @@ public class BSTAlgorithm extends Algorithm implements DataHandler {
     private void startBSTInsert() {
         int[] array = DataUtils.bst_array;
         BinarySearchTree tree = new BinarySearchTree();
-        logArray(array);
+        logArray("Items to be inserted - ",array);
         removeAllNodes();
         sleepFor(800);
 
@@ -150,14 +150,6 @@ public class BSTAlgorithm extends Algorithm implements DataHandler {
         });
     }
 
-
-    private void logArray(final int[] array) {
-        String arrayString = "";
-        for (int i : array) {
-            arrayString = arrayString.concat(" " + String.valueOf(i) + " ");
-        }
-        addLog("Items to be inserted - " + arrayString);
-    }
 
     public void setArrayVisualizer(ArrayVisualizer arrayVisualizer) {
         this.arrayVisualizer = arrayVisualizer;

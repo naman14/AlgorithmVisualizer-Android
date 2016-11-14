@@ -41,14 +41,6 @@ public class SortAlgorithm extends Algorithm implements DataHandler {
         });
     }
 
-    public void logArray(final int[] array) {
-        String arrayString = "";
-        for (int i : array) {
-            arrayString = arrayString.concat(" " + String.valueOf(i) + " ");
-        }
-        addLog("Original array - " + arrayString);
-    }
-
     @Override
     public void onDataRecieved(Object data) {
 

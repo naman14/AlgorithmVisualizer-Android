@@ -20,11 +20,11 @@ public class Algorithm extends HandlerThread {
     public static final String BUBBLE_SORT = "bubble_sort";
     public static final String INSERTION_SORT = "insertion_sort";
     public static final String BINARY_SEARCH = "binary_search";
-    public static final String BST_INSERT= "bst_insert";
-    public static final String BST_SEARCH= "bst_search";
-    public static final String LINKED_LIST= "linked_list";
-    public static final String STACK= "stack";
-    public static final String QUEUE= "queue";
+    public static final String BST_INSERT = "bst_insert";
+    public static final String BST_SEARCH = "bst_search";
+    public static final String LINKED_LIST = "linked_list";
+    public static final String STACK = "stack";
+    public static final String QUEUE = "queue";
 
 
     public LogFragment logFragment;
@@ -102,6 +102,7 @@ public class Algorithm extends HandlerThread {
     public boolean isStarted() {
         return started;
     }
+
     public void setStarted(boolean started) {
         this.started = started;
     }
@@ -115,6 +116,14 @@ public class Algorithm extends HandlerThread {
                 }
             });
         }
+    }
+
+    public void logArray(String message, final int[] array) {
+        String arrayString = "";
+        for (int i : array) {
+            arrayString = arrayString.concat(" " + String.valueOf(i) + " ");
+        }
+        addLog(message + arrayString);
     }
 
     public void setCompletionListener(AlgoCompletionListener completionListener) {

@@ -25,7 +25,7 @@ public class InsertionSort extends SortAlgorithm {
     }
 
     private void sort() {
-        logArray(array);
+        logArray("Original array - " ,array);
 
         int n = array.length;
         for (int j = 1; j < n; j++) {
