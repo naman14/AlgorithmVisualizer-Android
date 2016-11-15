@@ -53,6 +53,11 @@ public class DataUtils {
         return bst_array[rnd];
     }
 
+    public static int getRandomInt(int range) {
+        Random random = new Random();
+        return random.nextInt(range);
+    }
+
     public static String readDescJson(Context context) {
         String json = null;
         try {

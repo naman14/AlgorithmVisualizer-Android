@@ -19,6 +19,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.naman14.algovisualizer.algorithm.Algorithm;
+import com.naman14.algovisualizer.algorithm.list.linkedlist.LinkedList;
 import com.naman14.algovisualizer.algorithm.search.BinarySearch;
 import com.naman14.algovisualizer.algorithm.sorting.BubbleSort;
 import com.naman14.algovisualizer.algorithm.sorting.InsertionSort;
@@ -27,6 +28,8 @@ import com.naman14.algovisualizer.visualizer.AlgorithmVisualizer;
 import com.naman14.algovisualizer.visualizer.ArrayVisualizer;
 import com.naman14.algovisualizer.visualizer.BSTVisualizer;
 import com.naman14.algovisualizer.visualizer.BinarySearchVisualizer;
+import com.naman14.algovisualizer.visualizer.LinkedListControls;
+import com.naman14.algovisualizer.visualizer.LinkedListVisualizer;
 import com.naman14.algovisualizer.visualizer.SortingVisualizer;
 import com.roughike.bottombar.BottomBar;
 import com.roughike.bottombar.BottomBarTab;
@@ -129,6 +132,7 @@ public class VisualAlgoFragment extends Fragment {
         ab.setTitle("");
         ab.setDisplayHomeAsUpEnabled(true);
         ab.setHomeAsUpIndicator(R.drawable.ic_menu_black_24dp);
+        fab.setVisibility(View.VISIBLE);
 
 
         switch (algorithmKey) {
@@ -157,13 +161,23 @@ public class VisualAlgoFragment extends Fragment {
                 ((BSTAlgorithm) algorithm).setData(DataUtils.createBinaryTree());
                 break;
             case Algorithm.BST_INSERT:
-                visualizer = new BSTVisualizer(getActivity());
+                visualizer = new BSTVisualizer(getActivity(), 300);
                 ArrayVisualizer arrayVisualizer = new ArrayVisualizer(getActivity());
                 appBarLayout.addView(visualizer);
                 appBarLayout.addView(arrayVisualizer);
                 algorithm = new BSTAlgorithm((BSTVisualizer) visualizer, getActivity(), logFragment);
                 ((BSTAlgorithm) algorithm).setArrayVisualizer(arrayVisualizer);
                 ((BSTAlgorithm) algorithm).setData(DataUtils.createBinaryTree());
+                break;
+            case Algorithm.LINKED_LIST:
+                visualizer = new LinkedListVisualizer(getActivity());
+                LinkedListControls controls = new LinkedListControls(getActivity());
+                appBarLayout.addView(visualizer);
+                appBarLayout.addView(controls);
+                algorithm = new LinkedList((LinkedListVisualizer) visualizer, getActivity(), logFragment);
+                ((LinkedList) algorithm).setData(DataUtils.createRandomArray(5));
+                controls.setLinkedList((LinkedList) algorithm);
+                fab.setVisibility(View.GONE);
                 break;
             default:
                 visualizer = null;
@@ -272,4 +286,5 @@ public class VisualAlgoFragment extends Fragment {
     public boolean onOptionsItemSelected(MenuItem item) {
         return super.onOptionsItemSelected(item);
     }
+
 }
