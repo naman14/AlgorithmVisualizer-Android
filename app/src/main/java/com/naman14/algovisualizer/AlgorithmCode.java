@@ -128,4 +128,41 @@ public class AlgorithmCode {
             " }\n" +
             " completed();";
 
+    public static final String CODE_LINKED_LIST_INSERT = "  Node nd = new Node();\n" +
+            "  nd.setValue(element);\n" +
+            "  addLog(\"Adding: \" + element + \" to the list\");\n" +
+            "  sleep();\n" +
+            "  if (linkedList.head == null) {\n" +
+            "   addLog(\"List is empty, setting both head and tail to the same element\");\n" +
+            "   linkedList.head = nd;\n" +
+            "   linkedList.tail = nd;\n" +
+            "  } else {\n" +
+            "   addLog(\"Setting current tail next link to new node\");\n" +
+            "   linkedList.tail.setNextRef(nd);\n" +
+            "   addLog(\"Set tail as newly created node\");\n" +
+            "   linkedList.tail = nd;\n" +
+            "  }\n" +
+            "  sleep();\n" +
+            "  updateData(linkedList);\n" +
+            "  highlightNode(element);";
+
+    public static final String CODE_LINKED_LIST_DELETE ="if (linkedList.head == null) {\n" +
+            " addLog(\"Linked list is empty\");\n" +
+            " return;\n" +
+            "}\n" +
+            "Node tmp = linkedList.head;\n" +
+            "addLog(\"Current head is :\" + tmp.getValue());\n" +
+            "sleep();\n" +
+            "addLog(\"Deleting head: \" + tmp.getValue());\n" +
+            "highlightNode(tmp.getValue());\n" +
+            "sleep();\n" +
+            "linkedList.head = tmp.getNextRef();\n" +
+            "if (linkedList.head == null) {\n" +
+            " addLog(\"The next node is null, setting tail as null\");\n" +
+            " linkedList.tail = null;\n" +
+            "} else addLog(\"Setting head to the next node:\" + linkedList.head.getValue());\n" +
+            "sleep();\n" +
+            "addLog(\"Deleted: \" + tmp.getValue() + \" from the list\");\n" +
+            "updateData(linkedList);";
+
 }

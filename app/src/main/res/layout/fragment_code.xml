@@ -5,14 +5,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:paddingBottom="30dp"
     app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-
-    <thereisnospon.codeview.CodeView
-        android:id="@+id/code_view"
+    <LinearLayout
+        android:id="@+id/codeLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="15dp"
-        android:clickable="true"/>
+        android:layout_marginBottom="20dp"
+        android:orientation="vertical" />
+
 
 </android.support.v4.widget.NestedScrollView>

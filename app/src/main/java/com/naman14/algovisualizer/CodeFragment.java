@@ -7,6 +7,8 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.naman14.algovisualizer.algorithm.Algorithm;
 
@@ -18,7 +20,7 @@ import thereisnospon.codeview.CodeViewTheme;
  */
 public class CodeFragment extends Fragment {
 
-    CodeView codeView;
+    LinearLayout codeLayout;
 
     public static CodeFragment newInstance(String algorithm) {
         CodeFragment fragment = new CodeFragment();
@@ -34,11 +36,53 @@ public class CodeFragment extends Fragment {
 
         View rootView = inflater.inflate(R.layout.fragment_code, container, false);
 
-        codeView = (CodeView) rootView.findViewById(R.id.code_view);
+        codeLayout = (LinearLayout) rootView.findViewById(R.id.codeLayout);
+
+        setCode(getArguments().getString(Algorithm.KEY_ALGORITHM));
+
+        return rootView;
+    }
+
+    public void setCode(String key) {
+        if (codeLayout != null) {
+            codeLayout.removeAllViews();
+            switch (key) {
+                case Algorithm.BUBBLE_SORT:
+                    addCodeItem(AlgorithmCode.CODE_BUBBLE_SORT, "Bubble sort");
+                    break;
+                case Algorithm.INSERTION_SORT:
+                    addCodeItem(AlgorithmCode.CODE_INSERTION_SORT, "Insertion sort");
+                    break;
+                case Algorithm.BST_SEARCH:
+                    addCodeItem(AlgorithmCode.CODE_BST_SEARCH, "BST Search");
+                    break;
+                case Algorithm.BST_INSERT:
+                    addCodeItem(AlgorithmCode.CODE_BST_INSERT, "BST Insert");
+                    break;
+                case Algorithm.BINARY_SEARCH:
+                    addCodeItem(AlgorithmCode.CODE_BINARY_SEARCH, "Binary search");
+                    break;
+                case Algorithm.LINKED_LIST:
+                    addCodeItem(AlgorithmCode.CODE_LINKED_LIST_INSERT, "Linked list insert data");
+                    addCodeItem(AlgorithmCode.CODE_LINKED_LIST_DELETE, "Linked list delete node");
+                    break;
+            }
+        }
+
+    }
+
+    private void addCodeItem(String code, String title) {
+        View codeitem = LayoutInflater.from(getActivity()).inflate(R.layout.item_code_view, codeLayout, false);
+
+        CodeView codeView = (CodeView) codeitem.findViewById(R.id.code_view);
+        TextView titleText = (TextView) codeitem.findViewById(R.id.title);
+
+        titleText.setText(title);
+
         codeView.setTheme(CodeViewTheme.GITHUB);
         codeView.setHorizontalScrollBarEnabled(true);
 
-        //Temp soultion, block parent touch evenets
+        //Temp solution, block parent touch evenets
         codeView.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
@@ -46,30 +90,10 @@ public class CodeFragment extends Fragment {
                 return false;
             }
         });
-        setCode(getArguments().getString(Algorithm.KEY_ALGORITHM));
 
-        return rootView;
-    }
+        codeView.showCode(code);
 
-    public void setCode(String key) {
-        if (codeView!=null) {
-            switch (key) {
-                case Algorithm.BUBBLE_SORT:
-                    codeView.showCode(AlgorithmCode.CODE_BUBBLE_SORT);
-                    break;
-                case Algorithm.INSERTION_SORT:
-                    codeView.showCode(AlgorithmCode.CODE_INSERTION_SORT);
-                    break;
-                case Algorithm.BST_SEARCH:
-                    codeView.showCode(AlgorithmCode.CODE_BST_SEARCH);
-                    break;
-                case Algorithm.BST_INSERT:
-                    codeView.showCode(AlgorithmCode.CODE_BST_INSERT);
-                    break;
-                case Algorithm.BINARY_SEARCH:
-                    codeView.showCode(AlgorithmCode.CODE_BINARY_SEARCH);
-                    break;
-            }
-        }
+        codeLayout.addView(codeitem);
+
     }
 }

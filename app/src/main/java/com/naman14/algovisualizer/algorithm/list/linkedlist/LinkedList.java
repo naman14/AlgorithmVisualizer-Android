@@ -36,12 +36,62 @@ public class LinkedList extends Algorithm implements DataHandler {
         this.logFragment = logFragment;
     }
 
+    //LinkedList implementation
+    private class Node {
+
+        private int value;
+        private Node nextRef;
+
+        public int getValue() {
+            return value;
+        }
+
+        public void setValue(int value) {
+            this.value = value;
+        }
+
+        public Node getNextRef() {
+            return nextRef;
+        }
+
+        public void setNextRef(Node ref) {
+            this.nextRef = ref;
+        }
+    }
+
+
+    public int size() {
+        int size = 0;
+        Node tmp = head;
+        while (true) {
+            if (tmp == null) {
+                break;
+            }
+            size++;
+            tmp = tmp.getNextRef();
+        }
+        return size;
+    }
+
+    public int[] getArray() {
+        int[] array = new int[size()];
+        int i = 0;
+        Node tmp = head;
+        while (true) {
+            if (tmp == null) {
+                break;
+            }
+            array[i] = tmp.getValue();
+            tmp = tmp.getNextRef();
+            i++;
+        }
+        return array;
+    }
+
     public void add(int element) {
 
         Node nd = new Node();
         nd.setValue(element);
-        System.out.println("Adding: " + element);
-
         if (head == null) {
             head = nd;
             tail = nd;
@@ -49,6 +99,7 @@ public class LinkedList extends Algorithm implements DataHandler {
             tail.setNextRef(nd);
             tail = nd;
         }
+        ;
     }
 
     public void addAfter(int element, int after) {
@@ -81,19 +132,6 @@ public class LinkedList extends Algorithm implements DataHandler {
         }
     }
 
-    public void deleteFront() {
-
-        if (head == null) {
-            System.out.println("Underflow...");
-        }
-        Node tmp = head;
-        head = tmp.getNextRef();
-        if (head == null) {
-            tail = null;
-        }
-        System.out.println("Deleted: " + tmp.getValue());
-    }
-
     public void deleteAfter(int after) {
 
         Node tmp = head;
@@ -122,6 +160,52 @@ public class LinkedList extends Algorithm implements DataHandler {
         }
     }
 
+
+    //LinkedList visuzlizations
+    public void visualizeAdd(int element) {
+
+        Node nd = new Node();
+        nd.setValue(element);
+        addLog("Adding: " + element + " to the list");
+        sleep();
+        if (linkedList.head == null) {
+            addLog("List is empty, setting both head and tail to the same element");
+            linkedList.head = nd;
+            linkedList.tail = nd;
+        } else {
+            addLog("Setting current tail next link to new node");
+            linkedList.tail.setNextRef(nd);
+            addLog("Set tail as newly created node");
+            linkedList.tail = nd;
+        }
+        sleep();
+        updateData(linkedList);
+        highlightNode(element);
+    }
+
+    public void deleteFront() {
+
+        if (linkedList.head == null) {
+            addLog("Linked list is empty");
+            return;
+        }
+        Node tmp = linkedList.head;
+        addLog("Current head is :" + tmp.getValue());
+        sleep();
+        addLog("Deleting head: " + tmp.getValue());
+        highlightNode(tmp.getValue());
+        sleep();
+        linkedList.head = tmp.getNextRef();
+        if (linkedList.head == null) {
+            addLog("The next node is null, setting tail as null");
+            linkedList.tail = null;
+        } else addLog("Setting head to the next node:" + linkedList.head.getValue());
+        sleep();
+        addLog("Deleted: " + tmp.getValue() + " from the list");
+        updateData(linkedList);
+    }
+
+
     public void traverse() {
         addLog("Traversing the Linked List");
         sleep();
@@ -143,56 +227,6 @@ public class LinkedList extends Algorithm implements DataHandler {
         completed();
     }
 
-    public int size() {
-        int size = 0;
-        Node tmp = head;
-        while (true) {
-            if (tmp == null) {
-                break;
-            }
-            size++;
-            tmp = tmp.getNextRef();
-        }
-        return size;
-    }
-
-    public int[] getArray() {
-        int[] array = new int[size()];
-        int i = 0;
-        Node tmp = head;
-        while (true) {
-            if (tmp == null) {
-                break;
-            }
-            array[i] = tmp.getValue();
-            tmp = tmp.getNextRef();
-            i++;
-        }
-        return array;
-    }
-
-    private class Node {
-
-        private int value;
-        private Node nextRef;
-
-        public int getValue() {
-            return value;
-        }
-
-        public void setValue(int value) {
-            this.value = value;
-        }
-
-        public Node getNextRef() {
-            return nextRef;
-        }
-
-        public void setNextRef(Node ref) {
-            this.nextRef = ref;
-        }
-    }
-
 
     private void highlightNode(final int node) {
         activity.runOnUiThread(new Runnable() {
@@ -209,15 +243,19 @@ public class LinkedList extends Algorithm implements DataHandler {
             case Algorithm.COMMAND_START_ALGORITHM:
                 //traverse command
                 startExecution();
+                clearLog();
                 traverse();
                 break;
             case ADD:
-                add(DataUtils.getRandomInt(9));
+                clearLog();
+                visualizeAdd(DataUtils.getRandomInt(9));
                 break;
             case ADD_AFTER:
+                clearLog();
                 addAfter(DataUtils.getRandomInt(9), DataUtils.getRandomInt(9));
                 break;
             case DELETE_FRONT:
+                clearLog();
                 deleteFront();
                 break;
         }
@@ -238,6 +276,16 @@ public class LinkedList extends Algorithm implements DataHandler {
         start();
         prepareHandler(this);
         sendData(ll);
+    }
+
+    private void updateData(final LinkedList ll) {
+        activity.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                visualizer.setData(ll);
+            }
+        });
+
     }
 }
 

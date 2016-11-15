@@ -118,6 +118,17 @@ public class Algorithm extends HandlerThread {
         }
     }
 
+    public void clearLog() {
+        if (logFragment!=null) {
+            activity.runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    logFragment.clearLog();
+                }
+            });
+        }
+    }
+
     public void logArray(String message, final int[] array) {
         String arrayString = "";
         for (int i : array) {

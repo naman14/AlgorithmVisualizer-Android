@@ -1,6 +1,7 @@
 package com.naman14.algovisualizer.visualizer;
 
 import android.content.Context;
+import android.support.design.widget.FloatingActionButton;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,6 +10,7 @@ import android.widget.LinearLayout;
 
 import com.naman14.algovisualizer.R;
 import com.naman14.algovisualizer.algorithm.list.linkedlist.LinkedList;
+import com.roughike.bottombar.BottomBar;
 
 /**
  * Created by naman on 15/11/16.
@@ -17,9 +19,13 @@ import com.naman14.algovisualizer.algorithm.list.linkedlist.LinkedList;
 public class LinkedListControls extends LinearLayout {
 
     LinkedList linkedList;
+    BottomBar bottomBar;
+    FloatingActionButton fab;
 
-    public LinkedListControls(Context context) {
+    public LinkedListControls(Context context, BottomBar bottomBar, FloatingActionButton fab) {
         super(context);
+        this.bottomBar = bottomBar;
+        this.fab = fab;
         initialise();
     }
 
@@ -38,29 +44,30 @@ public class LinkedListControls extends LinearLayout {
 
         View controls = LayoutInflater.from(getContext()).inflate(R.layout.linked_list_controls, this, false);
 
-        Button add, addAfter, deleteFront;
+        final Button add, deleteFront, traverse;
 
         add = (Button) controls.findViewById(R.id.llc_add);
-        addAfter = (Button) controls.findViewById(R.id.llc_add_after);
         deleteFront = (Button) controls.findViewById(R.id.llc_delete_front);
+        traverse = (Button) controls.findViewById(R.id.llc_traverse);
 
         add.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
+                bottomBar.selectTabAtPosition(1,true);
                 linkedList.sendMessage(LinkedList.ADD);
-            }
-        });
-        addAfter.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                linkedList.sendMessage(LinkedList.ADD_AFTER);
-
             }
         });
         deleteFront.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
+                bottomBar.selectTabAtPosition(1,true);
                 linkedList.sendMessage(LinkedList.DELETE_FRONT);
+            }
+        });
+        traverse.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                fab.performClick();
             }
         });
 

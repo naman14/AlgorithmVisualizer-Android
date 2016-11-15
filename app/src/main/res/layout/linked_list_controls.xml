@@ -28,13 +28,13 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Add after"
-            android:id="@+id/llc_add_after"
+            android:text="Delete head"
             android:padding="10dp"
+            android:id="@+id/llc_delete_front"
             android:layout_marginLeft="10dp"
+            android:minWidth="0dp"
             android:layout_marginRight="10dp"
             android:minHeight="0dp"
-            android:minWidth="0dp"
             android:textSize="13sp"
             android:background="@color/colorPrimary"
             android:textColor="@android:color/white"/>
@@ -42,9 +42,9 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Delete front"
+            android:text="Traverse"
             android:padding="10dp"
-            android:id="@+id/llc_delete_front"
+            android:id="@+id/llc_traverse"
             android:layout_marginLeft="10dp"
             android:minWidth="0dp"
             android:layout_marginRight="10dp"

@@ -171,7 +171,7 @@ public class VisualAlgoFragment extends Fragment {
                 break;
             case Algorithm.LINKED_LIST:
                 visualizer = new LinkedListVisualizer(getActivity());
-                LinkedListControls controls = new LinkedListControls(getActivity());
+                LinkedListControls controls = new LinkedListControls(getActivity(), bottomBar, fab);
                 appBarLayout.addView(visualizer);
                 appBarLayout.addView(controls);
                 algorithm = new LinkedList((LinkedListVisualizer) visualizer, getActivity(), logFragment);
