@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp"
+        android:paddingBottom="25dp"
+        android:layout_marginLeft="10dp">
+
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Push"
+            android:padding="10dp"
+            android:id="@+id/sc_push"
+            android:layout_marginLeft="10dp"
+            android:minWidth="0dp"
+            android:layout_marginRight="10dp"
+            android:minHeight="0dp"
+            android:textSize="13sp"
+            android:background="@color/colorPrimary"
+            android:textColor="@android:color/white"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Pop"
+            android:padding="10dp"
+            android:id="@+id/sc_pop"
+            android:layout_marginLeft="10dp"
+            android:minWidth="0dp"
+            android:layout_marginRight="10dp"
+            android:minHeight="0dp"
+            android:textSize="13sp"
+            android:background="@color/colorPrimary"
+            android:textColor="@android:color/white"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Peek"
+            android:padding="10dp"
+            android:id="@+id/sc_peek"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:background="@color/colorPrimary"
+            android:minHeight="0dp"
+            android:textSize="13sp"
+            android:minWidth="0dp"
+            android:textColor="@android:color/white"/>
+
+
+
+    </LinearLayout>
+
+
+</LinearLayout>

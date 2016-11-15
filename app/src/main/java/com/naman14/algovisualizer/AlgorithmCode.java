@@ -5,7 +5,7 @@ package com.naman14.algovisualizer;
  */
 public class AlgorithmCode {
 
-    public static final String CODE_BUBBLE_SORT ="  logArray(\"Original array - \", array);\n" +
+    public static final String CODE_BUBBLE_SORT = "  logArray(\"Original array - \", array);\n" +
             "\n" +
             "  for (int i = 0; i < array.length; i++) {\n" +
             "   addLog(\"Doing iteration - \" + i);\n" +
@@ -146,7 +146,7 @@ public class AlgorithmCode {
             "  updateData(linkedList);\n" +
             "  highlightNode(element);";
 
-    public static final String CODE_LINKED_LIST_DELETE ="if (linkedList.head == null) {\n" +
+    public static final String CODE_LINKED_LIST_DELETE = "if (linkedList.head == null) {\n" +
             " addLog(\"Linked list is empty\");\n" +
             " return;\n" +
             "}\n" +
@@ -164,5 +164,44 @@ public class AlgorithmCode {
             "sleep();\n" +
             "addLog(\"Deleted: \" + tmp.getValue() + \" from the list\");\n" +
             "updateData(linkedList);";
+
+    public static final String CODE_STACK_PUSH = "addLog(\"Pushing data:\" + data + \" into the stack\");\n" +
+            "if (stack.top == stack.maxSize - 1) {\n" +
+            " addLog(\"Stack is full, unable to push\");\n" +
+            " addLog(\"max sixe of stack is \" + stack.maxSize);\n" +
+            " return;\n" +
+            "}\n" +
+            "stack.stackArray[++stack.top] = data;\n" +
+            "addLog(\"Pushed:\" + data + \" into the stack, the new head is: \" + data);\n" +
+            "updateData(stack);\n" +
+            "highlightNode(data);\n" +
+            "sleep();\n" +
+            "highlightNode(-1);";
+
+    public static final String CODE_STACK_PEEK = "if (stack.isEmpty()) {\n" +
+            " addLog(\"Stack is empty, unable to peek\");\n" +
+            " return;\n" +
+            "}\n" +
+            "addLog(\"Peeking into the stack\");\n" +
+            "int top = stack.stackArray[stack.top];\n" +
+            "addLog(\"The head is: \" + top);\n" +
+            "updateData(stack);\n" +
+            "highlightNode(top);\n" +
+            "sleep();\n" +
+            "highlightNode(-1);";
+
+    public static final String CODE_STACK_POP = " if (stack.isEmpty()) {\n" +
+            "  addLog(\"Stack is empty, unable to pop\");\n" +
+            "  return;\n" +
+            " }\n" +
+            " addLog(\"Popping the stack\");\n" +
+            " int pop = stack.pop();\n" +
+            " addLog(\"Popped the stack, the data popped is \" + pop);\n" +
+            " int top = stack.top;\n" +
+            " stack.stackArray[top + 1] = 0;\n" +
+            " highlightNode(pop);\n" +
+            " sleep();\n" +
+            " updateData(stack);\n" +
+            " highlightNode(-1);";
 
 }

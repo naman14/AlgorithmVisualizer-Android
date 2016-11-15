@@ -66,6 +66,11 @@ public class CodeFragment extends Fragment {
                     addCodeItem(AlgorithmCode.CODE_LINKED_LIST_INSERT, "Linked list insert data");
                     addCodeItem(AlgorithmCode.CODE_LINKED_LIST_DELETE, "Linked list delete node");
                     break;
+                case Algorithm.STACK:
+                    addCodeItem(AlgorithmCode.CODE_STACK_PUSH, "Stack push");
+                    addCodeItem(AlgorithmCode.CODE_STACK_POP, "Stack pop");
+                    addCodeItem(AlgorithmCode.CODE_STACK_PEEK, "Stack peek");
+                    break;
             }
         }
 

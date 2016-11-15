@@ -3,6 +3,7 @@ package com.naman14.algovisualizer;
 import android.content.Context;
 
 import com.naman14.algovisualizer.algorithm.list.linkedlist.LinkedList;
+import com.naman14.algovisualizer.algorithm.list.stack.Stack;
 import com.naman14.algovisualizer.algorithm.tree.bst.BinarySearchTree;
 
 import java.io.IOException;
@@ -67,6 +68,21 @@ public class DataUtils {
 
     }
 
+    public static Stack createStack() {
+        Stack stack = new Stack(8);
+        ArrayList<Integer> a = new ArrayList<>();
+        for (int i = 10; i <= 13; i++) {
+            a.add(i);
+        }
+        Collections.shuffle(a);
+
+        for (int i = 0; i < a.size(); i++) {
+            stack.push(a.get(i));
+        }
+        return stack;
+
+    }
+
     public static int[] createSortedArray(int size) {
         int[] integers = new int[size];
         for (int i = 0; i < size; i++) {
@@ -84,6 +100,12 @@ public class DataUtils {
     public static int getRandomInt(int range) {
         Random random = new Random();
         return random.nextInt(range);
+    }
+
+    public static int getRandomUniqueInt(int range, int[] array) {
+        Random random = new Random();
+        int number = random.nextInt(range) + array.length;
+        return number;
     }
 
     public static String readDescJson(Context context) {

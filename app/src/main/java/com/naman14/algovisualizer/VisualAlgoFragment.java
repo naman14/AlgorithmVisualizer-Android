@@ -20,6 +20,7 @@ import android.view.ViewGroup;
 
 import com.naman14.algovisualizer.algorithm.Algorithm;
 import com.naman14.algovisualizer.algorithm.list.linkedlist.LinkedList;
+import com.naman14.algovisualizer.algorithm.list.stack.Stack;
 import com.naman14.algovisualizer.algorithm.search.BinarySearch;
 import com.naman14.algovisualizer.algorithm.sorting.BubbleSort;
 import com.naman14.algovisualizer.algorithm.sorting.InsertionSort;
@@ -31,6 +32,8 @@ import com.naman14.algovisualizer.visualizer.BinarySearchVisualizer;
 import com.naman14.algovisualizer.visualizer.LinkedListControls;
 import com.naman14.algovisualizer.visualizer.LinkedListVisualizer;
 import com.naman14.algovisualizer.visualizer.SortingVisualizer;
+import com.naman14.algovisualizer.visualizer.StackControls;
+import com.naman14.algovisualizer.visualizer.StackVisualizer;
 import com.roughike.bottombar.BottomBar;
 import com.roughike.bottombar.BottomBarTab;
 import com.roughike.bottombar.OnTabClickListener;
@@ -177,6 +180,16 @@ public class VisualAlgoFragment extends Fragment {
                 algorithm = new LinkedList((LinkedListVisualizer) visualizer, getActivity(), logFragment);
                 ((LinkedList) algorithm).setData(DataUtils.createLinkedList());
                 controls.setLinkedList((LinkedList) algorithm);
+                break;
+            case Algorithm.STACK:
+                visualizer = new StackVisualizer(getActivity());
+                StackControls stackcontrols = new StackControls(getActivity(), bottomBar, fab);
+                appBarLayout.addView(visualizer);
+                appBarLayout.addView(stackcontrols);
+                algorithm = new Stack(5, (StackVisualizer) visualizer, getActivity(), logFragment);
+                ((Stack) algorithm).setData(DataUtils.createStack());
+                stackcontrols.setStack((Stack) algorithm);
+                fab.setVisibility(View.GONE);
                 break;
             default:
                 visualizer = null;

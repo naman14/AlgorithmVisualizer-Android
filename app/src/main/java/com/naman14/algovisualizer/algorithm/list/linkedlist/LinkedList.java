@@ -248,11 +248,7 @@ public class LinkedList extends Algorithm implements DataHandler {
                 break;
             case ADD:
                 clearLog();
-                visualizeAdd(DataUtils.getRandomInt(9));
-                break;
-            case ADD_AFTER:
-                clearLog();
-                addAfter(DataUtils.getRandomInt(9), DataUtils.getRandomInt(9));
+                visualizeAdd(DataUtils.getRandomInt(40)+5);
                 break;
             case DELETE_FRONT:
                 clearLog();
