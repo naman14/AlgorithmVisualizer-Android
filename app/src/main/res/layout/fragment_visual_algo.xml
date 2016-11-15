@@ -17,8 +17,6 @@
         app:elevation="5dp">
 
 
-
-
     </android.support.design.widget.AppBarLayout>
 
     <android.support.v4.view.ViewPager

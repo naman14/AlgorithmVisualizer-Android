@@ -74,14 +74,17 @@ public class VisualAlgoFragment extends Fragment {
 
         bottomBar.setItems(
                 new BottomBarTab(R.drawable.ic_wb_incandescent_white_24dp, "Details"),
-                new BottomBarTab(R.drawable.ic_code_white_24dp, "Code"),
-                new BottomBarTab(R.drawable.ic_short_text_white_24dp, "Execution")
-        );
+                new BottomBarTab(R.drawable.ic_short_text_white_24dp, "Execution"),
+                new BottomBarTab(R.drawable.ic_code_white_24dp, "Code")
+                );
 
         bottomBar.setOnTabClickListener(new OnTabClickListener() {
             @Override
             public void onTabSelected(int position) {
                 viewPager.setCurrentItem(position);
+                if (position == 2) {
+                    bottomBar.hide();
+                }
             }
 
             @Override
@@ -187,7 +190,7 @@ public class VisualAlgoFragment extends Fragment {
                     algorithm.sendMessage(startCommand);
                     fab.setImageResource(R.drawable.ic_pause_white_24dp);
                     logFragment.clearLog();
-                    bottomBar.selectTabAtPosition(2, true);//move to log fragment
+                    bottomBar.selectTabAtPosition(1, true);//move to log fragment
                 } else {
                     if (algorithm.isPaused()) {
                         algorithm.setPaused(false);
@@ -209,9 +212,25 @@ public class VisualAlgoFragment extends Fragment {
     private void setupViewPager(ViewPager viewPager) {
         Adapter adapter = new Adapter(getChildFragmentManager());
         adapter.addFragment(algoFragment, "Algo");
-        adapter.addFragment(codeFragment, "Code");
         adapter.addFragment(logFragment, "Log");
+        adapter.addFragment(codeFragment, "Code");
         viewPager.setAdapter(adapter);
+        viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                bottomBar.selectTabAtPosition(position,false);
+                bottomBar.hide();
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
     }
 
     static class Adapter extends FragmentPagerAdapter {

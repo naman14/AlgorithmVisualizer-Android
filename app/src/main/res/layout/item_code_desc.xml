@@ -27,7 +27,6 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
         android:textSize="16sp"
-        android:autoLink="web"
         android:textColor="@android:color/black"/>
 
 </LinearLayout>

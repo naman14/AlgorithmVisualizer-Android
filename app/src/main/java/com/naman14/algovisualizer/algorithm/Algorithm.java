@@ -123,7 +123,7 @@ public class Algorithm extends HandlerThread {
         for (int i : array) {
             arrayString = arrayString.concat(" " + String.valueOf(i) + " ");
         }
-        addLog(message + arrayString);
+        addLog(message + "[ "+arrayString +" ] total items - "+ array.length);
     }
 
     public void setCompletionListener(AlgoCompletionListener completionListener) {
