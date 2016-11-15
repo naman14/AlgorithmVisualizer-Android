@@ -3,7 +3,6 @@ package com.naman14.algovisualizer;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -43,10 +42,6 @@ public class CodeFragment extends Fragment {
         codeView.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
-                if (codeView.canScrollHorizontally(-1) || codeView.canScrollHorizontally(1)) {
-                    Log.e("lol","heeeee");
-                    return true;
-                }  else
                 v.getParent().requestDisallowInterceptTouchEvent(true);
                 return false;
             }
@@ -64,6 +59,15 @@ public class CodeFragment extends Fragment {
                     break;
                 case Algorithm.INSERTION_SORT:
                     codeView.showCode(AlgorithmCode.CODE_INSERTION_SORT);
+                    break;
+                case Algorithm.BST_SEARCH:
+                    codeView.showCode(AlgorithmCode.CODE_BST_SEARCH);
+                    break;
+                case Algorithm.BST_INSERT:
+                    codeView.showCode(AlgorithmCode.CODE_BST_INSERT);
+                    break;
+                case Algorithm.BINARY_SEARCH:
+                    codeView.showCode(AlgorithmCode.CODE_BINARY_SEARCH);
                     break;
             }
         }
