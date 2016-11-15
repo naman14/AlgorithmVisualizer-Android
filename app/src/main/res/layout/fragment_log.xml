@@ -7,9 +7,27 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal|center_vertical"
-        android:orientation="vertical">
+        android:layout_gravity="center_horizontal|top"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_marginTop="35dp"
+        android:id="@+id/empty_view">
 
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_short_text_black_36dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingTop="15dp"
+            android:text="Execution log will appear here\nClick on play to start the execution"
+            android:textColor="@android:color/black"
+            android:textSize="18sp"
+            android:paddingLeft="25dp"
+            android:paddingRight="25dp"
+            android:gravity="center_horizontal"/>
 
     </LinearLayout>
 
@@ -17,7 +35,8 @@
         android:id="@+id/logrecyclerview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:clipToPadding="false"
         android:paddingTop="10dp"
-        android:clipToPadding="false"/>
+        android:paddingBottom="30dp"/>
 
 </FrameLayout>

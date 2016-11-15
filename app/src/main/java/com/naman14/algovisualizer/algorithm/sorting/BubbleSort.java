@@ -49,6 +49,7 @@ public class BubbleSort extends SortAlgorithm implements DataHandler {
             }
             sleep();
         }
+        addLog("Array has been sorted");
         completed();
     }
 

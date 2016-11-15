@@ -40,6 +40,7 @@ public class InsertionSort extends SortAlgorithm {
             sleep();
             array[i+1] = key;
         }
+        addLog("Array has been sorted");
         completed();
     }
 

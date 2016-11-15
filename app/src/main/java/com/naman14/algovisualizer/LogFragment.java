@@ -18,6 +18,7 @@ public class LogFragment extends Fragment {
 
     LogAdapter adapter;
     RecyclerView recyclerView;
+    View emptyView;
 
     public static LogFragment newInstance() {
         LogFragment fragment = new LogFragment();
@@ -30,6 +31,7 @@ public class LogFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_log, container, false);
 
         recyclerView = (RecyclerView) rootView.findViewById(R.id.logrecyclerview);
+        emptyView = rootView.findViewById(R.id.empty_view);
         LinearLayoutManager llm = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(llm);
 
@@ -40,12 +42,15 @@ public class LogFragment extends Fragment {
     }
 
     public void addLog(final String log) {
+        emptyView.setVisibility(View.GONE);
         adapter.addLog(log);
     }
 
     public void clearLog() {
         if (adapter != null)
             adapter.clearLog();
+        if (emptyView != null)
+            emptyView.setVisibility(View.VISIBLE);
     }
 
     private class LogAdapter extends RecyclerView.Adapter<LogAdapter.ItemHolder> {
