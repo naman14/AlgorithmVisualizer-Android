@@ -1,0 +1,62 @@
+{
+  "binary_search": {
+    "Binary Search": "Binary Search is a search algorithm that finds the position of a target value within a sorted array. It works by comparing the target value to the middle element of the array; if they are unequal, the lower or upper half of the array is eliminated depending on the result and the search is repeated in the remaining subarray until it is successful.",
+    "Applications": [
+      "Finding values in a sorted collection",
+      "Traversing binary search trees"
+    ],
+    "Complexity": {
+      "time": "worst O(log(N)), best O(1)$, average O(log(N))$",
+      "space": "worst O(log(N)) - recursive, O(1) - iterative"
+    },
+    "References": [
+      "<a href='https://en.wikipedia.org/wiki/Binary_search_algorithm'>Wikipedia</a>"
+    ]
+  },
+  "bst_search": {
+    "Binary Search Tree": "Binary search trees (BST), sometimes called ordered or sorted binary trees, are a particular type of containers: data structures that store \"items\" (such as numbers, names etc.) in memory. They allow fast lookup, addition and removal of items, and can be used to implement either dynamic sets of items, or lookup tables that allow finding an item by its key (e.g., finding the phone number of a person by name).",
+    "Applications": [
+      "Search applications where data is constantly entering/leaving such as map and set objects in many languages' library."
+    ],
+    "Complexity": {
+      "time": " Best : O(1) Average : O(logN) Worst : O(N) ",
+      "space": "O(n)"
+    },
+    "References": [
+      "<a href='https://en.wikipedia.org/wiki/Binary_search_tree'>Wikipedia</a>"
+    ]
+  },
+  "bst_insert": {
+    "Binary Search Tree": "Binary search trees (BST), sometimes called ordered or sorted binary trees, are a particular type of containers: data structures that store \"items\" (such as numbers, names etc.) in memory. They allow fast lookup, addition and removal of items, and can be used to implement either dynamic sets of items, or lookup tables that allow finding an item by its key (e.g., finding the phone number of a person by name).",
+    "Applications": [
+      "Search applications where data is constantly entering/leaving such as map and set objects in many languages' library."
+    ],
+    "Complexity": {
+      "time": " Best : O(1) Average : O(logN) Worst : O(N) ",
+      "space": "O(n)"
+    },
+    "References": [
+      "<a href='https://en.wikipedia.org/wiki/Binary_search_tree'>Wikipedia</a>"
+    ]
+  },
+  "bubble_sort": {
+    "Bubble Sort": "Bubble sort, sometimes referred to as sinking sort, is a simple sorting algorithm that repeatedly steps through the list to be sorted, compares each pair of adjacent items and swaps them if they are in the wrong order. The pass through the list is repeated until no swaps are needed, which indicates that the list is sorted.",
+    "Complexity": {
+      "time": "worst O(n^2), best O(n), average O(n^2)",
+      "space": "worst O(1) auxiliary"
+    },
+    "References": [
+      "<a href='https://en.wikipedia.org/wiki/Bubble_sort'>Wikipedia</a>"
+    ]
+  },
+  "insertion_sort": {
+    "Insertion Sort": "Insertion sort is a simple sorting algorithm that builds the final sorted array (or list) one item at a time. It is much less efficient on large lists than more advanced algorithms such as quicksort, heapsort, or merge sort.",
+    "Complexity": {
+      "time": "worst O(n^2), best O(n), average O(n^2)",
+      "space": "worst O(1) auxiliary"
+    },
+    "References": [
+      "<a href='https://en.wikipedia.org/wiki/Insertion_sort'>Wikipedia</a>"
+    ]
+  }
+}
