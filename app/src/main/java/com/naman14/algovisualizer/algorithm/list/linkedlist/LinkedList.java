@@ -21,7 +21,7 @@ public class LinkedList extends Algorithm implements DataHandler {
     public static final String TRAVERSE = "traverse";
 
     private LinkedListVisualizer visualizer;
-    private int[] array;
+    private LinkedList linkedList;
 
     private Node head;
     private Node tail;
@@ -123,15 +123,52 @@ public class LinkedList extends Algorithm implements DataHandler {
     }
 
     public void traverse() {
+        addLog("Traversing the Linked List");
+        sleep();
+        Node tmp = linkedList.head;
+        addLog("Starting from head :" + tmp.getValue());
+        highlightNode(tmp.getValue());
+        while (true) {
+            if (tmp == null) {
+                break;
+            }
+            addLog("Current value: " + tmp.getValue());
+            highlightNode(tmp.getValue());
+            sleep();
+            addLog("Moving forward");
+            sleep();
+            tmp = tmp.getNextRef();
+        }
+        addLog("Traversing completed");
+        completed();
+    }
 
+    public int size() {
+        int size = 0;
         Node tmp = head;
         while (true) {
             if (tmp == null) {
                 break;
             }
-            System.out.println(tmp.getValue());
+            size++;
             tmp = tmp.getNextRef();
         }
+        return size;
+    }
+
+    public int[] getArray() {
+        int[] array = new int[size()];
+        int i = 0;
+        Node tmp = head;
+        while (true) {
+            if (tmp == null) {
+                break;
+            }
+            array[i] = tmp.getValue();
+            tmp = tmp.getNextRef();
+            i++;
+        }
+        return array;
     }
 
     private class Node {
@@ -156,31 +193,51 @@ public class LinkedList extends Algorithm implements DataHandler {
         }
     }
 
+
+    private void highlightNode(final int node) {
+        activity.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                visualizer.highlightNode(node);
+            }
+        });
+    }
+
     @Override
     public void onMessageReceived(String message) {
         switch (message) {
-            case ADD:
+            case Algorithm.COMMAND_START_ALGORITHM:
+                //traverse command
                 startExecution();
-                add(DataUtils.getRandomInt(10));
+                traverse();
+                break;
+            case ADD:
+                add(DataUtils.getRandomInt(9));
+                break;
+            case ADD_AFTER:
+                addAfter(DataUtils.getRandomInt(9), DataUtils.getRandomInt(9));
+                break;
+            case DELETE_FRONT:
+                deleteFront();
                 break;
         }
     }
 
     @Override
     public void onDataRecieved(Object data) {
-        this.array = (int[]) data;
+        this.linkedList = (LinkedList) data;
     }
 
-    public void setData(final int[] array) {
+    public void setData(final LinkedList ll) {
         activity.runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                visualizer.setData(array);
+                visualizer.setData(ll);
             }
         });
         start();
         prepareHandler(this);
-        sendData(array);
+        sendData(ll);
     }
 }
 

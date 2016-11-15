@@ -27,7 +27,7 @@ public class BSTVisualizer extends AlgorithmVisualizer {
     private Paint lineHighlightPaint;
 
     private Rect bounds;
-    private int height;
+    private int height = 0;
 
     private BinarySearchTree b;
     private int[] array = DataUtils.bst_array;
@@ -99,7 +99,8 @@ public class BSTVisualizer extends AlgorithmVisualizer {
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-        setMeasuredDimension(getMeasuredWidth(), getDimensionInPixel(height));
+        if (height != 0)
+            setMeasuredDimension(getMeasuredWidth(), getDimensionInPixel(height));
     }
 
     public void setData(BinarySearchTree b) {

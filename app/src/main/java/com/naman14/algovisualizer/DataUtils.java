@@ -2,11 +2,14 @@ package com.naman14.algovisualizer;
 
 import android.content.Context;
 
+import com.naman14.algovisualizer.algorithm.list.linkedlist.LinkedList;
 import com.naman14.algovisualizer.algorithm.tree.bst.BinarySearchTree;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.Random;
 
 /**
@@ -23,11 +26,26 @@ public class DataUtils {
     };
 
     public static int[] createRandomArray(int size) {
+
         int[] integers = new int[size];
         for (int i = 0; i < size; i++) {
             integers[i] = new Random().nextInt(8) + 1;
         }
         return integers;
+    }
+
+    public static int[] createUniqueRandomArray(int size) {
+        ArrayList<Integer> a = new ArrayList<>();
+        for (int i = 1; i <= size; i++) {
+            a.add(i);
+        }
+        Collections.shuffle(a);
+
+        int[] intArray = new int[a.size()];
+        for (int i = 0; i < a.size(); i++) {
+            intArray[i] = a.get(i);
+        }
+        return intArray;
     }
 
     public static BinarySearchTree createBinaryTree() {
@@ -36,6 +54,16 @@ public class DataUtils {
             b.insert(bst_array[i]);
         }
         return b;
+
+    }
+
+    public static LinkedList createLinkedList() {
+        LinkedList ll = new LinkedList();
+        int[] array = createUniqueRandomArray(5);
+        for (int i = 0; i < array.length; i++) {
+            ll.add(array[i]);
+        }
+        return ll;
 
     }
 

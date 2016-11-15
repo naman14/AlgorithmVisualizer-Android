@@ -8,6 +8,8 @@ import android.graphics.Point;
 import android.graphics.Rect;
 import android.util.AttributeSet;
 
+import com.naman14.algovisualizer.algorithm.list.linkedlist.LinkedList;
+
 /**
  * Created by naman on 15/11/16.
  */
@@ -15,6 +17,7 @@ import android.util.AttributeSet;
 public class LinkedListVisualizer extends AlgorithmVisualizer {
 
     int[] array;
+    LinkedList linkedList;
 
     private Paint textPaint;
     private Paint circlePaint;
@@ -35,8 +38,9 @@ public class LinkedListVisualizer extends AlgorithmVisualizer {
         initialise();
     }
 
-    public void setData(int[] integers) {
-        this.array = integers;
+    public void setData(LinkedList ll) {
+        this.linkedList = ll;
+        this.array = linkedList.getArray();
         invalidate();
     }
 
@@ -136,8 +140,14 @@ public class LinkedListVisualizer extends AlgorithmVisualizer {
 
     }
 
+    public void highlightNode(int pos) {
+        this.highlightNode = pos;
+        invalidate();
+    }
+
     @Override
     public void onCompleted() {
-
+        this.highlightNode = -1;
+        invalidate();
     }
 }

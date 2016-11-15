@@ -38,12 +38,11 @@ public class LinkedListControls extends LinearLayout {
 
         View controls = LayoutInflater.from(getContext()).inflate(R.layout.linked_list_controls, this, false);
 
-        Button add, addAfter, deleteFront, traverse;
+        Button add, addAfter, deleteFront;
 
         add = (Button) controls.findViewById(R.id.llc_add);
         addAfter = (Button) controls.findViewById(R.id.llc_add_after);
         deleteFront = (Button) controls.findViewById(R.id.llc_delete_front);
-        traverse = (Button) controls.findViewById(R.id.llc_traverse);
 
         add.setOnClickListener(new OnClickListener() {
             @Override
@@ -64,12 +63,7 @@ public class LinkedListControls extends LinearLayout {
                 linkedList.sendMessage(LinkedList.DELETE_FRONT);
             }
         });
-        traverse.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                linkedList.sendMessage(LinkedList.TRAVERSE);
-            }
-        });
+
 
         addView(controls);
     }

@@ -6,8 +6,8 @@
       "Traversing binary search trees"
     ],
     "Complexity": {
-      "time": "worst O(log(N)), best O(1)$, average O(log(N))$",
-      "space": "worst O(log(N)) - recursive, O(1) - iterative"
+      "Time": "worst O(log(N)), best O(1)$, average O(log(N))$",
+      "Space": "worst O(log(N)) - recursive, O(1) - iterative"
     },
     "References": [
       "<a href='https://en.wikipedia.org/wiki/Binary_search_algorithm'>Wikipedia</a>"
@@ -19,8 +19,8 @@
       "Search applications where data is constantly entering/leaving such as map and set objects in many languages' library."
     ],
     "Complexity": {
-      "time": " Best : O(1) Average : O(logN) Worst : O(N) ",
-      "space": "O(n)"
+      "Time": " Best : O(1) Average : O(logN) Worst : O(N) ",
+      "Space": "O(n)"
     },
     "References": [
       "<a href='https://en.wikipedia.org/wiki/Binary_search_tree'>Wikipedia</a>"
@@ -32,8 +32,8 @@
       "Search applications where data is constantly entering/leaving such as map and set objects in many languages' library."
     ],
     "Complexity": {
-      "time": " Best : O(1) Average : O(logN) Worst : O(N) ",
-      "space": "O(n)"
+      "Time": " Best : O(1) Average : O(logN) Worst : O(N) ",
+      "Space": "O(n)"
     },
     "References": [
       "<a href='https://en.wikipedia.org/wiki/Binary_search_tree'>Wikipedia</a>"
@@ -42,8 +42,8 @@
   "bubble_sort": {
     "Bubble Sort": "Bubble sort, sometimes referred to as sinking sort, is a simple sorting algorithm that repeatedly steps through the list to be sorted, compares each pair of adjacent items and swaps them if they are in the wrong order. The pass through the list is repeated until no swaps are needed, which indicates that the list is sorted.",
     "Complexity": {
-      "time": "worst O(n^2), best O(n), average O(n^2)",
-      "space": "worst O(1) auxiliary"
+      "Time": "worst O(n^2), best O(n), average O(n^2)",
+      "Space": "worst O(1) auxiliary"
     },
     "References": [
       "<a href='https://en.wikipedia.org/wiki/Bubble_sort'>Wikipedia</a>"
@@ -52,11 +52,21 @@
   "insertion_sort": {
     "Insertion Sort": "Insertion sort is a simple sorting algorithm that builds the final sorted array (or list) one item at a time. It is much less efficient on large lists than more advanced algorithms such as quicksort, heapsort, or merge sort.",
     "Complexity": {
-      "time": "worst O(n^2), best O(n), average O(n^2)",
-      "space": "worst O(1) auxiliary"
+      "Time": "worst O(n^2), best O(n), average O(n^2)",
+      "Space": "worst O(1) auxiliary"
     },
     "References": [
       "<a href='https://en.wikipedia.org/wiki/Insertion_sort'>Wikipedia</a>"
+    ]
+  },
+  "linked_list": {
+    "Singly linked list": "A Linked List is a linear collection of data elements, called nodes, each pointing to the next node by means of a pointer. It is a data structure consisting of a group of nodes which together represent a sequence. Under the simplest form, each node is composed of data and a reference (in other words, a link) to the next node in the sequence. ",
+    "Complexity": {
+      "Time": "<br>Search: worst O(n), average O(n)<br>   Access: worst O(n), average O(n) <br>   Deletion: worst O(1), average O(1) <br>  Insertion : worst O(1), average O(1) <br> ",
+      "Space": "<br>worst O(n)"
+    },
+    "References": [
+      "<a href='https://en.wikipedia.org/wiki/Linked_list'>Wikipedia</a>"
     ]
   }
 }

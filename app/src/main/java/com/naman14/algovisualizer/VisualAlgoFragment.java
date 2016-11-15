@@ -161,7 +161,7 @@ public class VisualAlgoFragment extends Fragment {
                 ((BSTAlgorithm) algorithm).setData(DataUtils.createBinaryTree());
                 break;
             case Algorithm.BST_INSERT:
-                visualizer = new BSTVisualizer(getActivity(), 300);
+                visualizer = new BSTVisualizer(getActivity(), 280);
                 ArrayVisualizer arrayVisualizer = new ArrayVisualizer(getActivity());
                 appBarLayout.addView(visualizer);
                 appBarLayout.addView(arrayVisualizer);
@@ -175,9 +175,8 @@ public class VisualAlgoFragment extends Fragment {
                 appBarLayout.addView(visualizer);
                 appBarLayout.addView(controls);
                 algorithm = new LinkedList((LinkedListVisualizer) visualizer, getActivity(), logFragment);
-                ((LinkedList) algorithm).setData(DataUtils.createRandomArray(5));
+                ((LinkedList) algorithm).setData(DataUtils.createLinkedList());
                 controls.setLinkedList((LinkedList) algorithm);
-                fab.setVisibility(View.GONE);
                 break;
             default:
                 visualizer = null;
