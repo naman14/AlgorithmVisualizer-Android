@@ -19,7 +19,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.naman14.algovisualizer.algorithm.Algorithm;
-import com.naman14.algovisualizer.algorithm.graph.BFSAlgorithm;
+import com.naman14.algovisualizer.algorithm.graph.GraphTraversalAlgorithm;
 import com.naman14.algovisualizer.algorithm.list.linkedlist.LinkedList;
 import com.naman14.algovisualizer.algorithm.list.stack.Stack;
 import com.naman14.algovisualizer.algorithm.search.BinarySearch;
@@ -196,9 +196,8 @@ public class VisualAlgoFragment extends Fragment {
             case Algorithm.BFS:
                 visualizer = new DirectedGraphVisualizer(getActivity());
                 appBarLayout.addView(visualizer);
-                algorithm = new BFSAlgorithm( (DirectedGraphVisualizer) visualizer, getActivity(), logFragment);
-                ((BFSAlgorithm) algorithm).setData(DataUtils.createDirectedGraph());
-                fab.setVisibility(View.GONE);
+                algorithm = new GraphTraversalAlgorithm( (DirectedGraphVisualizer) visualizer, getActivity(), logFragment);
+                ((GraphTraversalAlgorithm) algorithm).setData(DataUtils.createDirectedGraph());
                 break;
             default:
                 visualizer = null;

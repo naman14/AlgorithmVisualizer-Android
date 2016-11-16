@@ -7,7 +7,6 @@ import android.graphics.Paint;
 import android.graphics.Point;
 import android.graphics.Rect;
 import android.util.AttributeSet;
-import android.util.Log;
 
 import com.naman14.algovisualizer.algorithm.graph.Digraph;
 import com.naman14.algovisualizer.visualizer.AlgorithmVisualizer;
@@ -30,8 +29,8 @@ public class DirectedGraphVisualizer extends AlgorithmVisualizer {
     private Paint lineHighlightPaint;
     private Rect bounds;
 
-    private int highlightNode = -1;
-    private int highlighLineStart = -1, highlightLineEnd = -1;
+    private List<Integer> highlightNode = new ArrayList<>();
+    private Map<Integer, List<Integer>> highlightLine = new HashMap<>();
     private Map<Integer, Point> pointMap = new HashMap<>();
 
     private Digraph graph;
@@ -70,16 +69,14 @@ public class DirectedGraphVisualizer extends AlgorithmVisualizer {
         circleHighlightPaint.setColor(Color.BLUE);
 
         lineHighlightPaint = new Paint(linePaint);
-        lineHighlightPaint.setColor(Color.RED);
+        lineHighlightPaint.setColor(Color.BLUE);
         lineHighlightPaint.setStrokeWidth(10);
     }
 
     public void setData(Digraph graph) {
         this.graph = graph;
         this.array = graph.topSort();
-        Log.e("lol", graph.topSort().toString());
         invalidate();
-        Log.e("lol", graph.toString());
     }
 
     @Override
@@ -138,13 +135,12 @@ public class DirectedGraphVisualizer extends AlgorithmVisualizer {
     private void drawNodes(Canvas canvas) {
         for (Map.Entry<Integer, Point> entry : pointMap.entrySet()) {
             Integer key = entry.getKey();
-            Point value = entry.getValue();
 
             if (graph.exists(key)) {
                 List<Integer> edges = graph.getNeighbours(key);
                 for (Integer i : edges) {
                     if (pointMap.get(i) != null) {
-                        drawNodeLine(canvas, value, pointMap.get(i), false);
+                        drawNodeLine(canvas, key, i);
                     }
                 }
             }
@@ -159,7 +155,7 @@ public class DirectedGraphVisualizer extends AlgorithmVisualizer {
     private void drawCircleTextNode(Canvas canvas, Point p, int number) {
         String text = String.valueOf(number);
 
-        if (number == highlightNode) {
+        if (highlightNode.contains(number)) {
             canvas.drawCircle(p.x, p.y, getDimensionInPixel(15), circleHighlightPaint);
         } else {
             canvas.drawCircle(p.x, p.y, getDimensionInPixel(15), circlePaint);
@@ -171,33 +167,45 @@ public class DirectedGraphVisualizer extends AlgorithmVisualizer {
     }
 
 
-    private void drawNodeLine(Canvas canvas, Point start, Point end, boolean highlight) {
+    private void drawNodeLine(Canvas canvas, int s, int e) {
+
+        Point start = pointMap.get(s);
+        Point end = pointMap.get(e);
+
         int midx = (start.x + end.x) / 2;
         int midy = (start.y + end.y) / 2;
+
+        boolean highlight = (highlightLine.containsKey(s) && highlightLine.get(s).contains(e));
         if (highlight) {
             canvas.drawLine(start.x, start.y, end.x, end.y, lineHighlightPaint);
+            canvas.drawLine(midx, midy, midx + getDimensionInPixel(5), midy - getDimensionInPixel(2), lineHighlightPaint);
+            canvas.drawLine(midx, midy, midx - getDimensionInPixel(5), midy - getDimensionInPixel(2), lineHighlightPaint);
         } else {
             canvas.drawLine(start.x, start.y, end.x, end.y, linePaint);
+            canvas.drawLine(midx, midy, midx + getDimensionInPixel(5), midy - getDimensionInPixel(2), linePaint);
+            canvas.drawLine(midx, midy, midx - getDimensionInPixel(5), midy - getDimensionInPixel(2), linePaint);
         }
-        canvas.drawLine(midx, midy, midx + getDimensionInPixel(5), midy - getDimensionInPixel(2), linePaint);
-        canvas.drawLine(midx, midy, midx - getDimensionInPixel(5), midy - getDimensionInPixel(2), linePaint);
     }
 
     public void highlightNode(int node) {
-        this.highlightNode = node;
+        this.highlightNode.add(node);
         invalidate();
     }
 
     public void highlightLine(int start, int end) {
-        this.highlighLineStart = start;
-        this.highlightLineEnd = end;
+        List<Integer> edges = highlightLine.get(start);
+        if (edges ==null) {
+            edges = new ArrayList<>();
+        }
+        edges.add(end);
+        this.highlightLine.put(start,edges);
         invalidate();
     }
 
 
     @Override
     public void onCompleted() {
-        highlightNode(-1);
-        highlightLine(-1, -1);
+        highlightLine.clear();
+        highlightNode.clear();
     }
 }

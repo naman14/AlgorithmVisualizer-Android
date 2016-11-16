@@ -44,12 +44,24 @@ public class Digraph {
         neighbors.get(from).remove(to);
     }
 
+    public int getRoot() {
+        return topSort().get(0);
+    }
+
     public boolean exists(int from) {
         return neighbors.get(from) != null && neighbors.get(from).size() != 0;
     }
 
+    public boolean edgeExists(int from, int to) {
+        return neighbors.get(from)!=null && neighbors.get(from).size()!=0 && neighbors.get(from).contains(to);
+    }
+
     public List<Integer> getNeighbours(int node) {
         return neighbors.get(node);
+    }
+
+    public int size() {
+        return neighbors.size();
     }
 
     public void setDirectedArray(double[][] directed_array) {
@@ -116,31 +128,5 @@ public class Digraph {
             }
         }
         return distance;
-    }
-
-    public static void main() {
-        // Create a Graph with Integer nodes
-        Digraph graph = new Digraph();
-        graph.add(0, 1);
-        graph.add(0, 2);
-        graph.add(0, 3);
-        graph.add(1, 2);
-        graph.add(1, 3);
-        graph.add(2, 3);
-        graph.add(2, 4);
-        graph.add(4, 5);
-        graph.add(5, 6);    // Tetrahedron with tail
-        System.out.println("The current graph: " + graph);
-        System.out.println("In-degrees: " + graph.inDegree());
-        System.out.println("Out-degrees: " + graph.outDegree());
-        System.out.println("A topological sort of the vertices: " + graph.topSort());
-        System.out.println("BFS distances starting from " + 0 + ": " + graph.bfsDistance(0));
-        System.out.println("BFS distances starting from " + 1 + ": " + graph.bfsDistance(1));
-        System.out.println("BFS distances starting from " + 2 + ": " + graph.bfsDistance(2));
-        graph.add(4, 1);                                     // Create a cycle
-        System.out.println("Cycle created");
-        System.out.println("The current graph: " + graph);
-        System.out.println("A topological sort of the vertices: " + graph.topSort());
-        System.out.println("BFS distances starting from " + 2 + ": " + graph.bfsDistance(2));
     }
 }

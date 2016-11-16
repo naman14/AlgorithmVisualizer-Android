@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.ExpandableListView;
 
 import com.naman14.algovisualizer.algorithm.Algorithm;
+import com.naman14.algovisualizer.algorithm.graph.GraphTraversalAlgorithm;
 import com.naman14.algovisualizer.algorithm.tree.bst.BSTAlgorithm;
 
 import java.util.ArrayList;
@@ -96,9 +97,11 @@ public class MainActivity extends AppCompatActivity {
                     case 4:
                         switch (childPosition) {
                             case 0:
+                                algoFragment.setStartCommand(GraphTraversalAlgorithm.TRAVERSE_BFS);
                                 algoFragment.setupFragment(Algorithm.BFS);
                                 break;
                             case 1:
+                                algoFragment.setStartCommand(GraphTraversalAlgorithm.TRAVERSE_DFS);
                                 algoFragment.setupFragment(Algorithm.DFS);
                                 break;
                         }
@@ -138,7 +141,7 @@ public class MainActivity extends AppCompatActivity {
         listDataHeader.add(item4);
 
         ExpandedMenuModel item5 = new ExpandedMenuModel();
-        item5.setName("Graph search");
+        item5.setName("Graph");
         listDataHeader.add(item5);
 
         List<String> heading1 = new ArrayList<>();
@@ -157,8 +160,8 @@ public class MainActivity extends AppCompatActivity {
         heading4.add("Stack");
 
         List<String> heading5 = new ArrayList<String>();
-        heading5.add("BFS");
-        heading5.add("DFS");
+        heading5.add("BFS Traversal");
+        heading5.add("DFS Travsersal");
 
 
         listDataChild.put(listDataHeader.get(0), heading1);
