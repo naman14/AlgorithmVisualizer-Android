@@ -1,12 +1,12 @@
 package com.naman14.algovisualizer.algorithm.graph;
 
-public class DirectedEdge {
+public class Edge {
     private final int v;
     private final int w;
     private final double weight;
 
 
-    public DirectedEdge(int v, int w, double weight) {
+    public Edge(int v, int w, double weight) {
         if (v < 0) throw new IndexOutOfBoundsException("Vertex names must be nonnegative integers");
         if (w < 0) throw new IndexOutOfBoundsException("Vertex names must be nonnegative integers");
         if (Double.isNaN(weight)) throw new IllegalArgumentException("Weight is NaN");
@@ -16,16 +16,20 @@ public class DirectedEdge {
     }
 
 
-    public int from() {
+    public int vertex1() {
         return v;
     }
 
 
-    public int to() {
+    public int vertex2() {
         return w;
     }
 
     public double weight() {
         return weight;
+    }
+
+    public String toString() {
+        return v + "->" + w + " " + String.format("%5.2f", weight);
     }
 }

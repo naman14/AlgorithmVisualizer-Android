@@ -36,7 +36,7 @@ import com.naman14.algovisualizer.visualizer.SortingVisualizer;
 import com.naman14.algovisualizer.visualizer.StackControls;
 import com.naman14.algovisualizer.visualizer.StackVisualizer;
 import com.naman14.algovisualizer.visualizer.graph.DirectedGraphVisualizer;
-import com.naman14.algovisualizer.visualizer.graph.WeightedDirectedGraphVisualizer;
+import com.naman14.algovisualizer.visualizer.graph.WeightedGraphVisualizer;
 import com.roughike.bottombar.BottomBar;
 import com.roughike.bottombar.BottomBarTab;
 import com.roughike.bottombar.OnTabClickListener;
@@ -202,10 +202,10 @@ public class VisualAlgoFragment extends Fragment {
                 ((GraphTraversalAlgorithm) algorithm).setData(DataUtils.createDirectedGraph());
                 break;
             case Algorithm.DIJKSTRA:
-                visualizer = new WeightedDirectedGraphVisualizer(getActivity());
+                visualizer = new WeightedGraphVisualizer(getActivity());
                 appBarLayout.addView(visualizer);
-                algorithm = new DijkstraAgorithm((WeightedDirectedGraphVisualizer) visualizer, getActivity(), logFragment);
-                ((DijkstraAgorithm) algorithm).setData(DataUtils.createWeightedDigraph());
+                algorithm = new DijkstraAgorithm((WeightedGraphVisualizer) visualizer, getActivity(), logFragment);
+                ((DijkstraAgorithm) algorithm).setData(DataUtils.createWeightedDigraph(5));
                 break;
             default:
                 visualizer = null;

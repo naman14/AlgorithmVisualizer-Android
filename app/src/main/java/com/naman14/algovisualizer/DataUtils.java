@@ -3,8 +3,7 @@ package com.naman14.algovisualizer;
 import android.content.Context;
 
 import com.naman14.algovisualizer.algorithm.graph.Digraph;
-import com.naman14.algovisualizer.algorithm.graph.DirectedEdge;
-import com.naman14.algovisualizer.algorithm.graph.WeightedDigraph;
+import com.naman14.algovisualizer.algorithm.graph.WeightedGraph;
 import com.naman14.algovisualizer.algorithm.list.linkedlist.LinkedList;
 import com.naman14.algovisualizer.algorithm.list.stack.Stack;
 import com.naman14.algovisualizer.algorithm.tree.bst.BinarySearchTree;
@@ -112,17 +111,30 @@ public class DataUtils {
         return graph;
     }
 
-    public static WeightedDigraph createWeightedDigraph() {
-        WeightedDigraph graph = new WeightedDigraph(4);
+    public static WeightedGraph createWeightedDigraph(int vertex) {
 
+        WeightedGraph graph = new WeightedGraph(vertex);
         Random random = new Random();
-        int edges = random.nextInt(5) + 3;
+        int edges = random.nextInt(vertex) + 20;
 
         for (int i = 0; i < edges; i++) {
-            DirectedEdge edge =
-                    new DirectedEdge(random.nextInt(edges), random.nextInt(edges), random.nextInt(10));
-            graph.addEdge(edge);
+
+            int v = random.nextInt(vertex);
+            int w = random.nextInt(vertex);
+
+            double weight = random.nextInt(10);
+
+            boolean exists = false;
+
+            if (v == w) {
+                exists = true;
+            }
+
+            if (!exists) {
+                graph.addEdge(v, w, weight);
+            }
         }
+
         return graph;
 
     }

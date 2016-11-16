@@ -120,5 +120,15 @@
     "References": [
       "<a href='https://en.wikipedia.org/wiki/Depth-first_search'>Wikipedia</a>"
     ]
+  },
+  "dijkstra": {
+    "Dijkstra": "Dijkstra's algorithm is an algorithm for finding the shortest paths between nodes in a graph, which may represent, for example, road networks. It was conceived by computer scientist Edsger W. Dijkstra in 1956 and published three years later.",
+    "Complexity": {
+      "time": "worst O(|V|^2)",
+      "space": "worst O(|V|)"
+    },
+    "References": [
+      "<a href='https://en.wikipedia.org/wiki/Dijkstra%27s_algorithm'>Wikipedia</a>"
+    ]
   }
 }

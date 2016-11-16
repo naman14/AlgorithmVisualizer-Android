@@ -5,7 +5,7 @@ import android.app.Activity;
 import com.naman14.algovisualizer.LogFragment;
 import com.naman14.algovisualizer.algorithm.Algorithm;
 import com.naman14.algovisualizer.algorithm.DataHandler;
-import com.naman14.algovisualizer.visualizer.graph.WeightedDirectedGraphVisualizer;
+import com.naman14.algovisualizer.visualizer.graph.WeightedGraphVisualizer;
 
 /**
  * Created by naman on 16/11/16.
@@ -14,11 +14,11 @@ import com.naman14.algovisualizer.visualizer.graph.WeightedDirectedGraphVisualiz
 public class DijkstraAgorithm extends Algorithm implements DataHandler {
 
 
-    private WeightedDigraph graph;
+    private WeightedGraph graph;
 
-    private WeightedDirectedGraphVisualizer visualizer;
+    private WeightedGraphVisualizer visualizer;
 
-    public DijkstraAgorithm(WeightedDirectedGraphVisualizer visualizer, Activity activity, LogFragment logFragment) {
+    public DijkstraAgorithm(WeightedGraphVisualizer visualizer, Activity activity, LogFragment logFragment) {
         this.visualizer = visualizer;
         this.activity = activity;
         this.logFragment = logFragment;
@@ -26,7 +26,7 @@ public class DijkstraAgorithm extends Algorithm implements DataHandler {
 
     @Override
     public void onDataRecieved(Object data) {
-        this.graph = (WeightedDigraph) data;
+        this.graph = (WeightedGraph) data;
     }
 
     @Override
@@ -36,7 +36,7 @@ public class DijkstraAgorithm extends Algorithm implements DataHandler {
         }
     }
 
-    public void setData(final WeightedDigraph g) {
+    public void setData(final WeightedGraph g) {
         activity.runOnUiThread(new Runnable() {
             @Override
             public void run() {
