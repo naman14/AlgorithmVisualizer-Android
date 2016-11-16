@@ -62,53 +62,44 @@ public class BinarySearch extends Algorithm implements DataHandler {
         int low = 0;
         int high = array.length - 1;
 
-        highlight((low + high) / 2, false, false);
-        sleepFor(1000);
+        highlight(low, high);
+        highlightTrace((int) (low + high) / 2);
+        sleep();
 
         while (high >= low) {
 
-            int middle = (low + high) / 2;
+            int middle = (int) (low + high) / 2;
             addLog("Searching at index: " + middle);
             highlightTrace(middle);
+            sleep();
 
             if (array[middle] == data) {
                 //found
-                addLog(data + " is found at position " + middle);
+                addLog(data + " is found at position " + (middle));
                 break;
             }
             if (array[middle] < data) {
                 low = middle + 1;
                 addLog("Going right");
-                highlight(middle, false, true);
-                sleepFor(1000);
+                highlight(low, high);
+                sleep();
             }
             if (array[middle] > data) {
                 high = middle - 1;
                 addLog("Going left");
-                highlight(middle, true, false);
-                sleepFor(1000);
+                highlight(low, high);
+                sleepFor(800);
             }
         }
         completed();
     }
 
-    private void highlight(int middle, boolean left, boolean right) {
+    private void highlight(int minIndex, int maxIndex) {
         positions.clear();
-        if (!left && !right) {
-            for (int i = 0; i < array.length; i++) {
-                positions.add(i);
-            }
-        } else {
-            if (left) {
-                for (int i = 0; i < middle; i++) {
-                    positions.add(i);
-                }
-            } else {
-                for (int i = middle; i < array.length; i++) {
-                    positions.add(i);
-                }
-            }
+        for (int i = minIndex; i <= maxIndex; i++) {
+            positions.add(i);
         }
+
         activity.runOnUiThread(new Runnable() {
             @Override
             public void run() {

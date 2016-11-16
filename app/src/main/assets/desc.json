@@ -77,7 +77,7 @@
     },
     "References": [
       "<a href='https://en.wikipedia.org/wiki/Linked_list'>Wikipedia</a><br>",
-      "<a href='https://github.com/naman14/AlgorithmVisualizer-Android/blob/master/app/src/main/java/com/naman14/algovisualizer/algorithm/list/linkedlist/LinkedList.java'>LinkedList</a>",
+      "<a href='https://github.com/naman14/AlgorithmVisualizer-Android/blob/master/app/src/main/java/com/naman14/algovisualizer/algorithm/list/LinkedList.java'>LinkedList</a>",
       "<a href='https://github.com/naman14/AlgorithmVisualizer-Android/blob/master/app/src/main/java/com/naman14/algovisualizer/visualizer/LinkedListVisualizer.java'>LinkedListVisualizer</a>"
     ]
   },
@@ -89,7 +89,7 @@
     },
     "References": [
       "<a href='https://en.wikipedia.org/wiki/Stack_(abstract_data_type)'>Wikipedia</a><br>",
-      "<a href='https://github.com/naman14/AlgorithmVisualizer-Android/blob/master/app/src/main/java/com/naman14/algovisualizer/algorithm/list/stack/Stack.java'>Stack</a>",
+      "<a href='https://github.com/naman14/AlgorithmVisualizer-Android/blob/master/app/src/main/java/com/naman14/algovisualizer/algorithm/list/Stack.java'>Stack</a>",
       "<a href='https://github.com/naman14/AlgorithmVisualizer-Android/blob/master/app/src/main/java/com/naman14/algovisualizer/visualizer/StackVisualizer.java'>StackVisualizer</a>"
     ]
   },
