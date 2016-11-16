@@ -80,6 +80,9 @@ public class CodeFragment extends Fragment {
                 case Algorithm.BELLMAN_FORD:
                     addCodeItem(AlgorithmCode.CODE_BELLMAN_FORD, "Bellman Ford");
                     break;
+                case Algorithm.DIJKSTRA:
+                    addCodeItem(AlgorithmCode.CODE_DIJKSTRA, "Dijkstra");
+                    break;
             }
         }
 

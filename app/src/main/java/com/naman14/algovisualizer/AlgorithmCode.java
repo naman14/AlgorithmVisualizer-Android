@@ -318,4 +318,47 @@ public class AlgorithmCode {
             "\n" +
             " completed();";
 
+    public static final String CODE_DIJKSTRA = " addLog(\"Finding shortest path from source: \" + s + \" to all other vertices\");\n" +
+            "\n" +
+            " final int[] dist = new int[G.size()];\n" +
+            " final int[] pred = new int[G.size()];\n" +
+            " final boolean[] visited = new boolean[G.size()];\n" +
+            "\n" +
+            " addLog(\"Initialising distance from source to all other vertics as INFINITY\");\n" +
+            " for (int i = 0; i < dist.length; i++) {\n" +
+            "  dist[i] = Integer.MAX_VALUE;\n" +
+            " }\n" +
+            " dist[s] = 0;\n" +
+            " sleep();\n" +
+            "\n" +
+            " for (int i = 0; i < dist.length; i++) {\n" +
+            "  final int next = minVertex(dist, visited);\n" +
+            "  visited[next] = true;\n" +
+            "\n" +
+            "  final int[] n = G.neighbors(next);\n" +
+            "  for (int j = 0; j < n.length; j++) {\n" +
+            "   final int v = n[j];\n" +
+            "   addLog(next + \" -> \" + v);\n" +
+            "   highlightNode(v);\n" +
+            "   highlightLine(next, v);\n" +
+            "   sleep();\n" +
+            "   final int d = dist[next] + G.getWeight(next, v);\n" +
+            "   addLog(\"distatnce[\" + d + \"]\" + \" = distance[\" + next + \"] + \" + G.getWeight(next, v));\n" +
+            "   if (dist[v] > d) {\n" +
+            "    dist[v] = d;\n" +
+            "    pred[v] = next;\n" +
+            "   }\n" +
+            "  }\n" +
+            " }\n" +
+            "\n" +
+            " for (int i = 0; i < G.size(); i++) {\n" +
+            "  if (dist[i] == Integer.MAX_VALUE) {\n" +
+            "   addLog(\"There is no path between source \" + s + \" and vertex \" + i);\n" +
+            "  } else {\n" +
+            "   addLog(\"Shortest path from source:\" + s + \" to vertex \" + i + \" is \" + dist[i]);\n" +
+            "  }\n" +
+            " }\n" +
+            "\n" +
+            " completed();";
+
 }
