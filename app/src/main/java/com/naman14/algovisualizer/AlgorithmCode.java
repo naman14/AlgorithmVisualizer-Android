@@ -1,8 +1,5 @@
 package com.naman14.algovisualizer;
 
-/**
- * Created by naman on 03/07/16.
- */
 public class AlgorithmCode {
 
     public static final String CODE_BUBBLE_SORT = "  logArray(\"Original array - \", array);\n" +

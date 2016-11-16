@@ -1,3 +1,17 @@
+/*
+ * Copyright (C) 2016 Naman Dwivedi
+ *
+ * Licensed under the GNU General Public License v3
+ *
+ * This is free software: you can redistribute it and/or modify it
+ * under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+ *
+ * This software is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ * See the GNU General Public License for more details.
+ */
+
 package com.naman14.algovisualizer;
 
 import android.content.Context;
@@ -5,8 +19,8 @@ import android.content.Context;
 import com.naman14.algovisualizer.algorithm.graph.Digraph;
 import com.naman14.algovisualizer.algorithm.graph.WeightedGraph;
 import com.naman14.algovisualizer.algorithm.graph.WeightedGraph2;
-import com.naman14.algovisualizer.algorithm.list.linkedlist.LinkedList;
-import com.naman14.algovisualizer.algorithm.list.stack.Stack;
+import com.naman14.algovisualizer.algorithm.list.LinkedList;
+import com.naman14.algovisualizer.algorithm.list.Stack;
 import com.naman14.algovisualizer.algorithm.tree.bst.BinarySearchTree;
 
 import java.io.IOException;
@@ -16,9 +30,6 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.Random;
 
-/**
- * Created by naman on 02/06/16.
- */
 public class DataUtils {
 
     public static final int[] bst_array = {5, 8, 10, 3, 1, 6, 9, 7, 2, 0};
