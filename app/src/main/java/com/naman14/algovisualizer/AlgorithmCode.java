@@ -274,4 +274,48 @@ public class AlgorithmCode {
             "addLog(\"DFS traversing completed\");\n" +
             "completed();";
 
+    public static final String CODE_BELLMAN_FORD = " int V = graph.V, E = graph.E;\n" +
+            " int dist[] = new int[V];\n" +
+            "\n" +
+            " addLog(\"Number of edges: \" + E);\n" +
+            " addLog(\"Finding shortest path from source: \" + src + \" to all other vertices\");\n" +
+            "\n" +
+            " addLog(\"Initialising distance from source to all other vertics as INFINITY\");\n" +
+            " for (int i = 0; i < V; ++i)\n" +
+            "  dist[i] = Integer.MAX_VALUE;\n" +
+            "\n" +
+            " dist[src] = 0;\n" +
+            " sleep();\n" +
+            "\n" +
+            " for (int i = 1; i < V; ++i) {\n" +
+            "  addLog(\"Interation \" + i);\n" +
+            "  sleep();\n" +
+            "\n" +
+            "  for (int j = 0; j < E; ++j) {\n" +
+            "   int u = graph.edge[j].src;\n" +
+            "   int v = graph.edge[j].dest;\n" +
+            "   addLog(u + \" -> \" + v);\n" +
+            "   highlightNode(v);\n" +
+            "   highlightLine(u, v);\n" +
+            "   sleep();\n" +
+            "   int weight = graph.edge[j].weight;\n" +
+            "   if (dist[u] != Integer.MAX_VALUE &&\n" +
+            "    dist[u] + weight < dist[v]) {\n" +
+            "    dist[v] = dist[u] + weight;\n" +
+            "    addLog(\"distatnce[\" + u + \"]\" + \" = distance[\" + v + \"] + \" + weight);\n" +
+            "\n" +
+            "   }\n" +
+            "  }\n" +
+            " }\n" +
+            "\n" +
+            " for (int i = 0; i < V; i++) {\n" +
+            "  if (dist[i] == Integer.MAX_VALUE) {\n" +
+            "   addLog(\"There is no path between source \" + src + \" and vertex \" + i);\n" +
+            "  } else {\n" +
+            "   addLog(\"Shortest path from source:\" + src + \" to vertex \" + i + \" is \" + dist[i]);\n" +
+            "  }\n" +
+            " }\n" +
+            "\n" +
+            " completed();";
+
 }

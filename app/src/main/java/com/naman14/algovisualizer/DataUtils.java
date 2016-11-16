@@ -4,6 +4,7 @@ import android.content.Context;
 
 import com.naman14.algovisualizer.algorithm.graph.Digraph;
 import com.naman14.algovisualizer.algorithm.graph.WeightedGraph;
+import com.naman14.algovisualizer.algorithm.graph.WeightedGraph2;
 import com.naman14.algovisualizer.algorithm.list.linkedlist.LinkedList;
 import com.naman14.algovisualizer.algorithm.list.stack.Stack;
 import com.naman14.algovisualizer.algorithm.tree.bst.BinarySearchTree;
@@ -117,17 +118,72 @@ public class DataUtils {
 
         WeightedGraph graph = new WeightedGraph(vertex, E);
 
-        graph.addEdge(0, 0, 1, 1);
-        graph.addEdge(1, 0, 2, 4);
-        graph.addEdge(2, 1, 2, 3);
-        graph.addEdge(3, 1, 3, 2);
-        graph.addEdge(4, 1, 4, 2);
-        graph.addEdge(5, 3, 2, 5);
-        graph.addEdge(6, 0, 4, 1);
-        graph.addEdge(7, 4, 3, 3);
+        switch (new Random().nextInt(3)) {
+            case 0:
+                graph.addEdge(0, 0, 1, 1);
+                graph.addEdge(1, 0, 2, 4);
+                graph.addEdge(2, 1, 2, 3);
+                graph.addEdge(3, 1, 3, 2);
+                graph.addEdge(4, 1, 4, 2);
+                graph.addEdge(5, 3, 2, 5);
+                graph.addEdge(6, 0, 4, 1);
+                graph.addEdge(7, 4, 3, 3);
+                break;
+            case 1:
+                graph.addEdge(0, 0, 3, 1);
+                graph.addEdge(1, 0, 2, 4);
+                graph.addEdge(2, 1, 3, 3);
+                graph.addEdge(3, 1, 2, 2);
+                graph.addEdge(4, 1, 4, 2);
+                graph.addEdge(5, 2, 3, 5);
+                graph.addEdge(6, 3, 4, 1);
+                graph.addEdge(7, 4, 2, 3);
+                break;
+            case 2:
+                graph.addEdge(0, 4, 3, 1);
+                graph.addEdge(1, 4, 0, 4);
+                graph.addEdge(2, 0, 3, 3);
+                graph.addEdge(3, 0, 1, 2);
+                graph.addEdge(4, 0, 2, 2);
+                graph.addEdge(5, 2, 1, 5);
+                graph.addEdge(6, 2, 4, 1);
+                graph.addEdge(7, 1, 3, 3);
+                break;
+            case 3:
+                graph.addEdge(0, 0, 1, 1);
+                graph.addEdge(1, 0, 3, 4);
+                graph.addEdge(2, 0, 4, 3);
+                graph.addEdge(3, 4, 3, 2);
+                graph.addEdge(4, 3, 2, 2);
+                graph.addEdge(5, 4, 2, 5);
+                graph.addEdge(6, 1, 4, 1);
+                graph.addEdge(7, 2, 1, 3);
+                break;
+        }
+
 
         return graph;
 
+    }
+
+    public static WeightedGraph2 createWeightedGraph2(int size) {
+        WeightedGraph2 graph = new WeightedGraph2(size);
+        graph.setLabel(0, 0);
+        graph.setLabel(1, 1);
+        graph.setLabel(2, 2);
+        graph.setLabel(3, 3);
+        graph.setLabel(4, 4);
+        graph.addEdge(0, 1, 2);
+        graph.addEdge(0, 4, 9);
+        graph.addEdge(1, 2, 8);
+        graph.addEdge(1, 3, 15);
+        graph.addEdge(1, 4, 6);
+        graph.addEdge(2, 3, 1);
+        graph.addEdge(4, 3, 3);
+        graph.addEdge(4, 2, 7);
+        graph.addEdge(3, 4, 3);
+
+        return graph;
     }
 
 

@@ -54,7 +54,6 @@ public class MainActivity extends AppCompatActivity {
         mMenuAdapter = new ExpandableListAdapter(this, listDataHeader, listDataChild, expandableList);
 
         expandableList.setAdapter(mMenuAdapter);
-        expandableList.expandGroup(5);
 
         expandableList.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
             @Override
@@ -113,7 +112,7 @@ public class MainActivity extends AppCompatActivity {
                                 algoFragment.setupFragment(Algorithm.DIJKSTRA);
                                 break;
                             case 3:
-                                algoFragment.setupFragment(Algorithm.BELLMON_FORD);
+                                algoFragment.setupFragment(Algorithm.BELLMAN_FORD);
                                 break;
                         }
                         break;
@@ -201,7 +200,7 @@ public class MainActivity extends AppCompatActivity {
         heading5.add("BFS Traversal");
         heading5.add("DFS Travsersal");
         heading5.add("Dijkstra");
-        heading5.add("Bellmon Ford");
+        heading5.add("Bellman Ford");
 
         List<String> heading10 = new ArrayList<String>();
         heading10.add("About");

@@ -18,7 +18,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.naman14.algovisualizer.algorithm.Algorithm;
-import com.naman14.algovisualizer.algorithm.graph.BellmonFordAlgorithm;
+import com.naman14.algovisualizer.algorithm.graph.BellmanFordAlgorithm;
 import com.naman14.algovisualizer.algorithm.graph.DijkstraAgorithm;
 import com.naman14.algovisualizer.algorithm.graph.GraphTraversalAlgorithm;
 import com.naman14.algovisualizer.algorithm.list.linkedlist.LinkedList;
@@ -38,6 +38,7 @@ import com.naman14.algovisualizer.visualizer.StackControls;
 import com.naman14.algovisualizer.visualizer.StackVisualizer;
 import com.naman14.algovisualizer.visualizer.graph.DirectedGraphVisualizer;
 import com.naman14.algovisualizer.visualizer.graph.WeightedGraphVisualizer;
+import com.naman14.algovisualizer.visualizer.graph.WeightedGraphVisualizer2;
 import com.roughike.bottombar.BottomBar;
 import com.roughike.bottombar.BottomBarTab;
 import com.roughike.bottombar.OnTabClickListener;
@@ -203,16 +204,16 @@ public class VisualAlgoFragment extends Fragment {
                 ((GraphTraversalAlgorithm) algorithm).setData(DataUtils.createDirectedGraph());
                 break;
             case Algorithm.DIJKSTRA:
-                visualizer = new WeightedGraphVisualizer(getActivity());
+                visualizer = new WeightedGraphVisualizer2(getActivity());
                 appBarLayout.addView(visualizer);
-                algorithm = new DijkstraAgorithm((WeightedGraphVisualizer) visualizer, getActivity(), logFragment);
-                ((DijkstraAgorithm) algorithm).setData(DataUtils.createWeightedGraph(5));
+                algorithm = new DijkstraAgorithm((WeightedGraphVisualizer2) visualizer, getActivity(), logFragment);
+                ((DijkstraAgorithm) algorithm).setData(DataUtils.createWeightedGraph2(5));
                 break;
-            case Algorithm.BELLMON_FORD:
+            case Algorithm.BELLMAN_FORD:
                 visualizer = new WeightedGraphVisualizer(getActivity());
                 appBarLayout.addView(visualizer);
-                algorithm = new BellmonFordAlgorithm((WeightedGraphVisualizer) visualizer, getActivity(), logFragment);
-                ((BellmonFordAlgorithm) algorithm).setData(DataUtils.createWeightedGraph(5));
+                algorithm = new BellmanFordAlgorithm((WeightedGraphVisualizer) visualizer, getActivity(), logFragment);
+                ((BellmanFordAlgorithm) algorithm).setData(DataUtils.createWeightedGraph(5));
                 break;
             default:
                 visualizer = null;

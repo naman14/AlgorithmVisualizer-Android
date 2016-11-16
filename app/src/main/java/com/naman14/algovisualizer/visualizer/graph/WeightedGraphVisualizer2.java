@@ -8,7 +8,7 @@ import android.graphics.Point;
 import android.graphics.Rect;
 import android.util.AttributeSet;
 
-import com.naman14.algovisualizer.algorithm.graph.WeightedGraph;
+import com.naman14.algovisualizer.algorithm.graph.WeightedGraph2;
 import com.naman14.algovisualizer.visualizer.AlgorithmVisualizer;
 
 import java.util.ArrayList;
@@ -20,7 +20,7 @@ import java.util.Map;
  * Created by naman on 16/11/16.
  */
 
-public class WeightedGraphVisualizer extends AlgorithmVisualizer {
+public class WeightedGraphVisualizer2 extends AlgorithmVisualizer {
 
     private Paint circlePaint;
     private Paint textPaint;
@@ -36,14 +36,14 @@ public class WeightedGraphVisualizer extends AlgorithmVisualizer {
 
     private List<Integer> array = new ArrayList<>();
 
-    private WeightedGraph graph;
+    private WeightedGraph2 graph;
 
-    public WeightedGraphVisualizer(Context context) {
+    public WeightedGraphVisualizer2(Context context) {
         super(context);
         initialise();
     }
 
-    public WeightedGraphVisualizer(Context context, AttributeSet attrs) {
+    public WeightedGraphVisualizer2(Context context, AttributeSet attrs) {
         super(context, attrs);
         initialise();
     }
@@ -86,7 +86,7 @@ public class WeightedGraphVisualizer extends AlgorithmVisualizer {
         setMeasuredDimension(getMeasuredWidth(), getDimensionInPixel(280));
     }
 
-    public void setData(WeightedGraph graph) {
+    public void setData(WeightedGraph2 graph) {
         this.graph = graph;
         invalidate();
     }
@@ -106,7 +106,7 @@ public class WeightedGraphVisualizer extends AlgorithmVisualizer {
                 {getHeight() / 2 + getDimensionInPixel(20), getDimensionInPixel(20), getDimensionInPixel(20), getHeight() / 2 + getDimensionInPixel(20), getHeight() - getDimensionInPixel(30)}
         };
 
-        for (int i = 0; i < graph.V; i++) {
+        for (int i = 0; i < graph.size(); i++) {
             int node = vertices[0][i];
             Point p = new Point(vertices[1][i], vertices[2][i]);
             addNode(p, node);
@@ -123,8 +123,8 @@ public class WeightedGraphVisualizer extends AlgorithmVisualizer {
         for (Map.Entry<Integer, Point> entry : pointMap.entrySet()) {
             Integer key = entry.getKey();
 
-            for (WeightedGraph.Edge edge : graph.getAdjacentKeys(key)) {
-                drawNodeLine(canvas, edge.src, edge.dest, (int) edge.weight);
+            for (int i : graph.neighbors(key)) {
+                drawNodeLine(canvas, key, i, (int) graph.getWeight(key, i));
             }
 
         }
@@ -189,3 +189,4 @@ public class WeightedGraphVisualizer extends AlgorithmVisualizer {
     }
 
 }
+

@@ -77,6 +77,9 @@ public class CodeFragment extends Fragment {
                 case Algorithm.DFS:
                     addCodeItem(AlgorithmCode.CODE_GRAPH_DFS, "Depth first search");
                     break;
+                case Algorithm.BELLMAN_FORD:
+                    addCodeItem(AlgorithmCode.CODE_BELLMAN_FORD, "Bellman Ford");
+                    break;
             }
         }
 
