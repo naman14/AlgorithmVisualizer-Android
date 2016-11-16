@@ -1,6 +1,9 @@
 package com.naman14.algovisualizer;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -11,6 +14,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ExpandableListView;
 
+import com.anjlab.android.iab.v3.BillingProcessor;
 import com.naman14.algovisualizer.algorithm.Algorithm;
 import com.naman14.algovisualizer.algorithm.graph.GraphTraversalAlgorithm;
 import com.naman14.algovisualizer.algorithm.tree.bst.BSTAlgorithm;
@@ -50,6 +54,7 @@ public class MainActivity extends AppCompatActivity {
         mMenuAdapter = new ExpandableListAdapter(this, listDataHeader, listDataChild, expandableList);
 
         expandableList.setAdapter(mMenuAdapter);
+        expandableList.expandGroup(5);
 
         expandableList.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
             @Override
@@ -105,6 +110,28 @@ public class MainActivity extends AppCompatActivity {
                                 algoFragment.setupFragment(Algorithm.DFS);
                                 break;
                         }
+                    case 5:
+                        switch (childPosition) {
+                            case 0:
+                                mDrawerLayout.closeDrawers();
+                                Handler handler = new Handler();
+                                handler.postDelayed(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        Helpers.showAbout(MainActivity.this);
+                                    }
+                                }, 350);
+                                break;
+                            case 1:
+                                Intent intent = new Intent(Intent.ACTION_VIEW);
+                                Uri data = Uri.parse("https://github.com/naman14/AlgorithmVisualizer-Android");
+                                intent.setData(data);
+                                startActivity(intent);
+                                break;
+                            case 2:
+                                startActivity(new Intent(MainActivity.this, DonateActivity.class));
+                                break;
+                        }
                         break;
 
                 }
@@ -144,6 +171,10 @@ public class MainActivity extends AppCompatActivity {
         item5.setName("Graph");
         listDataHeader.add(item5);
 
+        ExpandedMenuModel item10 = new ExpandedMenuModel();
+        item10.setName("About");
+        listDataHeader.add(item10);
+
         List<String> heading1 = new ArrayList<>();
         heading1.add("Binary search");
 
@@ -163,12 +194,26 @@ public class MainActivity extends AppCompatActivity {
         heading5.add("BFS Traversal");
         heading5.add("DFS Travsersal");
 
+        List<String> heading10 = new ArrayList<String>();
+        heading10.add("About");
+        heading10.add("Fork on Github");
+
+        try {
+            if (BillingProcessor.isIabServiceAvailable(this)) {
+                heading10.add("Support development");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         listDataChild.put(listDataHeader.get(0), heading1);
         listDataChild.put(listDataHeader.get(1), heading2);
         listDataChild.put(listDataHeader.get(2), heading3);
         listDataChild.put(listDataHeader.get(3), heading4);
         listDataChild.put(listDataHeader.get(4), heading5);
+        listDataChild.put(listDataHeader.get(5), heading10);
+
+
 
     }
 

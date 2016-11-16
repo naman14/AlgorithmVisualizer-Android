@@ -25,11 +25,27 @@
         android:layout_gravity="start"
         android:fitsSystemWindows="true">
 
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:background="@color/colorPrimary">
+
+            <ImageView
+                android:layout_width="55dp"
+                android:layout_height="55dp"
+                android:src="@drawable/icon"
+                android:layout_gravity="center_vertical|left"
+                android:layout_marginLeft="20dp" />
+        </FrameLayout>
+
+
         <ExpandableListView
             android:id="@+id/navigationmenu"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_marginTop="192dp"
+            android:layout_marginTop="150dp"
             android:background="@android:color/white" />
+
+
     </android.support.design.widget.NavigationView>
 </android.support.v4.widget.DrawerLayout>

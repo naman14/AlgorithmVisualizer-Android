@@ -25,5 +25,7 @@ dependencies {
     compile 'com.android.support:design:23.3.0'
     compile 'com.roughike:bottom-bar:1.3.4'
     compile 'thereisnospon.codeview:codeview:0.3.1'
+    compile 'com.anjlab.android.iab.v3:library:1.0.+'
+
 
 }
