@@ -194,6 +194,7 @@ public class VisualAlgoFragment extends Fragment {
                 fab.setVisibility(View.GONE);
                 break;
             case Algorithm.BFS:
+            case Algorithm.DFS:
                 visualizer = new DirectedGraphVisualizer(getActivity());
                 appBarLayout.addView(visualizer);
                 algorithm = new GraphTraversalAlgorithm( (DirectedGraphVisualizer) visualizer, getActivity(), logFragment);
