@@ -71,6 +71,12 @@ public class CodeFragment extends Fragment {
                     addCodeItem(AlgorithmCode.CODE_STACK_POP, "Stack pop");
                     addCodeItem(AlgorithmCode.CODE_STACK_PEEK, "Stack peek");
                     break;
+                case Algorithm.BFS:
+                    addCodeItem(AlgorithmCode.CODE_GRAPH_BFS, "Breadth first search");
+                    break;
+                case Algorithm.DFS:
+                    addCodeItem(AlgorithmCode.CODE_GRAPH_DFS, "Depth first search");
+                    break;
             }
         }
 

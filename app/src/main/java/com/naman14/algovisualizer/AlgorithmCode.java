@@ -204,4 +204,74 @@ public class AlgorithmCode {
             " updateData(stack);\n" +
             " highlightNode(-1);";
 
+    public static final String CODE_GRAPH_BFS = " addLog(\"Traversing the graph with breadth-first search\");\n" +
+            " Queue < Integer > queue = new LinkedList < Integer > ();\n" +
+            "\n" +
+            " int numberOfNodes = graph.size();\n" +
+            " addLog(\"Total number of nodes: \" + numberOfNodes);\n" +
+            " int[] visited = new int[numberOfNodes + 1];\n" +
+            "\n" +
+            " int i, element;\n" +
+            "\n" +
+            " addLog(\"Starting from source: \" + source);\n" +
+            " highlightNode(source);\n" +
+            " visited[source] = 1;\n" +
+            " queue.add(source);\n" +
+            " sleep();\n" +
+            "\n" +
+            " while (!queue.isEmpty()) {\n" +
+            "  element = queue.remove();\n" +
+            "  i = element;\n" +
+            "  while (i <= numberOfNodes) {\n" +
+            "   if (graph.edgeExists(element, i) && visited[i] == 0) {\n" +
+            "    addLog(\"Going from \" + element + \" to \" + i);\n" +
+            "    highlightNode(i);\n" +
+            "    highlightLine(element, i);\n" +
+            "    queue.add(i);\n" +
+            "    visited[i] = 1;\n" +
+            "    sleep();\n" +
+            "   }\n" +
+            "   i++;\n" +
+            "  }\n" +
+            " }\n" +
+            " addLog(\"BFS traversing completed\");\n" +
+            " completed();";
+
+    public static final String CODE_GRAPH_DFS = "addLog(\"Traversing the graph with depth-first search\");\n" +
+            "Stack < Integer > stack = new Stack < > ();\n" +
+            "\n" +
+            "int numberOfNodes = graph.size();\n" +
+            "addLog(\"Total number of nodes: \" + numberOfNodes);\n" +
+            "\n" +
+            "int visited[] = new int[numberOfNodes + 1];\n" +
+            "int element = source;\n" +
+            "int i = source;\n" +
+            "addLog(\"Starting from source: \" + source);\n" +
+            "highlightNode(source);\n" +
+            "visited[source] = 1;\n" +
+            "stack.push(source);\n" +
+            "sleep();\n" +
+            "\n" +
+            "while (!stack.isEmpty()) {\n" +
+            " element = stack.peek();\n" +
+            " i = element;\n" +
+            " while (i <= numberOfNodes) {\n" +
+            "  if (graph.edgeExists(element, i) && visited[i] == 0) {\n" +
+            "   addLog(\"Going from \" + element + \" to \" + i);\n" +
+            "   highlightNode(i);\n" +
+            "   highlightLine(element, i);\n" +
+            "   stack.push(i);\n" +
+            "   visited[i] = 1;\n" +
+            "   element = i;\n" +
+            "   i = 1;\n" +
+            "   sleep();\n" +
+            "   continue;\n" +
+            "  }\n" +
+            "  i++;\n" +
+            " }\n" +
+            " stack.pop();\n" +
+            "}\n" +
+            "addLog(\"DFS traversing completed\");\n" +
+            "completed();";
+
 }
