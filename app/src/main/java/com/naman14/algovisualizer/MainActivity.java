@@ -91,8 +91,15 @@ public class MainActivity extends AppCompatActivity {
                             case 1:
                                 algoFragment.setupFragment(Algorithm.STACK);
                                 break;
-                            case 2:
-                                algoFragment.setupFragment(Algorithm.QUEUE);
+                        }
+                        break;
+                    case 4:
+                        switch (childPosition) {
+                            case 0:
+                                algoFragment.setupFragment(Algorithm.BFS);
+                                break;
+                            case 1:
+                                algoFragment.setupFragment(Algorithm.DFS);
                                 break;
                         }
                         break;
@@ -130,6 +137,10 @@ public class MainActivity extends AppCompatActivity {
         item4.setName("List");
         listDataHeader.add(item4);
 
+        ExpandedMenuModel item5 = new ExpandedMenuModel();
+        item5.setName("Graph search");
+        listDataHeader.add(item5);
+
         List<String> heading1 = new ArrayList<>();
         heading1.add("Binary search");
 
@@ -144,13 +155,17 @@ public class MainActivity extends AppCompatActivity {
         List<String> heading4 = new ArrayList<String>();
         heading4.add("Linked List");
         heading4.add("Stack");
-        heading4.add("Queue");
+
+        List<String> heading5 = new ArrayList<String>();
+        heading5.add("BFS");
+        heading5.add("DFS");
 
 
         listDataChild.put(listDataHeader.get(0), heading1);
         listDataChild.put(listDataHeader.get(1), heading2);
         listDataChild.put(listDataHeader.get(2), heading3);
         listDataChild.put(listDataHeader.get(3), heading4);
+        listDataChild.put(listDataHeader.get(4), heading5);
 
     }
 

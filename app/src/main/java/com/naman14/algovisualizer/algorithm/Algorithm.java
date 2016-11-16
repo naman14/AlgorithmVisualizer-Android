@@ -25,6 +25,8 @@ public class Algorithm extends HandlerThread {
     public static final String LINKED_LIST = "linked_list";
     public static final String STACK = "stack";
     public static final String QUEUE = "queue";
+    public static final String BFS = "bfs";
+    public static final String DFS = "dfs";
 
 
     public LogFragment logFragment;

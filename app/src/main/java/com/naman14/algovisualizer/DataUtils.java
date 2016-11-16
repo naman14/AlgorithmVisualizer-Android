@@ -2,6 +2,7 @@ package com.naman14.algovisualizer;
 
 import android.content.Context;
 
+import com.naman14.algovisualizer.algorithm.graph.Digraph;
 import com.naman14.algovisualizer.algorithm.list.linkedlist.LinkedList;
 import com.naman14.algovisualizer.algorithm.list.stack.Stack;
 import com.naman14.algovisualizer.algorithm.tree.bst.BinarySearchTree;
@@ -25,6 +26,7 @@ public class DataUtils {
             {3, 6, 9, 1, 0, 7, -1, -1, -1, -1}, //left child of nodes
             {8, 10, 9, -1, 2, 7, -1, -1, -1, -1} //right child of nodes
     };
+
 
     public static int[] createRandomArray(int size) {
 
@@ -82,6 +84,32 @@ public class DataUtils {
         return stack;
 
     }
+
+    public static Digraph createDirectedGraph() {
+        Digraph graph = new Digraph();
+        graph.add(0, 1);
+        graph.add(0, 2);
+        graph.add(1, 3);
+        graph.add(3, 7);
+        graph.add(3, 8);
+        graph.add(1, 4);
+        graph.add(4, 9);
+        graph.add(4, 10);
+        graph.add(2, 5);
+        graph.add(2, 6);
+
+        double[][] array = {
+                {0, 2, 6, 5, 1, 4, 10, 9, 3, 8, 7}, //nodes
+                {1, 5, -1, -1, 3, 9, -1, -1, 7, -1, -1},//left child
+                {2, 6, -1, -1, 4, 10, -1, -1, 8, -1, -1}, //right child
+                {0, 1.5, 2.5, 1, 1.5, 0.5, 0, 1, 2.5, 2, 3}, //number of left/right nodes from root in horizontal
+                {0, 1, 2.5, 2.5, 1, 2, 3, 3, 2, 3, 3}, //number of left/right nodes from root in vertical
+                {-1, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1} //is the node left of the root?
+        };
+        graph.setDirectedArray(array);
+        return graph;
+    }
+
 
     public static int[] createSortedArray(int size) {
         int[] integers = new int[size];

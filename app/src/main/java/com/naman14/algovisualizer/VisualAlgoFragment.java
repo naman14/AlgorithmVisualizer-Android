@@ -19,6 +19,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.naman14.algovisualizer.algorithm.Algorithm;
+import com.naman14.algovisualizer.algorithm.graph.BFSAlgorithm;
 import com.naman14.algovisualizer.algorithm.list.linkedlist.LinkedList;
 import com.naman14.algovisualizer.algorithm.list.stack.Stack;
 import com.naman14.algovisualizer.algorithm.search.BinarySearch;
@@ -34,6 +35,7 @@ import com.naman14.algovisualizer.visualizer.LinkedListVisualizer;
 import com.naman14.algovisualizer.visualizer.SortingVisualizer;
 import com.naman14.algovisualizer.visualizer.StackControls;
 import com.naman14.algovisualizer.visualizer.StackVisualizer;
+import com.naman14.algovisualizer.visualizer.graph.DirectedGraphVisualizer;
 import com.roughike.bottombar.BottomBar;
 import com.roughike.bottombar.BottomBarTab;
 import com.roughike.bottombar.OnTabClickListener;
@@ -189,6 +191,13 @@ public class VisualAlgoFragment extends Fragment {
                 algorithm = new Stack(5, (StackVisualizer) visualizer, getActivity(), logFragment);
                 ((Stack) algorithm).setData(DataUtils.createStack());
                 stackcontrols.setStack((Stack) algorithm);
+                fab.setVisibility(View.GONE);
+                break;
+            case Algorithm.BFS:
+                visualizer = new DirectedGraphVisualizer(getActivity());
+                appBarLayout.addView(visualizer);
+                algorithm = new BFSAlgorithm( (DirectedGraphVisualizer) visualizer, getActivity(), logFragment);
+                ((BFSAlgorithm) algorithm).setData(DataUtils.createDirectedGraph());
                 fab.setVisibility(View.GONE);
                 break;
             default:

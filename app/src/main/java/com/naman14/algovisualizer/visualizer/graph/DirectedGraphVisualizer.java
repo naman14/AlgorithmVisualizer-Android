@@ -1,0 +1,203 @@
+package com.naman14.algovisualizer.visualizer.graph;
+
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.Point;
+import android.graphics.Rect;
+import android.util.AttributeSet;
+import android.util.Log;
+
+import com.naman14.algovisualizer.algorithm.graph.Digraph;
+import com.naman14.algovisualizer.visualizer.AlgorithmVisualizer;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+/**
+ * Created by naman on 16/11/16.
+ */
+
+public class DirectedGraphVisualizer extends AlgorithmVisualizer {
+
+    private Paint circlePaint;
+    private Paint textPaint;
+    private Paint linePaint;
+    private Paint circleHighlightPaint;
+    private Paint lineHighlightPaint;
+    private Rect bounds;
+
+    private int highlightNode = -1;
+    private int highlighLineStart = -1, highlightLineEnd = -1;
+    private Map<Integer, Point> pointMap = new HashMap<>();
+
+    private Digraph graph;
+    private List<Integer> array = new ArrayList<>();
+
+    public DirectedGraphVisualizer(Context context) {
+        super(context);
+        initialise();
+    }
+
+    public DirectedGraphVisualizer(Context context, AttributeSet attrs) {
+        super(context, attrs);
+        initialise();
+    }
+
+    private void initialise() {
+        circlePaint = new Paint();
+        textPaint = new Paint();
+
+        textPaint.setColor(Color.WHITE);
+        textPaint.setTextSize(getDimensionInPixelFromSP(15));
+        textPaint.setAntiAlias(true);
+        textPaint.setTextAlign(Paint.Align.CENTER);
+
+        bounds = new Rect();
+        textPaint.getTextBounds("0", 0, 1, bounds);
+
+        circlePaint.setColor(Color.RED);
+        circlePaint.setAntiAlias(true);
+
+        linePaint = new Paint();
+        linePaint.setStrokeWidth(5);
+        linePaint.setColor(Color.BLACK);
+
+        circleHighlightPaint = new Paint(circlePaint);
+        circleHighlightPaint.setColor(Color.BLUE);
+
+        lineHighlightPaint = new Paint(linePaint);
+        lineHighlightPaint.setColor(Color.RED);
+        lineHighlightPaint.setStrokeWidth(10);
+    }
+
+    public void setData(Digraph graph) {
+        this.graph = graph;
+        this.array = graph.topSort();
+        Log.e("lol", graph.topSort().toString());
+        invalidate();
+        Log.e("lol", graph.toString());
+    }
+
+    @Override
+    protected void onDraw(Canvas canvas) {
+        super.onDraw(canvas);
+        if (array != null && array.size() != 0)
+            drawGraph(canvas);
+    }
+
+    private void drawGraph(Canvas canvas) {
+
+        pointMap.clear();
+        double[][] graphArray = graph.directed_array;
+
+        int root = 0;
+
+        for (int i = 0; i < array.size(); i++) {
+
+            double parentnode = graphArray[0][i];
+            double numhorizontalnode = graphArray[3][i];
+            double numverticalnode = graphArray[4][i];
+            double toLeftOfRoot = graphArray[5][i];
+
+            Point p = new Point();
+            Point p0 = new Point();
+
+            p0.x = getWidth() / 2 + getDimensionInPixel(25);
+            p0.y = getDimensionInPixel(40);
+
+            if (parentnode == root) {
+
+                p.x = getWidth() / 2 + getDimensionInPixel(25);
+                p.y = getDimensionInPixel(40);
+
+            } else if (toLeftOfRoot == 1) {
+                p.x = (int) (p0.x - numhorizontalnode * getDimensionInPixel(60));
+                p.y = (int) (p0.y + numverticalnode * getDimensionInPixel(70));
+
+            } else if (toLeftOfRoot == 0) {
+                p.x = (int) (p0.x + numhorizontalnode * getDimensionInPixel(60));
+                p.y = (int) (p0.y + numverticalnode * getDimensionInPixel(70));
+
+            }
+
+            addNode(p, (int) parentnode);
+        }
+
+        drawNodes(canvas);
+
+    }
+
+    private void addNode(Point point, int i) {
+        pointMap.put(i, point);
+    }
+
+    private void drawNodes(Canvas canvas) {
+        for (Map.Entry<Integer, Point> entry : pointMap.entrySet()) {
+            Integer key = entry.getKey();
+            Point value = entry.getValue();
+
+            if (graph.exists(key)) {
+                List<Integer> edges = graph.getNeighbours(key);
+                for (Integer i : edges) {
+                    if (pointMap.get(i) != null) {
+                        drawNodeLine(canvas, value, pointMap.get(i), false);
+                    }
+                }
+            }
+        }
+        for (Map.Entry<Integer, Point> entry : pointMap.entrySet()) {
+            Integer key = entry.getKey();
+            Point value = entry.getValue();
+            drawCircleTextNode(canvas, value, key);
+        }
+    }
+
+    private void drawCircleTextNode(Canvas canvas, Point p, int number) {
+        String text = String.valueOf(number);
+
+        if (number == highlightNode) {
+            canvas.drawCircle(p.x, p.y, getDimensionInPixel(15), circleHighlightPaint);
+        } else {
+            canvas.drawCircle(p.x, p.y, getDimensionInPixel(15), circlePaint);
+        }
+        int yOffset = bounds.height() / 2;
+
+        canvas.drawText(text, p.x, p.y + yOffset, textPaint);
+
+    }
+
+
+    private void drawNodeLine(Canvas canvas, Point start, Point end, boolean highlight) {
+        int midx = (start.x + end.x) / 2;
+        int midy = (start.y + end.y) / 2;
+        if (highlight) {
+            canvas.drawLine(start.x, start.y, end.x, end.y, lineHighlightPaint);
+        } else {
+            canvas.drawLine(start.x, start.y, end.x, end.y, linePaint);
+        }
+        canvas.drawLine(midx, midy, midx + getDimensionInPixel(5), midy - getDimensionInPixel(2), linePaint);
+        canvas.drawLine(midx, midy, midx - getDimensionInPixel(5), midy - getDimensionInPixel(2), linePaint);
+    }
+
+    public void highlightNode(int node) {
+        this.highlightNode = node;
+        invalidate();
+    }
+
+    public void highlightLine(int start, int end) {
+        this.highlighLineStart = start;
+        this.highlightLineEnd = end;
+        invalidate();
+    }
+
+
+    @Override
+    public void onCompleted() {
+        highlightNode(-1);
+        highlightLine(-1, -1);
+    }
+}
