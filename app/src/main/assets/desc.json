@@ -10,7 +10,9 @@
       "Space": "worst O(log(N)) - recursive, O(1) - iterative"
     },
     "References": [
-      "<a href='https://en.wikipedia.org/wiki/Binary_search_algorithm'>Wikipedia</a>"
+      "<a href='https://en.wikipedia.org/wiki/Binary_search_algorithm'>Wikipedia</a><br>",
+      "<a href='https://github.com/naman14/AlgorithmVisualizer-Android/blob/master/app/src/main/java/com/naman14/algovisualizer/algorithm/search/BinarySearch.java'>BinarySearch</a>",
+      "<a href='https://github.com/naman14/AlgorithmVisualizer-Android/blob/master/app/src/main/java/com/naman14/algovisualizer/visualizer/BinarySearchVisualizer.java'>BinarySearchVisualizer</a>"
     ]
   },
   "bst_search": {
@@ -23,7 +25,9 @@
       "Space": "O(n)"
     },
     "References": [
-      "<a href='https://en.wikipedia.org/wiki/Binary_search_tree'>Wikipedia</a>"
+      "<a href='https://en.wikipedia.org/wiki/Binary_search_tree'>Wikipedia</a><br>",
+      "<a href='https://github.com/naman14/AlgorithmVisualizer-Android/blob/master/app/src/main/java/com/naman14/algovisualizer/algorithm/tree/bst/BSTAlgorithm.java'>BSTAlgorithm</a>",
+      "<a href='https://github.com/naman14/AlgorithmVisualizer-Android/blob/master/app/src/main/java/com/naman14/algovisualizer/visualizer/BSTVisualizer.java'>BSTVisualizer</a>"
     ]
   },
   "bst_insert": {
@@ -36,7 +40,9 @@
       "Space": "O(n)"
     },
     "References": [
-      "<a href='https://en.wikipedia.org/wiki/Binary_search_tree'>Wikipedia</a>"
+      "<a href='https://en.wikipedia.org/wiki/Binary_search_tree'>Wikipedia</a><br>",
+      "<a href='https://github.com/naman14/AlgorithmVisualizer-Android/blob/master/app/src/main/java/com/naman14/algovisualizer/algorithm/tree/bst/BSTAlgorithm.java'>BSTAlgorithm</a>",
+      "<a href='https://github.com/naman14/AlgorithmVisualizer-Android/blob/master/app/src/main/java/com/naman14/algovisualizer/visualizer/BSTVisualizer.java'>BSTVisualizer</a>"
     ]
   },
   "bubble_sort": {
@@ -46,7 +52,9 @@
       "Space": "worst O(1) auxiliary"
     },
     "References": [
-      "<a href='https://en.wikipedia.org/wiki/Bubble_sort'>Wikipedia</a>"
+      "<a href='https://en.wikipedia.org/wiki/Bubble_sort'>Wikipedia</a><br>",
+      "<a href='https://github.com/naman14/AlgorithmVisualizer-Android/blob/master/app/src/main/java/com/naman14/algovisualizer/algorithm/sorting/BubbleSort.java'>BubbleSort</a>",
+      "<a href='https://github.com/naman14/AlgorithmVisualizer-Android/blob/master/app/src/main/java/com/naman14/algovisualizer/visualizer/SortingVisualizer.java'>SortingVisualizer</a>"
     ]
   },
   "insertion_sort": {
@@ -56,7 +64,9 @@
       "Space": "worst O(1) auxiliary"
     },
     "References": [
-      "<a href='https://en.wikipedia.org/wiki/Insertion_sort'>Wikipedia</a>"
+      "<a href='https://en.wikipedia.org/wiki/Insertion_sort'>Wikipedia</a><br>",
+      "<a href='https://github.com/naman14/AlgorithmVisualizer-Android/blob/master/app/src/main/java/com/naman14/algovisualizer/algorithm/sorting/InsertionSort.java'>InsertionSort</a>",
+      "<a href='https://github.com/naman14/AlgorithmVisualizer-Android/blob/master/app/src/main/java/com/naman14/algovisualizer/visualizer/SortingVisualizer.java'>SortingVisualizer</a>"
     ]
   },
   "linked_list": {
@@ -66,7 +76,9 @@
       "Space": "<br>worst O(n)"
     },
     "References": [
-      "<a href='https://en.wikipedia.org/wiki/Linked_list'>Wikipedia</a>"
+      "<a href='https://en.wikipedia.org/wiki/Linked_list'>Wikipedia</a><br>",
+      "<a href='https://github.com/naman14/AlgorithmVisualizer-Android/blob/master/app/src/main/java/com/naman14/algovisualizer/algorithm/list/linkedlist/LinkedList.java'>LinkedList</a>",
+      "<a href='https://github.com/naman14/AlgorithmVisualizer-Android/blob/master/app/src/main/java/com/naman14/algovisualizer/visualizer/LinkedListVisualizer.java'>LinkedListVisualizer</a>"
     ]
   },
   "stack": {
@@ -76,7 +88,9 @@
       "Space": "<br>worst O(n)"
     },
     "References": [
-      "<a href='https://en.wikipedia.org/wiki/Stack_(abstract_data_type)'>Wikipedia</a>"
+      "<a href='https://en.wikipedia.org/wiki/Stack_(abstract_data_type)'>Wikipedia</a><br>",
+      "<a href='https://github.com/naman14/AlgorithmVisualizer-Android/blob/master/app/src/main/java/com/naman14/algovisualizer/algorithm/list/stack/Stack.java'>Stack</a>",
+      "<a href='https://github.com/naman14/AlgorithmVisualizer-Android/blob/master/app/src/main/java/com/naman14/algovisualizer/visualizer/StackVisualizer.java'>StackVisualizer</a>"
     ]
   },
   "bfs": {
@@ -95,7 +109,10 @@
       "Space": "worst O(|V|)"
     },
     "References": [
-      "<a href='https://en.wikipedia.org/wiki/Breadth-first_search'>Wikipedia</a>"
+      "<a href='https://en.wikipedia.org/wiki/Breadth-first_search'>Wikipedia</a><br>",
+      "<a href='https://github.com/naman14/AlgorithmVisualizer-Android/blob/master/app/src/main/java/com/naman14/algovisualizer/algorithm/graph/GraphTraversalAlgorithm.java.java'>GraphTraversal</a>",
+      "<a href='https://github.com/naman14/AlgorithmVisualizer-Android/blob/master/app/src/main/java/com/naman14/algovisualizer/algorithm/graph/Digraph.java'>DirectedGraph</a>",
+      "<a href='https://github.com/naman14/AlgorithmVisualizer-Android/blob/master/app/src/main/java/com/naman14/algovisualizer/visualizer/graph/DirectedGraphVisualizer.java'>DirectedGraphVisualizer</a>"
     ]
   },
   "dfs": {
@@ -118,7 +135,10 @@
       "Space": "worst O(|V|)"
     },
     "References": [
-      "<a href='https://en.wikipedia.org/wiki/Depth-first_search'>Wikipedia</a>"
+      "<a href='https://en.wikipedia.org/wiki/Depth-first_search'>Wikipedia</a><br>",
+      "<a href='https://github.com/naman14/AlgorithmVisualizer-Android/blob/master/app/src/main/java/com/naman14/algovisualizer/algorithm/graph/GraphTraversalAlgorithm.java.java'>GraphTraversal</a>",
+      "<a href='https://github.com/naman14/AlgorithmVisualizer-Android/blob/master/app/src/main/java/com/naman14/algovisualizer/algorithm/graph/Digraph.java'>DirectedGraph</a>",
+      "<a href='https://github.com/naman14/AlgorithmVisualizer-Android/blob/master/app/src/main/java/com/naman14/algovisualizer/visualizer/graph/DirectedGraphVisualizer.java'>DirectedGraphVisualizer</a>"
     ]
   },
   "dijkstra": {
@@ -128,10 +148,13 @@
       "space": "worst O(|V|)"
     },
     "References": [
-      "<a href='https://en.wikipedia.org/wiki/Dijkstra%27s_algorithm'>Wikipedia</a>"
+      "<a href='https://en.wikipedia.org/wiki/Dijkstra%27s_algorithm'>Wikipedia</a><br>",
+      "<a href='https://github.com/naman14/AlgorithmVisualizer-Android/blob/master/app/src/main/java/com/naman14/algovisualizer/algorithm/graph/DijkstraAgorithm.java'>DijkstraAlgorithm</a>",
+      "<a href='https://github.com/naman14/AlgorithmVisualizer-Android/blob/master/app/src/main/java/com/naman14/algovisualizer/algorithm/graph/WeightedGraph2.java'>WeightedGraph</a>",
+      "<a href='https://github.com/naman14/AlgorithmVisualizer-Android/blob/master/app/src/main/java/com/naman14/algovisualizer/visualizer/graph/WeightedGraphVisualizer2.java'>WeightedGraphVisualizer</a>"
     ]
   },
-  "bellman_ford":{
+  "bellman_ford": {
     "Bellman-Ford": "The Bellman–Ford algorithm is an algorithm that computes shortest paths from a single source vertex to all of the other vertices in a weighted digraph. It is different from Dijkstra's Shortest Path Algorithm because it allows NEGATIVE weights unlike Dijkstra's.",
     "Applications": [
       "Packet Routing - A variation of BF is used in the Distance vector Routing Protocol"
@@ -141,7 +164,10 @@
       "space": "worst O(|V|)"
     },
     "References": [
-      "<a href='https://en.wikipedia.org/wiki/Bellman%E2%80%93Ford_algorithm'>Wikipedia</a>"
+      "<a href='https://en.wikipedia.org/wiki/Bellman%E2%80%93Ford_algorithm'>Wikipedia</a><br>",
+      "<a href='https://github.com/naman14/AlgorithmVisualizer-Android/blob/master/app/src/main/java/com/naman14/algovisualizer/algorithm/graph/BellmanFordAlgorithm.java'>BellmanFord</a>",
+      "<a href='https://github.com/naman14/AlgorithmVisualizer-Android/blob/master/app/src/main/java/com/naman14/algovisualizer/algorithm/graph/WeightedGraph.java'>WeightedGraph</a>",
+      "<a href='https://github.com/naman14/AlgorithmVisualizer-Android/blob/master/app/src/main/java/com/naman14/algovisualizer/visualizer/graph/WeightedGraphVisualizer.java'>WeightedGraphVisualizer</a>"
     ]
   }
 }
