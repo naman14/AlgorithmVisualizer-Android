@@ -130,5 +130,18 @@
     "References": [
       "<a href='https://en.wikipedia.org/wiki/Dijkstra%27s_algorithm'>Wikipedia</a>"
     ]
+  },
+  "bellman_ford":{
+    "Bellman-Ford": "The Bellman–Ford algorithm is an algorithm that computes shortest paths from a single source vertex to all of the other vertices in a weighted digraph. It is different from Dijkstra's Shortest Path Algorithm because it allows NEGATIVE weights unlike Dijkstra's.",
+    "Applications": [
+      "Packet Routing - A variation of BF is used in the Distance vector Routing Protocol"
+    ],
+    "Complexity": {
+      "time": "worst O(|V| |E|)",
+      "space": "worst O(|V|)"
+    },
+    "References": [
+      "<a href='https://en.wikipedia.org/wiki/Bellman%E2%80%93Ford_algorithm'>Wikipedia</a>"
+    ]
   }
 }

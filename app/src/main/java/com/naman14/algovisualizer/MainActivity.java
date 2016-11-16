@@ -112,6 +112,9 @@ public class MainActivity extends AppCompatActivity {
                             case 2:
                                 algoFragment.setupFragment(Algorithm.DIJKSTRA);
                                 break;
+                            case 3:
+                                algoFragment.setupFragment(Algorithm.BELLMON_FORD);
+                                break;
                         }
                         break;
                     case 5:
@@ -198,6 +201,7 @@ public class MainActivity extends AppCompatActivity {
         heading5.add("BFS Traversal");
         heading5.add("DFS Travsersal");
         heading5.add("Dijkstra");
+        heading5.add("Bellmon Ford");
 
         List<String> heading10 = new ArrayList<String>();
         heading10.add("About");

@@ -18,6 +18,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.naman14.algovisualizer.algorithm.Algorithm;
+import com.naman14.algovisualizer.algorithm.graph.BellmonFordAlgorithm;
 import com.naman14.algovisualizer.algorithm.graph.DijkstraAgorithm;
 import com.naman14.algovisualizer.algorithm.graph.GraphTraversalAlgorithm;
 import com.naman14.algovisualizer.algorithm.list.linkedlist.LinkedList;
@@ -205,7 +206,13 @@ public class VisualAlgoFragment extends Fragment {
                 visualizer = new WeightedGraphVisualizer(getActivity());
                 appBarLayout.addView(visualizer);
                 algorithm = new DijkstraAgorithm((WeightedGraphVisualizer) visualizer, getActivity(), logFragment);
-                ((DijkstraAgorithm) algorithm).setData(DataUtils.createWeightedDigraph(5));
+                ((DijkstraAgorithm) algorithm).setData(DataUtils.createWeightedGraph(5));
+                break;
+            case Algorithm.BELLMON_FORD:
+                visualizer = new WeightedGraphVisualizer(getActivity());
+                appBarLayout.addView(visualizer);
+                algorithm = new BellmonFordAlgorithm((WeightedGraphVisualizer) visualizer, getActivity(), logFragment);
+                ((BellmonFordAlgorithm) algorithm).setData(DataUtils.createWeightedGraph(5));
                 break;
             default:
                 visualizer = null;

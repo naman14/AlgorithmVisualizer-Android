@@ -9,13 +9,11 @@ import android.graphics.Rect;
 import android.util.AttributeSet;
 import android.util.Log;
 
-import com.naman14.algovisualizer.algorithm.graph.Edge;
 import com.naman14.algovisualizer.algorithm.graph.WeightedGraph;
 import com.naman14.algovisualizer.visualizer.AlgorithmVisualizer;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -110,7 +108,7 @@ public class WeightedGraphVisualizer extends AlgorithmVisualizer {
                 {getHeight() / 2 + getDimensionInPixel(20), getDimensionInPixel(20), getDimensionInPixel(20), getHeight() / 2 + getDimensionInPixel(20), getHeight() - getDimensionInPixel(30)}
         };
 
-        for (int i = 0; i < graph.size(); i++) {
+        for (int i = 0; i < graph.V; i++) {
             int node = vertices[0][i];
             Point p = new Point(vertices[1][i], vertices[2][i]);
             addNode(p, node);
@@ -127,12 +125,10 @@ public class WeightedGraphVisualizer extends AlgorithmVisualizer {
         for (Map.Entry<Integer, Point> entry : pointMap.entrySet()) {
             Integer key = entry.getKey();
 
-            Iterator<Edge> it = graph.getIncidentEdges(key);
-            while (it.hasNext()) {
-                Edge edge = it.next();
-                drawNodeLine(canvas, key, edge.vertex2(), (int) edge.weight());
-
+            for (WeightedGraph.Edge edge : graph.getAdjacentKeys(key)) {
+                drawNodeLine(canvas, edge.src, edge.dest, (int) edge.weight);
             }
+
         }
         for (Map.Entry<Integer, Point> entry : pointMap.entrySet()) {
             Integer key = entry.getKey();
@@ -161,8 +157,8 @@ public class WeightedGraphVisualizer extends AlgorithmVisualizer {
         Point start = pointMap.get(s);
         Point end = pointMap.get(e);
 
-        int midx = (start.x + end.x) / 2 + 20;
-        int midy = (start.y + end.y) / 2 + 20;
+        int midx = (start.x + end.x) / 2;
+        int midy = (start.y + end.y) / 2;
 
         boolean highlight = (highlightLine.containsKey(s) && highlightLine.get(s).contains(e));
         if (highlight) {

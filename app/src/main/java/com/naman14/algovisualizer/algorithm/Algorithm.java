@@ -28,6 +28,7 @@ public class Algorithm extends HandlerThread {
     public static final String BFS = "bfs";
     public static final String DFS = "dfs";
     public static final String DIJKSTRA = "dijkstra";
+    public static final String BELLMON_FORD = "bellman_ford";
 
 
     public LogFragment logFragment;

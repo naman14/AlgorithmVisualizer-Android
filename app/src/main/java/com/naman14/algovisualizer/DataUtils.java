@@ -111,29 +111,20 @@ public class DataUtils {
         return graph;
     }
 
-    public static WeightedGraph createWeightedDigraph(int vertex) {
+    public static WeightedGraph createWeightedGraph(int vertex) {
 
-        WeightedGraph graph = new WeightedGraph(vertex);
-        Random random = new Random();
-        int edges = random.nextInt(vertex) + 20;
+        int E = 8;
 
-        for (int i = 0; i < edges; i++) {
+        WeightedGraph graph = new WeightedGraph(vertex, E);
 
-            int v = random.nextInt(vertex);
-            int w = random.nextInt(vertex);
-
-            double weight = random.nextInt(10);
-
-            boolean exists = false;
-
-            if (v == w) {
-                exists = true;
-            }
-
-            if (!exists) {
-                graph.addEdge(v, w, weight);
-            }
-        }
+        graph.addEdge(0, 0, 1, 1);
+        graph.addEdge(1, 0, 2, 4);
+        graph.addEdge(2, 1, 2, 3);
+        graph.addEdge(3, 1, 3, 2);
+        graph.addEdge(4, 1, 4, 2);
+        graph.addEdge(5, 3, 2, 5);
+        graph.addEdge(6, 0, 4, 1);
+        graph.addEdge(7, 4, 3, 3);
 
         return graph;
 
