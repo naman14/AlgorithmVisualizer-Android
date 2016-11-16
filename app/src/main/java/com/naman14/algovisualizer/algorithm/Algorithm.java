@@ -27,6 +27,7 @@ public class Algorithm extends HandlerThread {
     public static final String QUEUE = "queue";
     public static final String BFS = "bfs";
     public static final String DFS = "dfs";
+    public static final String DIJKSTRA = "dijkstra";
 
 
     public LogFragment logFragment;

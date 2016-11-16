@@ -3,6 +3,8 @@ package com.naman14.algovisualizer;
 import android.content.Context;
 
 import com.naman14.algovisualizer.algorithm.graph.Digraph;
+import com.naman14.algovisualizer.algorithm.graph.DirectedEdge;
+import com.naman14.algovisualizer.algorithm.graph.WeightedDigraph;
 import com.naman14.algovisualizer.algorithm.list.linkedlist.LinkedList;
 import com.naman14.algovisualizer.algorithm.list.stack.Stack;
 import com.naman14.algovisualizer.algorithm.tree.bst.BinarySearchTree;
@@ -108,6 +110,21 @@ public class DataUtils {
         };
         graph.setDirectedArray(array);
         return graph;
+    }
+
+    public static WeightedDigraph createWeightedDigraph() {
+        WeightedDigraph graph = new WeightedDigraph(4);
+
+        Random random = new Random();
+        int edges = random.nextInt(5) + 3;
+
+        for (int i = 0; i < edges; i++) {
+            DirectedEdge edge =
+                    new DirectedEdge(random.nextInt(edges), random.nextInt(edges), random.nextInt(10));
+            graph.addEdge(edge);
+        }
+        return graph;
+
     }
 
 

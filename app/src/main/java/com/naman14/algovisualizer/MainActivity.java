@@ -109,7 +109,11 @@ public class MainActivity extends AppCompatActivity {
                                 algoFragment.setStartCommand(GraphTraversalAlgorithm.TRAVERSE_DFS);
                                 algoFragment.setupFragment(Algorithm.DFS);
                                 break;
+                            case 2:
+                                algoFragment.setupFragment(Algorithm.DIJKSTRA);
+                                break;
                         }
+                        break;
                     case 5:
                         switch (childPosition) {
                             case 0:
@@ -193,6 +197,7 @@ public class MainActivity extends AppCompatActivity {
         List<String> heading5 = new ArrayList<String>();
         heading5.add("BFS Traversal");
         heading5.add("DFS Travsersal");
+        heading5.add("Dijkstra");
 
         List<String> heading10 = new ArrayList<String>();
         heading10.add("About");

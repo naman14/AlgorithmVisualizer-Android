@@ -1,6 +1,5 @@
 package com.naman14.algovisualizer;
 
-import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.AppBarLayout;
@@ -19,6 +18,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.naman14.algovisualizer.algorithm.Algorithm;
+import com.naman14.algovisualizer.algorithm.graph.DijkstraAgorithm;
 import com.naman14.algovisualizer.algorithm.graph.GraphTraversalAlgorithm;
 import com.naman14.algovisualizer.algorithm.list.linkedlist.LinkedList;
 import com.naman14.algovisualizer.algorithm.list.stack.Stack;
@@ -36,6 +36,7 @@ import com.naman14.algovisualizer.visualizer.SortingVisualizer;
 import com.naman14.algovisualizer.visualizer.StackControls;
 import com.naman14.algovisualizer.visualizer.StackVisualizer;
 import com.naman14.algovisualizer.visualizer.graph.DirectedGraphVisualizer;
+import com.naman14.algovisualizer.visualizer.graph.WeightedDirectedGraphVisualizer;
 import com.roughike.bottombar.BottomBar;
 import com.roughike.bottombar.BottomBarTab;
 import com.roughike.bottombar.OnTabClickListener;
@@ -84,7 +85,7 @@ public class VisualAlgoFragment extends Fragment {
                 new BottomBarTab(R.drawable.ic_wb_incandescent_white_24dp, "Details"),
                 new BottomBarTab(R.drawable.ic_short_text_white_24dp, "Execution"),
                 new BottomBarTab(R.drawable.ic_code_white_24dp, "Code")
-                );
+        );
 
         bottomBar.setOnTabClickListener(new OnTabClickListener() {
             @Override
@@ -197,8 +198,14 @@ public class VisualAlgoFragment extends Fragment {
             case Algorithm.DFS:
                 visualizer = new DirectedGraphVisualizer(getActivity());
                 appBarLayout.addView(visualizer);
-                algorithm = new GraphTraversalAlgorithm( (DirectedGraphVisualizer) visualizer, getActivity(), logFragment);
+                algorithm = new GraphTraversalAlgorithm((DirectedGraphVisualizer) visualizer, getActivity(), logFragment);
                 ((GraphTraversalAlgorithm) algorithm).setData(DataUtils.createDirectedGraph());
+                break;
+            case Algorithm.DIJKSTRA:
+                visualizer = new WeightedDirectedGraphVisualizer(getActivity());
+                appBarLayout.addView(visualizer);
+                algorithm = new DijkstraAgorithm((WeightedDirectedGraphVisualizer) visualizer, getActivity(), logFragment);
+                ((DijkstraAgorithm) algorithm).setData(DataUtils.createWeightedDigraph());
                 break;
             default:
                 visualizer = null;
@@ -238,10 +245,9 @@ public class VisualAlgoFragment extends Fragment {
             }
         });
 
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) { //add shadow to appbar on below 21
-            View shadow = LayoutInflater.from(getActivity()).inflate(R.layout.shadow, appBarLayout, false);
-            appBarLayout.addView(shadow);
-        }
+        View shadow = LayoutInflater.from(getActivity()).inflate(R.layout.shadow, appBarLayout, false);
+        appBarLayout.addView(shadow);
+
     }
 
     private void setupViewPager(ViewPager viewPager) {
@@ -257,7 +263,7 @@ public class VisualAlgoFragment extends Fragment {
 
             @Override
             public void onPageSelected(int position) {
-                bottomBar.selectTabAtPosition(position,false);
+                bottomBar.selectTabAtPosition(position, false);
                 bottomBar.hide();
             }
 

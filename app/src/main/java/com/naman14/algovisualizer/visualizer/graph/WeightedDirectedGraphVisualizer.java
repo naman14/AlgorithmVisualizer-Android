@@ -4,27 +4,34 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.util.AttributeSet;
 
+import com.naman14.algovisualizer.algorithm.graph.WeightedDigraph;
 import com.naman14.algovisualizer.visualizer.AlgorithmVisualizer;
 
 /**
  * Created by naman on 16/11/16.
  */
 
-public class WeightedDirectedGraph extends AlgorithmVisualizer {
+public class WeightedDirectedGraphVisualizer extends AlgorithmVisualizer {
 
+    private WeightedDigraph graph;
 
-    public WeightedDirectedGraph(Context context) {
+    public WeightedDirectedGraphVisualizer(Context context) {
         super(context);
         initialise();
     }
 
-    public WeightedDirectedGraph(Context context, AttributeSet attrs) {
+    public WeightedDirectedGraphVisualizer(Context context, AttributeSet attrs) {
         super(context,attrs);
         initialise();
     }
 
     private void initialise() {
 
+    }
+
+    public void setData(WeightedDigraph graph) {
+        this.graph = graph;
+        invalidate();
     }
 
     @Override
