@@ -69,6 +69,18 @@
       "<a href='https://github.com/naman14/AlgorithmVisualizer-Android/blob/master/app/src/main/java/com/naman14/algovisualizer/visualizer/SortingVisualizer.java'>SortingVisualizer</a>"
     ]
   },
+  "selection_sort": {
+    "Selection Sort": "The selection sort algorithm sorts an array by repeatedly finding the minimum element (considering ascending order) from unsorted part and putting it at the beginning",
+    "Complexity": {
+      "Time": "worst O(n^2), best O(n^2), average O(n^2)",
+      "Space": "worst O(1) auxiliary"
+    },
+    "References": [
+      "<a href='https://en.wikipedia.org/wiki/Selection_sort'>Wikipedia</a><br>",
+      "<a href='https://github.com/naman14/AlgorithmVisualizer-Android/blob/master/app/src/main/java/com/naman14/algovisualizer/algorithm/sorting/SelectionSort.java'>SelectionSort</a>",
+      "<a href='https://github.com/naman14/AlgorithmVisualizer-Android/blob/master/app/src/main/java/com/naman14/algovisualizer/visualizer/SortingVisualizer.java'>SortingVisualizer</a>"
+    ]
+  },
   "linked_list": {
     "Singly linked list": "A Linked List is a linear collection of data elements, called nodes, each pointing to the next node by means of a pointer. It is a data structure consisting of a group of nodes which together represent a sequence. Under the simplest form, each node is composed of data and a reference (in other words, a link) to the next node in the sequence. ",
     "Complexity": {

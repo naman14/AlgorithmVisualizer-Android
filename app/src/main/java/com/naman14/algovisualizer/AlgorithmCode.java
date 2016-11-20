@@ -46,6 +46,25 @@ public class AlgorithmCode {
             " addLog(\"Array has been sorted\");\n" +
             " completed();";
 
+    public static final String CODE_SELECTION_SORT = " logArray(\"Original array - \", array);\n" +
+            "\n" +
+            " int n = array.length;\n" +
+            " for (int j = 0; j < n-1; j++) {\n" +
+            "  int min_idx = j;\n" +
+            "   for(int i=j+1;i<n;i++)\n"+
+            "       if(array[i] < array[min_idx]) {\n"+
+            "          highlightSwap(i,min_idx);\n "+
+            "          min_idx=i;\n"+
+            "     }\n"+
+            "   addLog(\"Swapping \" + array[j] + \" and \" + array[min_idx]);\n" +
+            "         int temp = array[min_idx];\n"+
+            "         array[min_idx] = array[j];\n"+
+            "           sleep();\n"+
+            "         array[j] = temp;\n"+
+            " }\n" +
+            " addLog(\"Array has been sorted\");\n" +
+            " completed();";
+
     public static final String CODE_BST_SEARCH = " int id = DataUtils.getRandomKeyFromBST();\n" +
             " addLog(\"Searching for \" + String.valueOf(id));\n" +
             " BinarySearchTree.Node current = b.getRoot();\n" +
