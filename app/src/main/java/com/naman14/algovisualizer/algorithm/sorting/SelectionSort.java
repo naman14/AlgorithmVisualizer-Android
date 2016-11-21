@@ -29,18 +29,18 @@ public class SelectionSort extends SortAlgorithm {
         logArray("Original array - " ,array);
 
         int n = array.length;
-        for (int j = 0; j < n-1; j++) {
-            int min_idx = j;
-            for (int i = j+1; i < n; i++)
-                if (array[i] < array[min_idx]) {
-                    highlightSwap(min_idx,i);
-                    min_idx = i;
+        for (int i = 0; i < n-1; i++) {
+            int min_idx = i;
+            for (int j = i+1; j < n; j++)
+                if (array[j] < array[min_idx]) {
+                    min_idx = j;
                 }
-            addLog("Swapping " + array[j] + " and " + array[min_idx]);
             int temp = array[min_idx];
-            array[min_idx] = array[j];
+            array[min_idx] = array[i];
+            addLog("Swapping " + array[i] + " and " + temp);
+            highlightSwap(min_idx,i);
+            array[i] = temp;
             sleep();
-            array[j] = temp;
         }
         addLog("Array has been sorted");
         completed();

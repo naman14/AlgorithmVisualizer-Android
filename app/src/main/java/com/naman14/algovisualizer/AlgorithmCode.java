@@ -49,18 +49,18 @@ public class AlgorithmCode {
     public static final String CODE_SELECTION_SORT = " logArray(\"Original array - \", array);\n" +
             "\n" +
             " int n = array.length;\n" +
-            " for (int j = 0; j < n-1; j++) {\n" +
-            "  int min_idx = j;\n" +
-            "   for(int i=j+1;i<n;i++)\n"+
-            "       if(array[i] < array[min_idx]) {\n"+
-            "          highlightSwap(i,min_idx);\n "+
-            "          min_idx=i;\n"+
-            "     }\n"+
-            "   addLog(\"Swapping \" + array[j] + \" and \" + array[min_idx]);\n" +
-            "         int temp = array[min_idx];\n"+
-            "         array[min_idx] = array[j];\n"+
-            "           sleep();\n"+
-            "         array[j] = temp;\n"+
+            " for (int i = 0; i < n - 1; i++) {\n" +
+            "  int min_idx = i;\n" +
+            "  for (int j = i + 1; j < n; j++)\n" +
+            "   if (array[j] < array[min_idx]) {\n" +
+            "    min_idx = j;\n" +
+            "   }\n" +
+            "  int temp = array[min_idx];\n" +
+            "  array[min_idx] = array[i];\n" +
+            "  addLog(\"Swapping \" + array[i] + \" and \" + temp);\n" +
+            "  highlightSwap(min_idx, i);\n" +
+            "  array[i] = temp;\n" +
+            "  sleep();\n" +
             " }\n" +
             " addLog(\"Array has been sorted\");\n" +
             " completed();";
