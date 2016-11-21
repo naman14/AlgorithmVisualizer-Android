@@ -88,6 +88,8 @@ public class MainActivity extends AppCompatActivity {
                             case 1:
                                 algoFragment.setupFragment(Algorithm.INSERTION_SORT);
                                 break;
+                            case 2:
+                                algoFragment.setupFragment(Algorithm.SELECTION_SORT);
                         }
                         break;
                     case 2:
@@ -201,7 +203,7 @@ public class MainActivity extends AppCompatActivity {
         List<String> heading2 = new ArrayList<String>();
         heading2.add("Bubble Sort");
         heading2.add("Insertion Sort");
-
+        heading2.add("Selection Sort");
         List<String> heading3 = new ArrayList<String>();
         heading3.add("BST Search");
         heading3.add("BST Insert");
