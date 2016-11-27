@@ -46,19 +46,19 @@ public class LinearSearch extends Algorithm implements DataHandler {
 
         int rnd = new Random().nextInt(array.length);
         int data = array[rnd];
-        addLog("Searching for " + data);
+        addLog("Searching for - " + data);
 
-        int n = array.length - 1;
+        int n = array.length ;
 
         for (int i = 0 ; i<n ; i++) {
 
-            highlight(i, i);
-            addLog("Searching at index: " + i);
+            highlight(0, i-1);
+            highlightTrace(i);
+            addLog("Searching at index - " + i);
 
             if (array[i] == data){
                 addLog("Result - True");
-                highlight(i, i);
-                addLog("Value found at position " + i);
+                addLog("Value found at position - " + i);
                 break;
             }
 

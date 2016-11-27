@@ -170,7 +170,7 @@ public class VisualAlgoFragment extends Fragment {
                 visualizer = new BinarySearchVisualizer(getActivity());
                 appBarLayout.addView(visualizer);
                 algorithm = new LinearSearch((BinarySearchVisualizer) visualizer, getActivity(), logFragment);
-                ((LinearSearch) algorithm).setData(DataUtils.createSortedArray(15));
+                ((LinearSearch) algorithm).setData(DataUtils.createRandomArray(15));
                 break;
             case Algorithm.BUBBLE_SORT:
                 visualizer = new SortingVisualizer(getActivity());
