@@ -70,6 +70,9 @@ public class CodeFragment extends Fragment {
                 case Algorithm.BST_SEARCH:
                     addCodeItem(AlgorithmCode.CODE_BST_SEARCH, "BST Search");
                     break;
+                case Algorithm.LINEAR_SEARCH:
+                    addCodeItem(AlgorithmCode.CODE_LINEAR_SEARCH, "Linear Search");
+                    break;
                 case Algorithm.BST_INSERT:
                     addCodeItem(AlgorithmCode.CODE_BST_INSERT, "BST Insert");
                     break;

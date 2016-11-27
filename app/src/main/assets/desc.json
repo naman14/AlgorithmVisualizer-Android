@@ -15,6 +15,19 @@
       "<a href='https://github.com/naman14/AlgorithmVisualizer-Android/blob/master/app/src/main/java/com/naman14/algovisualizer/visualizer/BinarySearchVisualizer.java'>BinarySearchVisualizer</a>"
     ]
   },
+  "linear_search": {
+    "Linear Search": "Linear search or sequential search is a method for finding a target value within a list. It sequentially checks each element of the list for the target value until a match is found or until all the elements have been searched.",
+    "Applications": [
+      "Finding values in an unordered list"
+    ],
+    "Complexity": {
+      "Time": "worst O(N), best O(1), average O(N)",
+      "Space": "worst O(1) - iterative"
+    },
+    "References": [
+      "<a href='https://en.wikipedia.org/wiki/Linear_search'>Wikipedia</a><br>"
+    ]
+  },
   "bst_search": {
     "Binary Search Tree": "Binary search trees (BST), sometimes called ordered or sorted binary trees, are a particular type of containers: data structures that store \"items\" (such as numbers, names etc.) in memory. They allow fast lookup, addition and removal of items, and can be used to implement either dynamic sets of items, or lookup tables that allow finding an item by its key (e.g., finding the phone number of a person by name).",
     "Applications": [
