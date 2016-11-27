@@ -78,6 +78,9 @@ public class MainActivity extends AppCompatActivity {
                             case 0:
                                 algoFragment.setupFragment(Algorithm.BINARY_SEARCH);
                                 break;
+                            case 1:
+                                algoFragment.setupFragment(Algorithm.LINEAR_SEARCH);
+                                break;
                         }
                         break;
                     case 1:
@@ -199,6 +202,7 @@ public class MainActivity extends AppCompatActivity {
 
         List<String> heading1 = new ArrayList<>();
         heading1.add("Binary search");
+        heading1.add("Linear Search");
 
         List<String> heading2 = new ArrayList<String>();
         heading2.add("Bubble Sort");

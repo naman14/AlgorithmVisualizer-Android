@@ -38,6 +38,7 @@ import com.naman14.algovisualizer.algorithm.graph.GraphTraversalAlgorithm;
 import com.naman14.algovisualizer.algorithm.list.LinkedList;
 import com.naman14.algovisualizer.algorithm.list.Stack;
 import com.naman14.algovisualizer.algorithm.search.BinarySearch;
+import com.naman14.algovisualizer.algorithm.search.LinearSearch;
 import com.naman14.algovisualizer.algorithm.sorting.BubbleSort;
 import com.naman14.algovisualizer.algorithm.sorting.InsertionSort;
 import com.naman14.algovisualizer.algorithm.sorting.SelectionSort;
@@ -164,6 +165,12 @@ public class VisualAlgoFragment extends Fragment {
                 appBarLayout.addView(visualizer);
                 algorithm = new BinarySearch((BinarySearchVisualizer) visualizer, getActivity(), logFragment);
                 ((BinarySearch) algorithm).setData(DataUtils.createSortedArray(15));
+                break;
+            case Algorithm.LINEAR_SEARCH:
+                visualizer = new BinarySearchVisualizer(getActivity());
+                appBarLayout.addView(visualizer);
+                algorithm = new LinearSearch((BinarySearchVisualizer) visualizer, getActivity(), logFragment);
+                ((LinearSearch) algorithm).setData(DataUtils.createRandomArray(15));
                 break;
             case Algorithm.BUBBLE_SORT:
                 visualizer = new SortingVisualizer(getActivity());

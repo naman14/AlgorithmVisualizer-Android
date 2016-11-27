@@ -144,6 +144,20 @@ public class AlgorithmCode {
             " }\n" +
             " completed();";
 
+    public static final String CODE_LINEAR_SEARCH = " logArray(\"Original array - \", array);\n" +
+            " addLog(\"Value to be searched - \", value);\n" +
+            " int n = array.length;\n" +
+            " int position = -1 ;\n" +
+            " for (int j = 0; j < n-1; j) {\n" +
+            "  if (array[j] == value) \n" +
+            "		pos = j ; \n" +
+            "       break ; \n" +
+            " }\n" +
+            " if (pos == -1) \n" +
+            " 	addLog(\"Value not found in array\");\n" +
+            " else \n" +
+            " 	addLog(\"Value found in array at position - \", position);\n" ;
+
     public static final String CODE_LINKED_LIST_INSERT = "  Node nd = new Node();\n" +
             "  nd.setValue(element);\n" +
             "  addLog(\"Adding: \" + element + \" to the list\");\n" +
