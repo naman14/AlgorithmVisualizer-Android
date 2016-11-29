@@ -15,6 +15,19 @@
       "<a href='https://github.com/naman14/AlgorithmVisualizer-Android/blob/master/app/src/main/java/com/naman14/algovisualizer/visualizer/BinarySearchVisualizer.java'>BinarySearchVisualizer</a>"
     ]
   },
+  "linear_search": {
+    "Linear Search": "Linear search or sequential search is a method for finding a target value within a list. It sequentially checks each element of the list for the target value until a match is found or until all the elements have been searched.",
+    "Applications": [
+      "Finding values in an unordered list"
+    ],
+    "Complexity": {
+      "Time": "worst O(N), best O(1), average O(N)",
+      "Space": "worst O(1) - iterative"
+    },
+    "References": [
+      "<a href='https://en.wikipedia.org/wiki/Linear_search'>Wikipedia</a><br>"
+    ]
+  },
   "bst_search": {
     "Binary Search Tree": "Binary search trees (BST), sometimes called ordered or sorted binary trees, are a particular type of containers: data structures that store \"items\" (such as numbers, names etc.) in memory. They allow fast lookup, addition and removal of items, and can be used to implement either dynamic sets of items, or lookup tables that allow finding an item by its key (e.g., finding the phone number of a person by name).",
     "Applications": [
@@ -66,6 +79,18 @@
     "References": [
       "<a href='https://en.wikipedia.org/wiki/Insertion_sort'>Wikipedia</a><br>",
       "<a href='https://github.com/naman14/AlgorithmVisualizer-Android/blob/master/app/src/main/java/com/naman14/algovisualizer/algorithm/sorting/InsertionSort.java'>InsertionSort</a>",
+      "<a href='https://github.com/naman14/AlgorithmVisualizer-Android/blob/master/app/src/main/java/com/naman14/algovisualizer/visualizer/SortingVisualizer.java'>SortingVisualizer</a>"
+    ]
+  },
+  "selection_sort": {
+    "Selection Sort": "The selection sort algorithm sorts an array by repeatedly finding the minimum element (considering ascending order) from unsorted part and putting it at the beginning",
+    "Complexity": {
+      "Time": "worst O(n^2), best O(n^2), average O(n^2)",
+      "Space": "worst O(1) auxiliary"
+    },
+    "References": [
+      "<a href='https://en.wikipedia.org/wiki/Selection_sort'>Wikipedia</a><br>",
+      "<a href='https://github.com/naman14/AlgorithmVisualizer-Android/blob/master/app/src/main/java/com/naman14/algovisualizer/algorithm/sorting/SelectionSort.java'>SelectionSort</a>",
       "<a href='https://github.com/naman14/AlgorithmVisualizer-Android/blob/master/app/src/main/java/com/naman14/algovisualizer/visualizer/SortingVisualizer.java'>SortingVisualizer</a>"
     ]
   },

@@ -46,6 +46,25 @@ public class AlgorithmCode {
             " addLog(\"Array has been sorted\");\n" +
             " completed();";
 
+    public static final String CODE_SELECTION_SORT = " logArray(\"Original array - \", array);\n" +
+            "\n" +
+            " int n = array.length;\n" +
+            " for (int i = 0; i < n - 1; i++) {\n" +
+            "  int min_idx = i;\n" +
+            "  for (int j = i + 1; j < n; j++)\n" +
+            "   if (array[j] < array[min_idx]) {\n" +
+            "    min_idx = j;\n" +
+            "   }\n" +
+            "  int temp = array[min_idx];\n" +
+            "  array[min_idx] = array[i];\n" +
+            "  addLog(\"Swapping \" + array[i] + \" and \" + temp);\n" +
+            "  highlightSwap(min_idx, i);\n" +
+            "  array[i] = temp;\n" +
+            "  sleep();\n" +
+            " }\n" +
+            " addLog(\"Array has been sorted\");\n" +
+            " completed();";
+
     public static final String CODE_BST_SEARCH = " int id = DataUtils.getRandomKeyFromBST();\n" +
             " addLog(\"Searching for \" + String.valueOf(id));\n" +
             " BinarySearchTree.Node current = b.getRoot();\n" +
@@ -124,6 +143,20 @@ public class AlgorithmCode {
             "  }\n" +
             " }\n" +
             " completed();";
+
+    public static final String CODE_LINEAR_SEARCH = " logArray(\"Original array - \", array);\n" +
+            " addLog(\"Value to be searched - \", value);\n" +
+            " int n = array.length;\n" +
+            " int position = -1 ;\n" +
+            " for (int j = 0; j < n-1; j) {\n" +
+            "  if (array[j] == value) \n" +
+            "		pos = j ; \n" +
+            "       break ; \n" +
+            " }\n" +
+            " if (pos == -1) \n" +
+            " 	addLog(\"Value not found in array\");\n" +
+            " else \n" +
+            " 	addLog(\"Value found in array at position - \", position);\n" ;
 
     public static final String CODE_LINKED_LIST_INSERT = "  Node nd = new Node();\n" +
             "  nd.setValue(element);\n" +

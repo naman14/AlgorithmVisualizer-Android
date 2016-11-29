@@ -30,7 +30,9 @@ public class Algorithm extends HandlerThread {
     public static final String COMMAND_START_ALGORITHM = "start";
     public static final String BUBBLE_SORT = "bubble_sort";
     public static final String INSERTION_SORT = "insertion_sort";
+    public static final String SELECTION_SORT = "selection_sort";
     public static final String BINARY_SEARCH = "binary_search";
+    public static final String LINEAR_SEARCH = "linear_search";
     public static final String BST_INSERT = "bst_insert";
     public static final String BST_SEARCH = "bst_search";
     public static final String LINKED_LIST = "linked_list";
