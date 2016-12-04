@@ -94,6 +94,16 @@
       "<a href='https://github.com/naman14/AlgorithmVisualizer-Android/blob/master/app/src/main/java/com/naman14/algovisualizer/visualizer/SortingVisualizer.java'>SortingVisualizer</a>"
     ]
   },
+  "quicksort": {
+    "Quicksort": "Quicksort (sometimes called partition-exchange sort) is an efficient sorting algorithm, serving as a systematic method for placing the elements of an array in order.",
+    "Complexity": {
+      "Time": "worst O(n^2), best O(nlogn), average O(nlogn)",
+      "Space": "worst O(logn)"
+    },
+    "References": [
+      "<a href='https://en.wikipedia.org/wiki/Quicksort'>Quicksort</a><br>"
+    ]
+  },
   "linked_list": {
     "Singly linked list": "A Linked List is a linear collection of data elements, called nodes, each pointing to the next node by means of a pointer. It is a data structure consisting of a group of nodes which together represent a sequence. Under the simplest form, each node is composed of data and a reference (in other words, a link) to the next node in the sequence. ",
     "Complexity": {
