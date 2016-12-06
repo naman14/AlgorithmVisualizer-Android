@@ -198,12 +198,13 @@ public class DataUtils {
     }
 
 
-    public static int[] createSortedArray(int size) {
+    public static int[] createArray(int size, boolean sorted) {
         int[] integers = new int[size];
         for (int i = 0; i < size; i++) {
             integers[i] = new Random().nextInt(88) + 10;
         }
-        Arrays.sort(integers);
+        if (sorted)
+            Arrays.sort(integers);
         return integers;
     }
 
