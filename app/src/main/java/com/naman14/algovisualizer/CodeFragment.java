@@ -116,18 +116,44 @@ public class CodeFragment extends Fragment {
         codeView.setTheme(CodeViewTheme.GITHUB);
         codeView.setHorizontalScrollBarEnabled(true);
 
-        //Temp solution, block parent touch evenets
-        codeView.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                v.getParent().requestDisallowInterceptTouchEvent(true);
-                return false;
-            }
-        });
+        codeView.setOnTouchListener(new HorizontalMoveListener());
 
         codeView.showCode(code);
 
         codeLayout.addView(codeitem);
 
+    }
+
+    /**
+     * handle horizontal move
+     */
+    class HorizontalMoveListener implements View.OnTouchListener {
+
+        float downX = 0;
+        float downY = 0;
+
+        @Override
+        public boolean onTouch(View v, MotionEvent event) {
+            int action = event.getAction();
+            switch (action){
+                case MotionEvent.ACTION_DOWN:
+                    downX = event.getX();
+                    downY = event.getY();
+                    break;
+                case MotionEvent.ACTION_MOVE:
+                    float dx = Math.abs(event.getX() - downX);
+                    float dy = Math.abs(event.getY() - downY);
+
+                    if(dx > dy){
+                        v.getParent().requestDisallowInterceptTouchEvent(true);
+                    }
+
+                    downX = event.getX();
+                    downY = event.getY();
+
+                    break;
+            }
+            return false;
+        }
     }
 }
