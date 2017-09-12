@@ -142,6 +142,13 @@ public class MainActivity extends AppCompatActivity {
                     case 5:
                         switch (childPosition) {
                             case 0:
+                                algoFragment.setupFragment(Algorithm.N_QUEENS);
+                                break;
+                        }
+                        break;
+                    case 6:
+                        switch (childPosition) {
+                            case 0:
                                 mDrawerLayout.closeDrawers();
                                 Handler handler = new Handler();
                                 handler.postDelayed(new Runnable() {
@@ -203,6 +210,10 @@ public class MainActivity extends AppCompatActivity {
         item5.setName("Graph");
         listDataHeader.add(item5);
 
+        ExpandedMenuModel item6 = new ExpandedMenuModel();
+        item6.setName("Backtracking");
+        listDataHeader.add(item6);
+
         ExpandedMenuModel item10 = new ExpandedMenuModel();
         item10.setName("About");
         listDataHeader.add(item10);
@@ -230,6 +241,9 @@ public class MainActivity extends AppCompatActivity {
         heading5.add("Dijkstra");
         heading5.add("Bellman Ford");
 
+        List<String> heading6 = new ArrayList<String>();
+        heading6.add("N Queens Problem");
+
         List<String> heading10 = new ArrayList<String>();
         heading10.add("About");
         heading10.add("Fork on Github");
@@ -248,7 +262,8 @@ public class MainActivity extends AppCompatActivity {
         listDataChild.put(listDataHeader.get(2), heading3);
         listDataChild.put(listDataHeader.get(3), heading4);
         listDataChild.put(listDataHeader.get(4), heading5);
-        listDataChild.put(listDataHeader.get(5), heading10);
+        listDataChild.put(listDataHeader.get(5), heading6);
+        listDataChild.put(listDataHeader.get(6), heading10);
 
 
 

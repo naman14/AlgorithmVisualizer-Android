@@ -208,6 +208,12 @@ public class DataUtils {
         return integers;
     }
 
+    public static int[][] createNQueenArray(int n) {
+        //all values will be initialised to zero
+        return new int[n][n];
+
+    }
+
     public static int getRandomKeyFromBST() {
         int rnd = new Random().nextInt(bst_array.length);
         return bst_array[rnd];

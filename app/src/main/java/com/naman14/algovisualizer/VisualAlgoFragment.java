@@ -252,6 +252,9 @@ public class VisualAlgoFragment extends Fragment {
                 algorithm = new BellmanFordAlgorithm((WeightedGraphVisualizer) visualizer, getActivity(), logFragment);
                 ((BellmanFordAlgorithm) algorithm).setData(DataUtils.createWeightedGraph(5));
                 break;
+            case Algorithm.N_QUEENS:
+                visualizer = null;
+                break;
             default:
                 visualizer = null;
         }
