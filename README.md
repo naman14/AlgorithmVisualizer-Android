@@ -11,7 +11,7 @@ Algorithm Visualizer for Android
 <img src="https://raw.githubusercontent.com/naman14/AlgorithmVisualizer-Android/master/screenshots/screen4.png" width="360" height="640">
 <img src="https://raw.githubusercontent.com/naman14/AlgorithmVisualizer-Android/master/screenshots/screen2.png" width="360" height="640">
 
-##Visualizations
+## Visualizations
 
 The following visualizations are available currently -
 
@@ -22,7 +22,7 @@ The following visualizations are available currently -
 * BFS and DFS traversal
 * Dijkstara and Bellman Ford graph search
 
-##Contributing
+## Contributing
 
 Contributions are welcome to be able to provide visualizations for more algorithms. The existing API for visualizers are given below. These existing 
 visualizers can be used directly for most algorithms.
