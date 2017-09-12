@@ -67,6 +67,9 @@ public class CodeFragment extends Fragment {
                 case Algorithm.SELECTION_SORT:
                     addCodeItem(AlgorithmCode.CODE_SELECTION_SORT,"Selection sort");
                     break;
+                case Algorithm.QUICKSORT:
+                    addCodeItem(AlgorithmCode.CODE_QUICKSORT, "Quicksort");
+                    break;
                 case Algorithm.BST_SEARCH:
                     addCodeItem(AlgorithmCode.CODE_BST_SEARCH, "BST Search");
                     break;

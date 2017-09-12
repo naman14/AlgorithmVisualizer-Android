@@ -65,6 +65,33 @@ public class AlgorithmCode {
             " addLog(\"Array has been sorted\");\n" +
             " completed();";
 
+    public static final String CODE_QUICKSORT = "int partition (int arr[], int low, int high)\n" +
+            "{\n" +
+            "    int pivot = arr[high]; \n" +
+            "    int i = (low - 1);  \n" +
+            " \n" +
+            "    for (int j = low; j <= high- 1; j++)\n" +
+            "    {\n" +
+            "        if (arr[j] <= pivot)\n" +
+            "        {\n" +
+            "            i++; \n" +
+            "            swap(&arr[i], &arr[j]);\n" +
+            "        }\n" +
+            "    }\n" +
+            "    swap(&arr[i + 1], &arr[high]);\n" +
+            "    return (i + 1);\n" +
+            "}\n" +
+            "void quickSort(int arr[], int low, int high)\n" +
+            "{\n" +
+            "    if (low < high)\n" +
+            "    {\n" +
+            "        int pi = partition(arr, low, high);\n" +
+            " \n" +
+            "        quickSort(arr, low, pi - 1);\n" +
+            "        quickSort(arr, pi + 1, high);\n" +
+            "    }\n" +
+            "}";
+
     public static final String CODE_BST_SEARCH = " int id = DataUtils.getRandomKeyFromBST();\n" +
             " addLog(\"Searching for \" + String.valueOf(id));\n" +
             " BinarySearchTree.Node current = b.getRoot();\n" +
