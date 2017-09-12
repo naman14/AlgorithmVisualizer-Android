@@ -23,6 +23,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".DonateActivity"/>
+        <activity android:name=".SettingsActivity"/>
 
         <!--use your own api key for fabric-->
         <meta-data

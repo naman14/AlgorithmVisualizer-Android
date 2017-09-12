@@ -15,6 +15,7 @@
 package com.naman14.algovisualizer;
 
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CoordinatorLayout;
@@ -126,6 +127,7 @@ public class VisualAlgoFragment extends Fragment {
         algoFragment = AlgoDescriptionFragment.newInstance(getArguments().getString(Algorithm.KEY_ALGORITHM));
 
         setupFragment(getArguments().getString(Algorithm.KEY_ALGORITHM));
+
         return rootView;
     }
 
@@ -254,6 +256,8 @@ public class VisualAlgoFragment extends Fragment {
                 visualizer = null;
         }
 
+        Algorithm.setInterval(Integer.parseInt(PreferenceManager.getDefaultSharedPreferences(getActivity())
+                .getString(SettingsFragment.KEY_INTERVAL, "500")));
         algorithm.setStarted(false);
         fab.setImageResource(R.drawable.ic_play_arrow_white_24dp);
         logFragment.clearLog();

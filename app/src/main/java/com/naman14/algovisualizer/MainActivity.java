@@ -158,6 +158,9 @@ public class MainActivity extends AppCompatActivity {
                                 startActivity(intent);
                                 break;
                             case 2:
+                                startActivity(new Intent(MainActivity.this, SettingsActivity.class));
+                                break;
+                            case 3:
                                 startActivity(new Intent(MainActivity.this, DonateActivity.class));
                                 break;
                         }
@@ -230,6 +233,7 @@ public class MainActivity extends AppCompatActivity {
         List<String> heading10 = new ArrayList<String>();
         heading10.add("About");
         heading10.add("Fork on Github");
+        heading10.add("Settings");
 
         try {
             if (BillingProcessor.isIabServiceAvailable(this)) {

@@ -18,9 +18,11 @@ import android.app.Activity;
 import android.os.Handler;
 import android.os.HandlerThread;
 import android.os.Message;
+import android.preference.PreferenceManager;
 
 import com.naman14.algovisualizer.AlgoCompletionListener;
 import com.naman14.algovisualizer.LogFragment;
+import com.naman14.algovisualizer.SettingsFragment;
 
 import java.util.concurrent.atomic.AtomicBoolean;
 
@@ -44,7 +46,6 @@ public class Algorithm extends HandlerThread {
     public static final String DIJKSTRA = "dijkstra";
     public static final String BELLMAN_FORD = "bellman_ford";
 
-
     public LogFragment logFragment;
     public Activity activity;
     public AlgoCompletionListener completionListener;
@@ -56,12 +57,14 @@ public class Algorithm extends HandlerThread {
 
     private Handler workerHandler;
 
+    private static int INTERVAL = 500;
+
     public Algorithm() {
         super("");
     }
 
     public void sleep() {
-        sleepFor(500);
+        sleepFor(INTERVAL);
     }
 
     public void sleepFor(long time) {
@@ -193,4 +196,9 @@ public class Algorithm extends HandlerThread {
             });
         }
     }
+
+    public static void setInterval(int interval) {
+        INTERVAL = interval;
+    }
+
 }
